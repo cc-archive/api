@@ -1,0 +1,167 @@
+<questions>
+
+ <licenseclass id="standard">
+   <label xml:lang="en">Creative Commons</label>
+
+  <field id="commercial">
+   <label xml:lang="en">Allow commercial uses of your work?</label>
+   <description xml:lang="en">The licensor permits others to copy, distribute, display, and perform the work.  In return, the licensee may not use the work for commercial purposes, unless they get the licensor's permission.</description>
+   <type>enum</type>
+   <enum id="y">
+     <label xml:lang="en">Yes</label>
+   </enum>
+   <enum id="n">
+     <label xml:lang="en">No</label>
+   </enum>
+  </field>
+
+  <field id="derivatives">
+   <label xml:lang="en">Allows modifications of your work?</label>
+   <description xml:lang="en">The licensor permits others to copy, distribute and perform only unaltered copies of the work, not derivative works based on it.</description>
+   <type>enum</type>
+   <enum id="y">
+     <label xml:lang="en">Yes</label>
+   </enum>
+   <enum id="sa">
+     <label xml:lang="en">ShareAlike</label>
+   </enum>
+   <enum id="n">
+     <label xml:lang="en">No</label>
+   </enum>
+  </field>
+
+  <field id="jurisdiction">
+   <label xml:lang="en">Jurisdiction of your license:</label>
+   <description xml:lang="en">If you desire a license governed by the Copyright Law of a specific jurisdiction, please select the appropriate jurisdiction.</description>
+   <type>enum</type>
+   <enum id="">
+     <label xml:lang="en">Generic</label>
+   </enum>
+   <enum id="at">
+     <label xml:lang="en">Austria</label>
+   </enum>
+   <enum id="au">
+     <label xml:lang="en">Australia</label>
+   </enum>
+   <enum id="be">
+     <label xml:lang="en">Belgium</label>
+   </enum>
+   <enum id="br">
+     <label xml:lang="en">Brazil</label>
+   </enum>
+   <enum id="ca">
+     <label xml:lang="en">Canada</label>
+   </enum>
+   <enum id="cl">
+     <label xml:lang="en">Chile</label>
+   </enum>
+   <enum id="de">
+     <label xml:lang="en">Germany</label>
+   </enum>
+   <enum id="es">
+     <label xml:lang="en">Spain</label>
+   </enum>
+   <enum id="fi">
+     <label xml:lang="en">Finland</label>
+   </enum>
+   <enum id="fr">
+     <label xml:lang="en">France</label>
+   </enum>
+   <enum id="hr">
+     <label xml:lang="en">Croatia</label>
+   </enum>
+   <enum id="il">
+     <label xml:lang="en">Israel</label>
+   </enum>
+   <enum id="it">
+     <label xml:lang="en">Italy</label>
+   </enum>
+   <enum id="jp">
+     <label xml:lang="en">Japan</label>
+   </enum>
+   <enum id="kr">
+     <label xml:lang="en">South Korea</label>
+   </enum>
+   <enum id="nl">
+     <label xml:lang="en">Netherlands</label>
+   </enum>
+   <enum id="pl">
+     <label xml:lang="en">Poland</label>
+   </enum>
+   <enum id="tw">
+     <label xml:lang="en">Taiwan</label>
+   </enum>
+   <enum id="uk">
+     <label xml:lang="en">England &amp; Wales</label>
+   </enum>
+   <enum id="za">
+     <label xml:lang="en">South Africa</label>
+   </enum>
+
+  </field>
+
+ </licenseclass>
+
+ <licenseclass id="publicdomain">
+   <label xml:lang="en">Public Domain</label>
+ </licenseclass>
+
+ <licenseclass id="recombo">
+   <label xml:lang="en">Sampling</label>
+
+  <field id="jurisdiction">
+   <label xml:lang="en">Jurisdiction of your license:</label>
+   <description xml:lang="en">If you desire a license governed by the Copyright Law of a specific jurisdiction, please select the appropriate jurisdiction.</description>
+   <type>enum</type>
+   <enum id="">
+     <label xml:lang="en">Generic</label>
+   </enum>
+   <enum id="br">
+     <label xml:lang="en">Brazil</label>
+   </enum>
+  </field>
+
+  <field id="sampling">
+   <label xml:lang="en">What flavor of sampling?</label>
+   <description xml:lang="en">The Sampling Flavor determines how much freedom licensees have. Sampling only allows pieces to be used and prohibits sharing of the entire work.  Sampling Plus allows licensees to take and transform pieces of the work, as well as share the entire work for non-commercial purposes.  Noncommercial Sampling Plus further restricts the Sampling Plus license by only authorizing non-commercial derivatives to be created from the pieces of your work.</description>
+   <type>enum</type>
+   <enum id="sampling">
+     <label xml:lang="en">Sampling</label>
+   </enum>
+   <enum id="samplingplus">
+     <label xml:lang="en">Sampling Plus</label>
+   </enum>
+   <enum id="ncsamplingplus">
+     <label xml:lang="en">Noncommercial Sampling Plus</label>
+   </enum>
+ </field>
+
+ </licenseclass>
+
+
+ <work-info>
+
+  <field>
+   <id>type</id>
+   <label xml:lang="en">Tell us the format of your work:</label>
+   <type>enum</type>
+   <enum>
+     <id>Sound</id>
+     <label xml:lang="en">Audio</label>
+   </enum>
+   <enum>
+     <id>Text</id>
+     <label xml:lang="en">Text</label>
+     <label xml:lang="pt">Texto</label>
+   </enum>
+  </field>
+
+  <field>
+    <id>title</id>
+    <label xml:lang="en">title of work</label>
+    <type>text</type>
+  </field>
+
+ </work-info>
+
+</questions>
