@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<xsl:stylesheet version="1.0"
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+xmlns:metal="http://xml.zope.org/namespaces/metal"
+xmlns:tal="http://xml.zope.org/namespaces/tal">
+
+  <xsl:variable name="license-locale">
+    <xsl:value-of select="/answers/locale" />
+  </xsl:variable>
+
+  <xsl:template name="attribution">
+    <xsl:choose>
+       <!-- generated locale choice lines -->
+       <metal:repeat tal:repeat="l locales">
+         <xsl:when test="$license-locale='en'"
+           tal:attributes="test python:'''$license-locale='%s' '''%l"
+           tal:content="python: lookupString('licenses.pretty_by', l)">
+         Attribution</xsl:when>
+       </metal:repeat>
+       <xsl:otherwise>Attribution</xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template name="derivatives">
+    <xsl:param name="derivs" />
+
+    <xsl:variable name="prettystring">
+
+      <xsl:choose>
+        <xsl:when test="$derivs='n'">
+          <xsl:choose>
+            <!-- generated locale choice lines -->
+            <metal:repeat tal:repeat="locale locales">
+              <xsl:when test="$license-locale='en'"
+                tal:attributes="test python:'''$license-locale='%s' '''%locale"
+                tal:content="python: lookupString('licenses.pretty_nd', locale)">
+              NoDerivs</xsl:when>
+            </metal:repeat>
+
+            <xsl:otherwise>NoDerivs</xsl:otherwise>
+          </xsl:choose>
+        </xsl:when>
+ 
+        <xsl:when test="$derivs='sa'">
+          <xsl:choose>
+            <!-- generated locale choice lines -->
+            <metal:repeat tal:repeat="locale locales">
+              <xsl:when test="$license-locale='en'"
+                tal:attributes="test python:'''$license-locale='%s' ''' % locale"
+                tal:content="python: lookupString('licenses.pretty_sa', locale)">
+              ShareAlike</xsl:when>
+            </metal:repeat>
+
+            <xsl:otherwise>ShareAlike</xsl:otherwise>
+          </xsl:choose>
+        </xsl:when>
+
+      </xsl:choose>
+
+    </xsl:variable>
+
+    <xsl:if test="string-length($prettystring) &gt; 0">
+      <xsl:value-of select="concat('-', $prettystring)" />
+    </xsl:if>
+
+  </xsl:template>
+
+  <xsl:template name="noncommercial">
+    <xsl:param name="commercial" />
+
+    <xsl:variable name="prettystring">
+      <xsl:if test="./commercial='n'">
+        <xsl:choose>
+          <!-- generated locale choice lines -->
+          <metal:repeat tal:repeat="locale locales">
+            <xsl:when test="$license-locale='en'"
+              tal:attributes="test python:'''$license-locale='%s' ''' % locale"
+              tal:content="python: lookupString('licenses.pretty_nc', locale)">
+            NonCommercial</xsl:when>
+          </metal:repeat>
+          <xsl:otherwise>NonCommercial</xsl:otherwise>
+        </xsl:choose>
+      </xsl:if>
+    </xsl:variable>
+
+    <xsl:if test="string-length($prettystring) &gt; 0">
+      <xsl:value-of select="concat('-', $prettystring)" />
+    </xsl:if>
+
+  </xsl:template>
+
+  <xsl:template name="thiswork">
+     <xsl:param name="license_name" />
+     <xsl:param name="license_url" />
+     <xsl:variable name="work_type">
+       <xsl:choose>
+          <metal:repeat tal:repeat="locale locales">
+          <xsl:when test="$license-locale='en'"
+             tal:attributes="test python:'''$license-locale='%s' ''' % locale"
+             tal:content="structure python: lookupString('util.work', locale)">
+          </xsl:when>
+          </metal:repeat>
+
+          <xsl:otherwise 
+               tal:content="structure python:lookupString('util.work', 'en')">
+          </xsl:otherwise>
+       </xsl:choose>
+     </xsl:variable>
+
+      <xsl:choose>
+       <!-- generated locale choice lines -->
+       <metal:repeat tal:repeat="locale locales">
+
+            <xsl:when test="$license-locale='en'"
+              tal:attributes="test python:'''$license-locale='%s' ''' % locale"
+              tal:content="structure python: lookupString('license.work_type_licensed', locale)">
+This work is licensed under a <a href="{$license-uri}" rel="license">Creative Commons <xsl:value-of select="$licensename"/> License</a>.
+
+            </xsl:when>
+
+       </metal:repeat>
+            <xsl:otherwise tal:content="structure python:lookupString('license.work_type_licensed', 'en')">
+This work is licensed under a <a href="{$license-uri}" rel="license">Creative Commons <xsl:value-of select="$licensename"/> License</a>.
+            </xsl:otherwise>
+      </xsl:choose>
+
+  </xsl:template>
+
+</xsl:stylesheet>
+

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.3.7: http://docutils.sourceforge.net/" />
+<title>api.creativecommons.org</title>
+<meta name="author" content="Nathan R. Yergler" />
+<link rel="stylesheet" href="default.css" type="text/css" />
+</head>
+<body>
+<div class="document" id="api-creativecommons-org">
+<h1 class="title">api.creativecommons.org</h1>
+<h2 class="subtitle" id="creative-commons-web-services">Creative Commons Web Services</h2>
+<table class="docinfo" frame="void" rules="none">
+<col class="docinfo-name" />
+<col class="docinfo-content" />
+<tbody valign="top">
+<tr><th class="docinfo-name">Author:</th>
+<td>Nathan R. Yergler</td></tr>
+<tr class="field"><th class="docinfo-name">Updated:</th><td class="field-body">2005-08-30</td>
+</tr>
+</tbody>
+</table>
+<p>Creative Commons provides web service APIs which can be used to integrate 
+the Creative Commons licensing engine into third party applications. 
+We have release the 1.5 version of the API, which is documented in the 
+<a class="reference" href="readme_15.html">1.5 README</a>  The 1.5 API is stable, and development is occuring in 
+CVS HEAD.</p>
+<p>The current in-development API is described in the 
+<a class="reference" href="readme_dev.html">Dev README</a>.  These APIs are currently in beta, and we are soliciting 
+feedback and suggestions. As such, the API may change in the future.</p>
+<p>The Previous Releases are still supported by the server at their 
+canonical URIs.</p>
+<div class="section" id="sample-code">
+<h1><a name="sample-code">Sample Code</a></h1>
+<p>ccPublisher uses the REST interface. See class CcRest in wizard/pages/license.py for an example.</p>
+<p>Other example usages:</p>
+<ul class="simple">
+<li>Python: The ccwsclient package provides basic abstraction of the REST interface via a Python class (<a class="reference" href="http://cvs.sourceforge.net/viewcvs.py/cctools/api/ccwsclient/">ccwsclient CVS</a>).</li>
+<li>Java: The org.creativecommons.api package provides the CcRest class for using the REST web service from Java. Relies on JDOM and Jaxen. (<a class="reference" href="http://cvs.sourceforge.net/viewcvs.py/cctools/api_client/java/">org.cc.api CVS</a>, <a class="reference" href="http://api.creativecommons.org/doc/java/">Javadoc</a>)</li>
+</ul>
+<p>Your comments, feedback and suggestions can be sent to <a class="reference" href="mailto:software&#64;creativecommons.org">software&#64;creativecommons.org</a>.</p>
+</div>
+<div class="section" id="release-history">
+<h1><a name="release-history">Release History</a></h1>
+<blockquote>
+<ul class="simple">
+<li>30 August 2005: 1.5 (<a class="reference" href="readme_15.html">1.5 readme</a>)</li>
+<li>2005 1.0 (<a class="reference" href="readme_10.html">1.0 readme</a>)</li>
+</ul>
+</blockquote>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<element name="questions" xmlns="http://relaxng.org/ns/structure/1.0">
+  <oneOrMore>
+    <element name="licenseclass">
+      <attribute name="id" />
+      <oneOrMore>
+      	<element name="label">
+      		<attribute name="xml:lang">
+      			<text/>
+      		</attribute>
+      		
+      		<text/>
+      	</element>
+      </oneOrMore> 
+      
+      <zeroOrMore>
+      	<element name="field">
+      		<attribute name="id"><text/></attribute>
+      		
+		  	<oneOrMore>
+		  		<element name="label">
+		  			<attribute name="xml:lang"><text/></attribute>		  		
+		  			<text/>
+		  		</element>
+		  	</oneOrMore>
+      		
+		  	<zeroOrMore>
+		  		<element name="description">
+		  			<attribute name="xml:lang"><text/></attribute>		  		
+		  			<text/>
+		  		</element>
+		  	</zeroOrMore>
+      		
+      		<element name="type">
+      			<choice>
+      				<value>enum</value>
+      			</choice>
+      		</element>
+      		
+      		<zeroOrMore>
+      			<element name="enum">
+      				<attribute name="id"><text/></attribute>
+      				
+				  	<oneOrMore>
+				  		<element name="label">
+				  			<attribute name="xml:lang"><text/></attribute>		  		
+				  			<text/>
+				  		</element>
+				  	</oneOrMore>      				
+      			</element>
+      		</zeroOrMore> 
+      		
+      	</element> 
+      </zeroOrMore>
+      
+     </element> 
+  </oneOrMore> 
+  
+  <zeroOrMore>
+  	<element name="work-info">
+  		<oneOrMore>
+  			<element name="field">
+  				<element name="id"><text/></element>
+  				<oneOrMore>
+  					<element name="label">
+  						<attribute name="xml:lang" />
+  						<text/>
+  					</element>
+  				</oneOrMore>
+  				<element name="type">
+  					<choice>
+  						<value>text</value>
+  						<value>enum</value>
+  					</choice>
+				</element>
+  				
+  				<zeroOrMore>
+  					<element name="enum">
+  						<element name="id"><text/></element>
+  						
+  						<oneOrMore>
+  							<element name="label">
+  								<attribute name="xml:lang" />
+  								<text/>
+  							</element>
+  						</oneOrMore>
+  					</element>
+  				</zeroOrMore>
+  			</element>
+  		</oneOrMore>
+  	</element>	
+  </zeroOrMore>
+</element> 

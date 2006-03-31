@@ -1,0 +1,51 @@
+<element name="license-info" xmlns="http://relaxng.org/ns/structure/1.0">
+  <element name="jurisdictions">
+    <oneOrMore>
+      <element name="jurisdiction-info">
+        <attribute name="id" />
+	<attribute name="launched" />
+	
+	<interleave>
+	  <optional>
+	    <element name="languages" ><text /></element>
+	  </optional>
+	  <optional>
+	    <element name="uri" ><text /></element>
+	  </optional>
+	</interleave>
+
+      </element>
+    </oneOrMore>
+  </element>
+
+  <element name="licenses">
+  <oneOrMore>
+    <element name="licenseclass">
+      <attribute name="id" />
+
+      <oneOrMore>
+      	<element name="license">
+	  <attribute name="id" />
+
+	  <oneOrMore>
+	    <element name="jurisdiction">
+	      <attribute name="id" />
+
+	      <zeroOrMore>
+		<element name="version">
+		  <attribute name="id" />
+		  <attribute name="uri" />
+		</element>
+	      </zeroOrMore>
+
+	    </element>
+	  </oneOrMore>
+
+	</element>
+      </oneOrMore>
+
+    </element>
+  </oneOrMore>
+  </element>
+</element>
+

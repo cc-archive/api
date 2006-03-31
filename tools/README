@@ -1,0 +1,36 @@
+licenses.py
+$Id$
+
+Maintenance script for licenses.xml; adds licenses, versions and jurisdictions
+as needed.
+
+usage: %prog [options] [<version>] [<jurisdiction>]
+
+Maintenance script for helping with license and
+jurisdiction descriptions contained in licenses.xml.
+
+Example usages:
+
+  * Adding a jurisdiction:
+
+    $ license.py --info --lang=en,en-YA --uri=http://ya.cc.org ya
+
+  * Adding a license version to the standard six types:
+
+    $ license.py ya 3.0
+
+  * Adding a license version for a specific license code:
+
+    $ license.py --codes=by,by-nc ya 3.1
+    
+  * Launching a jurisdiction:
+
+    $ license.py --info --launched ya
+
+Questions, feedback to Nathan Yergler <nathan@creativecommons.org>.
+
+Original script developed by Will Frank;
+updated by Nathan Yergler to use new XML schema and explicit options.
+
+(c) 2005, Creative Commons, Will Frank, Nathan R. Yergler
+licensed to the public under the GNU GPL version 2.

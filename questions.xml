@@ -1,0 +1,1647 @@
+<?xml version="1.0" encoding="utf8"?>
+<questions xmlns:xml="http://www.w3.org/XML/1998/namespace">
+
+ <licenseclass id="standard">
+
+  
+    <label xml:lang="en_CA">Creative Commons</label>
+  
+    <label xml:lang="fr">Creative Commons</label>
+  
+    <label xml:lang="en">Creative Commons</label>
+  
+    <label xml:lang="nl">Creative Commons</label>
+  
+    <label xml:lang="pt">Creative Commons</label>
+  
+    <label xml:lang="hr">Creative Commons</label>
+  
+    <label xml:lang="ca">Creative Commons</label>
+  
+    <label xml:lang="de">Creative Commons</label>
+  
+    <label xml:lang="it">Creative Commons</label>
+  
+    <label xml:lang="sv">Creative Commons</label>
+  
+    <label xml:lang="es">Creative Commons</label>
+  
+    <label xml:lang="de_AT">Creative Commons</label>
+  
+    <label xml:lang="fi">Creative Commons</label>
+  
+    <label xml:lang="zh_TW">Creative Commons</label>
+  
+    <label xml:lang="gl">Creative Commons</label>
+  
+    <label xml:lang="ja">クリエイティブ・コモンズ</label>
+  
+    <label xml:lang="en_GB">Creative Commons</label>
+  
+
+  <field id="commercial">
+   
+    <label xml:lang="en_CA">Allow commercial uses of your work?</label>
+   
+    <label xml:lang="fr">Allow commercial uses of your work?</label>
+   
+    <label xml:lang="en">Allow commercial uses of your work?</label>
+   
+    <label xml:lang="nl">Allow commercial uses of your work?</label>
+   
+    <label xml:lang="pt">Allow commercial uses of your work?</label>
+   
+    <label xml:lang="hr">Allow commercial uses of your work?</label>
+   
+    <label xml:lang="ca">Allow commercial uses of your work?</label>
+   
+    <label xml:lang="de">Allow commercial uses of your work?</label>
+   
+    <label xml:lang="it">Allow commercial uses of your work?</label>
+   
+    <label xml:lang="sv">Allow commercial uses of your work?</label>
+   
+    <label xml:lang="es">Allow commercial uses of your work?</label>
+   
+    <label xml:lang="de_AT">Allow commercial uses of your work?</label>
+   
+    <label xml:lang="fi">Allow commercial uses of your work?</label>
+   
+    <label xml:lang="zh_TW">Allow commercial uses of your work?</label>
+   
+    <label xml:lang="gl">Allow commercial uses of your work?</label>
+   
+    <label xml:lang="ja">Allow commercial uses of your work?</label>
+   
+    <label xml:lang="en_GB">Allow commercial uses of your work?</label>
+   
+
+   
+    <description xml:lang="en_CA">The licensor permits others to copy, distribute, display, and perform the work. In return, licensees may not use the work for commercial purposes -- unless they get the licensor's permission.</description>
+   
+    <description xml:lang="fr">L'offrant autorise les autres à reproduire, distribuer et communiquer cette création au public. En échange, les personnes qui acceptent ce contrat n'ont pas le droit d'utiliser cette création à des fins commerciales - à moins qu'ils n'obtiennent l'autorisation du donneur de licence.</description>
+   
+    <description xml:lang="en">The licensor permits others to copy, distribute, display, and perform the work. In return, licensees may not use the work for commercial purposes -- unless they get the licensor's permission.</description>
+   
+    <description xml:lang="nl">De licentiegever verleent anderen het recht om het werk te kopiëren, te verspreiden, te tonen en op en uit te voeren. In ruil daarvoor is het de licentienemers niet toegestaan om gebruik te maken van het werk voor commerciële doeleinden -- tenzij zij daarvoor de toestemming van de licentiegever hebben verkregen.</description>
+   
+    <description xml:lang="pt">O licenciante permite copiar, distribuir, exibir e executar sua obra. Em contrapartida, o licenciado não poderá utilizar esta obra com finalidades comerciais -- a menos que obtenha permissão do licenciante.</description>
+   
+    <description xml:lang="hr">Davatelj licence dopušta umnožavanje, distribuiranje i priopćavanje djela javnosti. Zauzvrat primatelji licence ne smiju djelo koristiti u komercijalne svrhe - osim ako imaju dopuštenje davatelja licence.</description>
+   
+    <description xml:lang="ca">El llicenciador us permet copiar, distribuir i comunicar públicament l'obra. A canvi, no podeu utilitzar l'obra per a finalitats comercials -- excepte si en rebeu un permís exprés.</description>
+   
+    <description xml:lang="de">Der Lizenzgeber erlaubt die Vervielfältigung, Verbreitung und öffentliche Wiedergabe seines Inhalts. Der Lizenznehmer darf den Inhalt nicht für kommerzielle Zwecke verwenden, es sei denn, der Lizenzgeber erteilt seine schriftliche Einwilligung.</description>
+   
+    <description xml:lang="it">Il &lt;em&gt;licenziante&lt;/em&gt; acconsente che altri copino, distribuiscano, esibiscano ed eseguano l'opera. In cambio i &lt;em&gt;licenziatari&lt;/em&gt; non possono usare l'&lt;em&gt;opera&lt;/em&gt; per scopi commerciali &amp;mdash; a meno che non abbiano ottenuto il permesso del &lt;em&gt;licenziante&lt;/em&gt;.</description>
+   
+    <description xml:lang="sv">The licensor permits others to copy, distribute, display, and perform the work. In return, licensees may not use the work for commercial purposes -- unless they get the licensor's permission.</description>
+   
+    <description xml:lang="es">El licenciador permite copiar, distribuir y comunicar públicamente la obra. A cambio, esta obra no puede ser utilizada con finalidades comerciales -- a menos que se obtenga el permiso del licenciador.</description>
+   
+    <description xml:lang="de_AT">Der Lizenzgeber erlaubt Vervielfältigung, Verbreitung und öffentliche Wiedergabe seines Inhalts. Der Lizenznehmer darf den Schutzgegenstand nicht für kommerzielle Zwecke verwenden, es sei denn, der Lizenzgeber erteilt seine schriftliche Einwilligung.</description>
+   
+    <description xml:lang="fi">Lisenssin antaja sallii teoksen kopioinnin, näyttämisen ja esittämisen. Lisenssin saaja ei saa käyttää teosta kaupallisiin tarkoituksiin ilman lisenssin antajalta saatua erillistä lupaa.</description>
+   
+    <description xml:lang="zh_TW">授權人允許他人重製、散布、展示、演出本著作。相對的，被授權人不得為商業目的使用本著作，除非得到授權人的允許。</description>
+   
+    <description xml:lang="gl">The licensor permits others to copy, distribute, display, and perform the work. In return, licensees may not use the work for commercial purposes -- unless they get the licensor's permission.</description>
+   
+    <description xml:lang="ja">ライセンスの許諾者は、他の人々がこの著作物を複製、頒布、展示、実演することを許諾します。そのかわり、ライセンスの受諾者は、ライセンスの許諾者から別途承諾を受けない限り、この著作物を営利目的で利用してはなりません。</description>
+   
+    <description xml:lang="en_GB">The licensor permits others to copy, distribute, display, and perform the work. In return, licensees may not use the work for commercial purposes -- unless they get the licensor's permission.</description>
+   
+
+   <type>enum</type>
+   <enum id="y">
+     
+     <label xml:lang="en_CA">Yes</label>
+     
+     <label xml:lang="fr">Oui</label>
+     
+     <label xml:lang="en">Yes</label>
+     
+     <label xml:lang="nl">Ja</label>
+     
+     <label xml:lang="pt">Sim</label>
+     
+     <label xml:lang="hr">Da</label>
+     
+     <label xml:lang="ca">Sí</label>
+     
+     <label xml:lang="de">Ja</label>
+     
+     <label xml:lang="it">Si</label>
+     
+     <label xml:lang="sv">Yes</label>
+     
+     <label xml:lang="es">Si</label>
+     
+     <label xml:lang="de_AT">Yes</label>
+     
+     <label xml:lang="fi">Kyllä</label>
+     
+     <label xml:lang="zh_TW">是</label>
+     
+     <label xml:lang="gl">Yes</label>
+     
+     <label xml:lang="ja">はい</label>
+     
+     <label xml:lang="en_GB">Yes</label>
+     
+   </enum>
+   <enum id="n">
+     
+     <label xml:lang="en_CA">No</label>
+   
+     <label xml:lang="fr">Non</label>
+   
+     <label xml:lang="en">No</label>
+   
+     <label xml:lang="nl">Nee</label>
+   
+     <label xml:lang="pt">Não</label>
+   
+     <label xml:lang="hr">Ne</label>
+   
+     <label xml:lang="ca">No</label>
+   
+     <label xml:lang="de">Nein</label>
+   
+     <label xml:lang="it">No</label>
+   
+     <label xml:lang="sv">No</label>
+   
+     <label xml:lang="es">No</label>
+   
+     <label xml:lang="de_AT">No</label>
+   
+     <label xml:lang="fi">Ei</label>
+   
+     <label xml:lang="zh_TW">否</label>
+   
+     <label xml:lang="gl">No</label>
+   
+     <label xml:lang="ja">いいえ</label>
+   
+     <label xml:lang="en_GB">No</label>
+   
+   </enum>
+  </field>
+
+  <field id="derivatives">
+     
+   <label xml:lang="en_CA">Allow modifications of your work?</label>
+   
+   <label xml:lang="fr">Allow modifications of your work?</label>
+   
+   <label xml:lang="en">Allow modifications of your work?</label>
+   
+   <label xml:lang="nl">Allow modifications of your work?</label>
+   
+   <label xml:lang="pt">Allow modifications of your work?</label>
+   
+   <label xml:lang="hr">Allow modifications of your work?</label>
+   
+   <label xml:lang="ca">Allow modifications of your work?</label>
+   
+   <label xml:lang="de">Allow modifications of your work?</label>
+   
+   <label xml:lang="it">Allow modifications of your work?</label>
+   
+   <label xml:lang="sv">Allow modifications of your work?</label>
+   
+   <label xml:lang="es">Allow modifications of your work?</label>
+   
+   <label xml:lang="de_AT">Allow modifications of your work?</label>
+   
+   <label xml:lang="fi">Allow modifications of your work?</label>
+   
+   <label xml:lang="zh_TW">Allow modifications of your work?</label>
+   
+   <label xml:lang="gl">Allow modifications of your work?</label>
+   
+   <label xml:lang="ja">Allow modifications of your work?</label>
+   
+   <label xml:lang="en_GB">Allow modifications of your work?</label>
+   
+     
+   <description xml:lang="en_CA">The licensor permits others to copy, distribute, display and perform only unaltered copies of the work -- not derivative works based on it.</description>
+   
+   <description xml:lang="fr">L'offrant autorise les autres à reproduire, distribuer et communiquer cette création au public à la condition qu'elle ne soit pas modifiée pour créer une oeuvre dérivée.</description>
+   
+   <description xml:lang="en">The licensor permits others to copy, distribute, display and perform only unaltered copies of the work -- not derivative works based on it.</description>
+   
+   <description xml:lang="nl">De licentiegever verleent anderen uitsluitend het recht om onbewerkte exemplaren van het werk te kopiëren, te verspreiden, te tonen en op en uit te voeren -- geen afgeleide werken gebaseerd op het werk.</description>
+   
+   <description xml:lang="pt">O licenciante permite copiar, distribuir, exibir e executar somente cópias inalteradas da obra -- mas não obras derivadas baseadas nesta.</description>
+   
+   <description xml:lang="hr">Davatelj licence dopušta umnožavanje, distribuiranje i priopćavanje javnosti samo neizmijenjenih kopija djela - ali ne i prerada zasnovanih na djelu.</description>
+   
+   <description xml:lang="ca">El llicenciador us permet copiar, distribuir i comunicar públicament només còpies inalterades de l'obra original -- no obres derivades que se'n puguin generar.</description>
+   
+   <description xml:lang="de">Der Lizenzgeber erlaubt die Vervielfältigung, Verbreitung und öffentliche Wiedergabe seines Inhalts ausschließlich in unveränderter Form - Bearbeitungen sind nicht erlaubt.</description>
+   
+   <description xml:lang="it">Il &lt;em&gt;licenziante&lt;/em&gt; acconsente che altri copino, distribuiscano, esibiscano ed eseguano solo copie inalterate dell'&lt;em&gt;opera&lt;/em&gt; &amp;mdash; non &lt;em&gt;opere derivate&lt;/em&gt; da essa.</description>
+   
+   <description xml:lang="sv">The licensor permits others to copy, distribute, display and perform only unaltered copies of the work -- not derivative works based on it.</description>
+   
+   <description xml:lang="es">El licenciador permite copiar, distribuir y comunicar públicamente solamente copias inalteradas de la obra -- no obras derivadas basadas en ella.</description>
+   
+   <description xml:lang="de_AT">The licensor permits others to copy, distribute, display and perform only unaltered copies of the work -- not derivative works based on it.</description>
+   
+   <description xml:lang="fi">Lisenssin antaja sallii teoksen kopioinnin. jakamisen, näyttämisen ja esittämisin ainoastaan muuttamattomassa muodossa. Jälkiperäisten teosten tekeminen on kielletty.</description>
+   
+   <description xml:lang="zh_TW">授權人只允許他人重製、散布、展示及演出未經改變的本著作的重製物，不允許對根據原著作而生的衍生著作進行上述行為。</description>
+   
+   <description xml:lang="gl">The licensor permits others to copy, distribute, display and perform only unaltered copies of the work -- not derivative works based on it.</description>
+   
+   <description xml:lang="ja">ライセンスの許諾者は、他の人々に、この作品の全く変更を加えていないコピーのみを、複製、頒布、展示、実演することを許諾します。この作品に基づく二次的著作物は複製、頒布、展示、実演できません。</description>
+   
+   <description xml:lang="en_GB">The licensor permits others to copy, distribute, display and perform only unaltered copies of the work -- not derivative works based on it.</description>
+   
+   <type>enum</type>
+   <enum id="y">
+     
+     <label xml:lang="en_CA">Yes</label>
+   
+     <label xml:lang="fr">Oui</label>
+   
+     <label xml:lang="en">Yes</label>
+   
+     <label xml:lang="nl">Ja</label>
+   
+     <label xml:lang="pt">Sim</label>
+   
+     <label xml:lang="hr">Da</label>
+   
+     <label xml:lang="ca">Sí</label>
+   
+     <label xml:lang="de">Ja</label>
+   
+     <label xml:lang="it">Si</label>
+   
+     <label xml:lang="sv">Yes</label>
+   
+     <label xml:lang="es">Si</label>
+   
+     <label xml:lang="de_AT">Yes</label>
+   
+     <label xml:lang="fi">Kyllä</label>
+   
+     <label xml:lang="zh_TW">是</label>
+   
+     <label xml:lang="gl">Yes</label>
+   
+     <label xml:lang="ja">はい</label>
+   
+     <label xml:lang="en_GB">Yes</label>
+   
+   </enum>
+   <enum id="sa">
+     
+     <label xml:lang="en_CA">ShareAlike</label>
+   
+     <label xml:lang="fr">ShareAlike</label>
+   
+     <label xml:lang="en">ShareAlike</label>
+   
+     <label xml:lang="nl">GelijkDelen</label>
+   
+     <label xml:lang="pt">Compartilhamento pela mesma licença</label>
+   
+     <label xml:lang="hr">Dijeli pod istim uvjetima</label>
+   
+     <label xml:lang="ca">CompartirIgual</label>
+   
+     <label xml:lang="de">Weitergabe unter gleichen Bedingungen</label>
+   
+     <label xml:lang="it">StessaLicenza</label>
+   
+     <label xml:lang="sv">ShareAlike</label>
+   
+     <label xml:lang="es">CompartirIgual</label>
+   
+     <label xml:lang="de_AT">ShareAlike</label>
+   
+     <label xml:lang="fi">Sama lisenssi</label>
+   
+     <label xml:lang="zh_TW">相同方式分享</label>
+   
+     <label xml:lang="gl">ShareAlike</label>
+   
+     <label xml:lang="ja">同一条件許諾</label>
+   
+     <label xml:lang="en_GB">ShareAlike</label>
+   
+   </enum>
+   <enum id="n">
+     
+     <label xml:lang="en_CA">No</label>
+   
+     <label xml:lang="fr">Non</label>
+   
+     <label xml:lang="en">No</label>
+   
+     <label xml:lang="nl">Nee</label>
+   
+     <label xml:lang="pt">Não</label>
+   
+     <label xml:lang="hr">Ne</label>
+   
+     <label xml:lang="ca">No</label>
+   
+     <label xml:lang="de">Nein</label>
+   
+     <label xml:lang="it">No</label>
+   
+     <label xml:lang="sv">No</label>
+   
+     <label xml:lang="es">No</label>
+   
+     <label xml:lang="de_AT">No</label>
+   
+     <label xml:lang="fi">Ei</label>
+   
+     <label xml:lang="zh_TW">否</label>
+   
+     <label xml:lang="gl">No</label>
+   
+     <label xml:lang="ja">いいえ</label>
+   
+     <label xml:lang="en_GB">No</label>
+   
+   </enum>
+  </field>
+
+  <field id="jurisdiction">
+     
+   <label xml:lang="en_CA">Jurisdiction of your license:</label>
+   
+   <label xml:lang="fr">Jurisdiction of your license:</label>
+   
+   <label xml:lang="en">Jurisdiction of your license:</label>
+   
+   <label xml:lang="nl">Jurisdiction of your license:</label>
+   
+   <label xml:lang="pt">Jurisdiction of your license:</label>
+   
+   <label xml:lang="hr">Jurisdiction of your license:</label>
+   
+   <label xml:lang="ca">Jurisdiction of your license:</label>
+   
+   <label xml:lang="de">Jurisdiction of your license:</label>
+   
+   <label xml:lang="it">Jurisdiction of your license:</label>
+   
+   <label xml:lang="sv">Jurisdiction of your license:</label>
+   
+   <label xml:lang="es">Jurisdiction of your license:</label>
+   
+   <label xml:lang="de_AT">Jurisdiction of your license:</label>
+   
+   <label xml:lang="fi">Jurisdiction of your license:</label>
+   
+   <label xml:lang="zh_TW">Jurisdiction of your license:</label>
+   
+   <label xml:lang="gl">Jurisdiction of your license:</label>
+   
+   <label xml:lang="ja">Jurisdiction of your license:</label>
+   
+   <label xml:lang="en_GB">Jurisdiction of your license:</label>
+   
+     
+   <description xml:lang="en_CA">If you desire a license governed by the Copyright Law of a specific jurisdiction, please select the appropriate jurisdiction.</description>
+   
+   <description xml:lang="fr">Si vous souhaitez obtenir un contrat soumis au droit d'auteur d'un pays particulier, merci de sélectionner la juridiction appropriée.</description>
+   
+   <description xml:lang="en">If you desire a license governed by the Copyright Law of a specific jurisdiction, please select the appropriate jurisdiction.</description>
+   
+   <description xml:lang="nl">U dient de Japanse versie van de licentie te selecteren indien u uw werk krachtens het Japanse auteursrecht wenst te beschermen.</description>
+   
+   <description xml:lang="pt">Se você desejar proteção para seu trabalho sob o Direito Autoral Brasileiro, por favor selecione a versão em português da licença.</description>
+   
+   <description xml:lang="hr">Ako želite licencu koja je usklađena sa zakonom o autorskom pravu nekog drugog nacionalnog pravnog sustava, molimo Vas da izaberete pravni sustav.</description>
+   
+   <description xml:lang="ca">Si desitgeu protegir la vostra obra sota les lleis de propietat intel·lectual d'una jurisdicció específica, si us plau seleccioneu la versió apropiada de la llicència.</description>
+   
+   <description xml:lang="de">Falls Sie Ihren Inhalt unter Verwendung einer anderen Rechtsordnung lizenzieren wollen (bsp. USA oder Japan), wählen Sie bitte die entsprechende internationale Lizenzversion aus.</description>
+   
+   <description xml:lang="it">Se desideri una licenza adattata a una specifica giurisdizione, scegli la giurisdizione appropriata.\nAd esempio, se desideri che la tua opera sia protetta secondo le leggi sul diritto d'autore vigenti in Giappone, \nscegli la versione giapponese della licenza.</description>
+   
+   <description xml:lang="sv">If you desire a license governed by the Copyright Law of a specific jurisdiction, please select the appropriate jurisdiction.</description>
+   
+   <description xml:lang="es">Si desea proteger su obra bajo las leyes de propiedad intelectual de una jurisdicción específica, por favor seleccione la versión apropiada de la licencia.</description>
+   
+   <description xml:lang="de_AT">If you desire a license governed by the Copyright Law of a specific jurisdiction, please select the appropriate jurisdiction.</description>
+   
+   <description xml:lang="fi">Mikäli haluat suojata teostasi Suomen tekijänoikeuslain mukaisesti, käytä suomalaista versiota lisenssistä.</description>
+   
+   <description xml:lang="zh_TW">如果您想要一個受某特定的司法管轄區域的著作權法約束的授權條款，請選擇一適當的司法管轄區域。</description>
+   
+   <description xml:lang="gl">If you desire a license governed by the Copyright Law of a specific jurisdiction, please select the appropriate jurisdiction.</description>
+   
+   <description xml:lang="ja">あなたの作品を日本の著作権法の下で保護してほしい場合には、ライセンスの日本法版を選択してください。</description>
+   
+   <description xml:lang="en_GB">If you desire a license governed by the Copyright Law of a specific jurisdiction, please select the appropriate jurisdiction.</description>
+   
+   <type>enum</type>
+   <enum id="">
+     
+       <label xml:lang="en_CA">Generic</label>
+     
+       <label xml:lang="fr">Générique</label>
+     
+       <label xml:lang="en">Generic</label>
+     
+       <label xml:lang="nl">Generiek</label>
+     
+       <label xml:lang="pt">Genérica</label>
+     
+       <label xml:lang="hr">SAD</label>
+     
+       <label xml:lang="ca">Genèrica</label>
+     
+       <label xml:lang="de">US-amerikanisch</label>
+     
+       <label xml:lang="it">Generico</label>
+     
+       <label xml:lang="sv">Generic</label>
+     
+       <label xml:lang="es">Genérica</label>
+     
+       <label xml:lang="de_AT">Generic</label>
+     
+       <label xml:lang="fi">Yleisversio</label>
+     
+       <label xml:lang="zh_TW">一般性</label>
+     
+       <label xml:lang="gl">Generic</label>
+     
+       <label xml:lang="ja">一般</label>
+     
+       <label xml:lang="en_GB">Generic</label>
+     
+   </enum>
+   <enum id="at">
+     
+       <label xml:lang="en_CA">Austria</label>
+     
+       <label xml:lang="fr">Autriche</label>
+     
+       <label xml:lang="en">Austria</label>
+     
+       <label xml:lang="nl">Oostenrijk</label>
+     
+       <label xml:lang="pt">Áustria</label>
+     
+       <label xml:lang="hr">Austrija</label>
+     
+       <label xml:lang="ca">Àustria</label>
+     
+       <label xml:lang="de">Österreich</label>
+     
+       <label xml:lang="it">Austria</label>
+     
+       <label xml:lang="sv">Austria</label>
+     
+       <label xml:lang="es">Austria</label>
+     
+       <label xml:lang="de_AT">Austria</label>
+     
+       <label xml:lang="fi">Itävalta</label>
+     
+       <label xml:lang="zh_TW">奧地利</label>
+     
+       <label xml:lang="gl">Austria</label>
+     
+       <label xml:lang="ja">Austria</label>
+     
+       <label xml:lang="en_GB">Austria</label>
+     
+   </enum>
+   <enum id="au">
+     
+       <label xml:lang="en_CA">Australia</label>
+     
+       <label xml:lang="fr">Australie</label>
+     
+       <label xml:lang="en">Australia</label>
+     
+       <label xml:lang="nl">Australië</label>
+     
+       <label xml:lang="pt">Austrália</label>
+     
+       <label xml:lang="hr">Australija</label>
+     
+       <label xml:lang="ca">Austràlia</label>
+     
+       <label xml:lang="de">Australien</label>
+     
+       <label xml:lang="it">Australia</label>
+     
+       <label xml:lang="sv">Australia</label>
+     
+       <label xml:lang="es">Australia</label>
+     
+       <label xml:lang="de_AT">Australia</label>
+     
+       <label xml:lang="fi">Australia</label>
+     
+       <label xml:lang="zh_TW">澳大利亞</label>
+     
+       <label xml:lang="gl">Australia</label>
+     
+       <label xml:lang="ja">Australia</label>
+     
+       <label xml:lang="en_GB">Australia</label>
+     
+   </enum>
+   <enum id="be">
+     
+       <label xml:lang="en_CA">Belgium</label>
+     
+       <label xml:lang="fr">Belgique</label>
+     
+       <label xml:lang="en">Belgium</label>
+     
+       <label xml:lang="nl">België</label>
+     
+       <label xml:lang="pt">Bélgica</label>
+     
+       <label xml:lang="hr">Belgija</label>
+     
+       <label xml:lang="ca">Bèlgica</label>
+     
+       <label xml:lang="de">Belgien</label>
+     
+       <label xml:lang="it">Belgio</label>
+     
+       <label xml:lang="sv">Belgium</label>
+     
+       <label xml:lang="es">Bélgica</label>
+     
+       <label xml:lang="de_AT">Belgium</label>
+     
+       <label xml:lang="fi">Belgia</label>
+     
+       <label xml:lang="zh_TW">比利時</label>
+     
+       <label xml:lang="gl">Belgium</label>
+     
+       <label xml:lang="ja">Belgium</label>
+     
+       <label xml:lang="en_GB">Belgium</label>
+     
+   </enum>
+   <enum id="br">
+     
+       <label xml:lang="en_CA">Brazil</label>
+     
+       <label xml:lang="fr">Brésil</label>
+     
+       <label xml:lang="en">Brazil</label>
+     
+       <label xml:lang="nl">Brazilië</label>
+     
+       <label xml:lang="pt">Brasil</label>
+     
+       <label xml:lang="hr">Brazil</label>
+     
+       <label xml:lang="ca">Brasil</label>
+     
+       <label xml:lang="de">Brasilien</label>
+     
+       <label xml:lang="it">Brasile</label>
+     
+       <label xml:lang="sv">Brazil</label>
+     
+       <label xml:lang="es">Brasil</label>
+     
+       <label xml:lang="de_AT">Brazil</label>
+     
+       <label xml:lang="fi">Brasilia</label>
+     
+       <label xml:lang="zh_TW">巴西</label>
+     
+       <label xml:lang="gl">Brazil</label>
+     
+       <label xml:lang="ja">Brazil</label>
+     
+       <label xml:lang="en_GB">Brazil</label>
+     
+   </enum>
+   <enum id="ca">
+     
+       <label xml:lang="en_CA">Canada</label>
+     
+       <label xml:lang="fr">Canada</label>
+     
+       <label xml:lang="en">Canada</label>
+     
+       <label xml:lang="nl">Canada</label>
+     
+       <label xml:lang="pt">Canadá</label>
+     
+       <label xml:lang="hr">Kanada</label>
+     
+       <label xml:lang="ca">Canadà</label>
+     
+       <label xml:lang="de">Kanada</label>
+     
+       <label xml:lang="it">Canada</label>
+     
+       <label xml:lang="sv">Canada</label>
+     
+       <label xml:lang="es">Canadá</label>
+     
+       <label xml:lang="de_AT">Canada</label>
+     
+       <label xml:lang="fi">Kanada</label>
+     
+       <label xml:lang="zh_TW">加拿大</label>
+     
+       <label xml:lang="gl">Canada</label>
+     
+       <label xml:lang="ja">Canada</label>
+     
+       <label xml:lang="en_GB">Canada</label>
+     
+   </enum>
+   <enum id="cl">
+     
+       <label xml:lang="en_CA">country.cl</label>
+     
+       <label xml:lang="fr">country.cl</label>
+     
+       <label xml:lang="en">country.cl</label>
+     
+       <label xml:lang="nl">country.cl</label>
+     
+       <label xml:lang="pt">country.cl</label>
+     
+       <label xml:lang="hr">country.cl</label>
+     
+       <label xml:lang="ca">country.cl</label>
+     
+       <label xml:lang="de">country.cl</label>
+     
+       <label xml:lang="it">country.cl</label>
+     
+       <label xml:lang="sv">country.cl</label>
+     
+       <label xml:lang="es">country.cl</label>
+     
+       <label xml:lang="de_AT">country.cl</label>
+     
+       <label xml:lang="fi">country.cl</label>
+     
+       <label xml:lang="zh_TW">country.cl</label>
+     
+       <label xml:lang="gl">country.cl</label>
+     
+       <label xml:lang="ja">country.cl</label>
+     
+       <label xml:lang="en_GB">country.cl</label>
+     
+   </enum>
+   <enum id="de">
+     
+       <label xml:lang="en_CA">Germany</label>
+     
+       <label xml:lang="fr">Allemagne</label>
+     
+       <label xml:lang="en">Germany</label>
+     
+       <label xml:lang="nl">Duitsland</label>
+     
+       <label xml:lang="pt">Alemanha</label>
+     
+       <label xml:lang="hr">Njemačka</label>
+     
+       <label xml:lang="ca">Alemanya</label>
+     
+       <label xml:lang="de">Deutschland</label>
+     
+       <label xml:lang="it">Germania</label>
+     
+       <label xml:lang="sv">Germany</label>
+     
+       <label xml:lang="es">Alemania</label>
+     
+       <label xml:lang="de_AT">Germany</label>
+     
+       <label xml:lang="fi">Saksa</label>
+     
+       <label xml:lang="zh_TW">德國</label>
+     
+       <label xml:lang="gl">Germany</label>
+     
+       <label xml:lang="ja">Germany</label>
+     
+       <label xml:lang="en_GB">Germany</label>
+     
+   </enum>
+   <enum id="es">
+     
+       <label xml:lang="en_CA">Spain</label>
+     
+       <label xml:lang="fr">Espagne</label>
+     
+       <label xml:lang="en">Spain</label>
+     
+       <label xml:lang="nl">Spanje</label>
+     
+       <label xml:lang="pt">Espanha</label>
+     
+       <label xml:lang="hr">Španjolska</label>
+     
+       <label xml:lang="ca">Espanya</label>
+     
+       <label xml:lang="de">Spanien</label>
+     
+       <label xml:lang="it">Spagna</label>
+     
+       <label xml:lang="sv">Spain</label>
+     
+       <label xml:lang="es">España</label>
+     
+       <label xml:lang="de_AT">Spain</label>
+     
+       <label xml:lang="fi">Espanja</label>
+     
+       <label xml:lang="zh_TW">西班牙</label>
+     
+       <label xml:lang="gl">Spain</label>
+     
+       <label xml:lang="ja">Spain</label>
+     
+       <label xml:lang="en_GB">Spain</label>
+     
+   </enum>
+   <enum id="fi">
+     
+       <label xml:lang="en_CA">Finland</label>
+     
+       <label xml:lang="fr">Finlande</label>
+     
+       <label xml:lang="en">Finland</label>
+     
+       <label xml:lang="nl">Finland</label>
+     
+       <label xml:lang="pt">Finlândia</label>
+     
+       <label xml:lang="hr">Finska</label>
+     
+       <label xml:lang="ca">Finlàndia</label>
+     
+       <label xml:lang="de">Finnland</label>
+     
+       <label xml:lang="it">Finlandia</label>
+     
+       <label xml:lang="sv">Finland</label>
+     
+       <label xml:lang="es">Finlandia</label>
+     
+       <label xml:lang="de_AT">Finland</label>
+     
+       <label xml:lang="fi">Suomi</label>
+     
+       <label xml:lang="zh_TW">芬蘭</label>
+     
+       <label xml:lang="gl">Finland</label>
+     
+       <label xml:lang="ja">Finland</label>
+     
+       <label xml:lang="en_GB">Finland</label>
+     
+   </enum>
+   <enum id="fr">
+     
+       <label xml:lang="en_CA">France</label>
+     
+       <label xml:lang="fr">France</label>
+     
+       <label xml:lang="en">France</label>
+     
+       <label xml:lang="nl">Frankrijk</label>
+     
+       <label xml:lang="pt">França</label>
+     
+       <label xml:lang="hr">Francuska</label>
+     
+       <label xml:lang="ca">França</label>
+     
+       <label xml:lang="de">Frankreich</label>
+     
+       <label xml:lang="it">Francia</label>
+     
+       <label xml:lang="sv">France</label>
+     
+       <label xml:lang="es">Francia</label>
+     
+       <label xml:lang="de_AT">France</label>
+     
+       <label xml:lang="fi">Ranska</label>
+     
+       <label xml:lang="zh_TW">法國</label>
+     
+       <label xml:lang="gl">France</label>
+     
+       <label xml:lang="ja">France</label>
+     
+       <label xml:lang="en_GB">France</label>
+     
+   </enum>
+   <enum id="hr">
+     
+       <label xml:lang="en_CA">Croatia</label>
+     
+       <label xml:lang="fr">Croatie</label>
+     
+       <label xml:lang="en">Croatia</label>
+     
+       <label xml:lang="nl">Kroatië</label>
+     
+       <label xml:lang="pt">Croácia</label>
+     
+       <label xml:lang="hr">Hrvatska</label>
+     
+       <label xml:lang="ca">Croàcia</label>
+     
+       <label xml:lang="de">Kroatien</label>
+     
+       <label xml:lang="it">Croazia</label>
+     
+       <label xml:lang="sv">Croatia</label>
+     
+       <label xml:lang="es">Croacia</label>
+     
+       <label xml:lang="de_AT">Croatia</label>
+     
+       <label xml:lang="fi">Kroatia</label>
+     
+       <label xml:lang="zh_TW">克羅埃西亞</label>
+     
+       <label xml:lang="gl">Croatia</label>
+     
+       <label xml:lang="ja">Croatia</label>
+     
+       <label xml:lang="en_GB">Croatia</label>
+     
+   </enum>
+   <enum id="il">
+     
+       <label xml:lang="en_CA">country.il</label>
+     
+       <label xml:lang="fr">country.il</label>
+     
+       <label xml:lang="en">country.il</label>
+     
+       <label xml:lang="nl">country.il</label>
+     
+       <label xml:lang="pt">country.il</label>
+     
+       <label xml:lang="hr">country.il</label>
+     
+       <label xml:lang="ca">country.il</label>
+     
+       <label xml:lang="de">country.il</label>
+     
+       <label xml:lang="it">country.il</label>
+     
+       <label xml:lang="sv">country.il</label>
+     
+       <label xml:lang="es">country.il</label>
+     
+       <label xml:lang="de_AT">country.il</label>
+     
+       <label xml:lang="fi">country.il</label>
+     
+       <label xml:lang="zh_TW">country.il</label>
+     
+       <label xml:lang="gl">country.il</label>
+     
+       <label xml:lang="ja">country.il</label>
+     
+       <label xml:lang="en_GB">country.il</label>
+     
+   </enum>
+   <enum id="it">
+     
+       <label xml:lang="en_CA">Italy</label>
+     
+       <label xml:lang="fr">Italie</label>
+     
+       <label xml:lang="en">Italy</label>
+     
+       <label xml:lang="nl">Italië</label>
+     
+       <label xml:lang="pt">Itália</label>
+     
+       <label xml:lang="hr">Italija</label>
+     
+       <label xml:lang="ca">Itàlia</label>
+     
+       <label xml:lang="de">Italien</label>
+     
+       <label xml:lang="it">Italia</label>
+     
+       <label xml:lang="sv">Italy</label>
+     
+       <label xml:lang="es">Italia</label>
+     
+       <label xml:lang="de_AT">Italy</label>
+     
+       <label xml:lang="fi">Italia</label>
+     
+       <label xml:lang="zh_TW">義大利</label>
+     
+       <label xml:lang="gl">Italy</label>
+     
+       <label xml:lang="ja">Italy</label>
+     
+       <label xml:lang="en_GB">Italy</label>
+     
+   </enum>
+   <enum id="jp">
+     
+       <label xml:lang="en_CA">Japan</label>
+     
+       <label xml:lang="fr">Japon</label>
+     
+       <label xml:lang="en">Japan</label>
+     
+       <label xml:lang="nl">Japan</label>
+     
+       <label xml:lang="pt">Japão</label>
+     
+       <label xml:lang="hr">Japan</label>
+     
+       <label xml:lang="ca">Japó</label>
+     
+       <label xml:lang="de">Japan</label>
+     
+       <label xml:lang="it">Giappone</label>
+     
+       <label xml:lang="sv">Japan</label>
+     
+       <label xml:lang="es">Japón</label>
+     
+       <label xml:lang="de_AT">Japan</label>
+     
+       <label xml:lang="fi">Japani</label>
+     
+       <label xml:lang="zh_TW">日本</label>
+     
+       <label xml:lang="gl">Japan</label>
+     
+       <label xml:lang="ja">日本</label>
+     
+       <label xml:lang="en_GB">Japan</label>
+     
+   </enum>
+   <enum id="kr">
+     
+       <label xml:lang="en_CA">country.kr</label>
+     
+       <label xml:lang="fr">country.kr</label>
+     
+       <label xml:lang="en">country.kr</label>
+     
+       <label xml:lang="nl">country.kr</label>
+     
+       <label xml:lang="pt">country.kr</label>
+     
+       <label xml:lang="hr">country.kr</label>
+     
+       <label xml:lang="ca">country.kr</label>
+     
+       <label xml:lang="de">country.kr</label>
+     
+       <label xml:lang="it">country.kr</label>
+     
+       <label xml:lang="sv">country.kr</label>
+     
+       <label xml:lang="es">country.kr</label>
+     
+       <label xml:lang="de_AT">country.kr</label>
+     
+       <label xml:lang="fi">country.kr</label>
+     
+       <label xml:lang="zh_TW">country.kr</label>
+     
+       <label xml:lang="gl">country.kr</label>
+     
+       <label xml:lang="ja">country.kr</label>
+     
+       <label xml:lang="en_GB">country.kr</label>
+     
+   </enum>
+   <enum id="nl">
+     
+       <label xml:lang="en_CA">Netherlands</label>
+     
+       <label xml:lang="fr">Pays-Bas</label>
+     
+       <label xml:lang="en">Netherlands</label>
+     
+       <label xml:lang="nl">Nederland</label>
+     
+       <label xml:lang="pt">Holanda</label>
+     
+       <label xml:lang="hr">Nizozemska</label>
+     
+       <label xml:lang="ca">Holanda</label>
+     
+       <label xml:lang="de">Niederlande</label>
+     
+       <label xml:lang="it">Olanda</label>
+     
+       <label xml:lang="sv">Netherlands</label>
+     
+       <label xml:lang="es">Holanda</label>
+     
+       <label xml:lang="de_AT">Netherlands</label>
+     
+       <label xml:lang="fi">Hollanti</label>
+     
+       <label xml:lang="zh_TW">荷蘭</label>
+     
+       <label xml:lang="gl">Netherlands</label>
+     
+       <label xml:lang="ja">Netherlands</label>
+     
+       <label xml:lang="en_GB">Netherlands</label>
+     
+   </enum>
+   <enum id="pl">
+     
+       <label xml:lang="en_CA">country.pl</label>
+     
+       <label xml:lang="fr">country.pl</label>
+     
+       <label xml:lang="en">country.pl</label>
+     
+       <label xml:lang="nl">country.pl</label>
+     
+       <label xml:lang="pt">country.pl</label>
+     
+       <label xml:lang="hr">country.pl</label>
+     
+       <label xml:lang="ca">country.pl</label>
+     
+       <label xml:lang="de">country.pl</label>
+     
+       <label xml:lang="it">country.pl</label>
+     
+       <label xml:lang="sv">country.pl</label>
+     
+       <label xml:lang="es">country.pl</label>
+     
+       <label xml:lang="de_AT">country.pl</label>
+     
+       <label xml:lang="fi">country.pl</label>
+     
+       <label xml:lang="zh_TW">country.pl</label>
+     
+       <label xml:lang="gl">country.pl</label>
+     
+       <label xml:lang="ja">country.pl</label>
+     
+       <label xml:lang="en_GB">country.pl</label>
+     
+   </enum>
+   <enum id="tw">
+     
+       <label xml:lang="en_CA">Taiwan</label>
+     
+       <label xml:lang="fr">Taiwan</label>
+     
+       <label xml:lang="en">Taiwan</label>
+     
+       <label xml:lang="nl">Taiwan</label>
+     
+       <label xml:lang="pt">Taiwan</label>
+     
+       <label xml:lang="hr">Tajvan</label>
+     
+       <label xml:lang="ca">Taiwan</label>
+     
+       <label xml:lang="de">Taiwan</label>
+     
+       <label xml:lang="it">Taiwan</label>
+     
+       <label xml:lang="sv">Taiwan</label>
+     
+       <label xml:lang="es">Taiwan</label>
+     
+       <label xml:lang="de_AT">Taiwan</label>
+     
+       <label xml:lang="fi">Taiwan</label>
+     
+       <label xml:lang="zh_TW">台灣</label>
+     
+       <label xml:lang="gl">Taiwan</label>
+     
+       <label xml:lang="ja">Taiwan</label>
+     
+       <label xml:lang="en_GB">Taiwan</label>
+     
+   </enum>
+   <enum id="uk">
+     
+       <label xml:lang="en_CA">United Kingdom</label>
+     
+       <label xml:lang="fr">Royaume-Uni</label>
+     
+       <label xml:lang="en">United Kingdom</label>
+     
+       <label xml:lang="nl">Verenigd Koninkrijk</label>
+     
+       <label xml:lang="pt">Reino Unido</label>
+     
+       <label xml:lang="hr">Velika Britanija</label>
+     
+       <label xml:lang="ca">Regne Unit</label>
+     
+       <label xml:lang="de">Vereinigtes Königreich</label>
+     
+       <label xml:lang="it">Regno Unito</label>
+     
+       <label xml:lang="sv">United Kingdom</label>
+     
+       <label xml:lang="es">Reino Unido</label>
+     
+       <label xml:lang="de_AT">United Kingdom</label>
+     
+       <label xml:lang="fi">Iso-Britania</label>
+     
+       <label xml:lang="zh_TW">英國</label>
+     
+       <label xml:lang="gl">United Kingdom</label>
+     
+       <label xml:lang="ja">United Kingdom</label>
+     
+       <label xml:lang="en_GB">United Kingdom</label>
+     
+   </enum>
+   <enum id="za">
+     
+       <label xml:lang="en_CA">South Africa</label>
+     
+       <label xml:lang="fr">Afrique du Sud</label>
+     
+       <label xml:lang="en">South Africa</label>
+     
+       <label xml:lang="nl">Zuid-Afrika</label>
+     
+       <label xml:lang="pt">África do Sul</label>
+     
+       <label xml:lang="hr">Južna Afrika</label>
+     
+       <label xml:lang="ca">Sudàfrica</label>
+     
+       <label xml:lang="de">Südafrika</label>
+     
+       <label xml:lang="it">Sud Africa</label>
+     
+       <label xml:lang="sv">South Africa</label>
+     
+       <label xml:lang="es">Suráfrica</label>
+     
+       <label xml:lang="de_AT">South Africa</label>
+     
+       <label xml:lang="fi">Etelä-Afrikka</label>
+     
+       <label xml:lang="zh_TW">南非</label>
+     
+       <label xml:lang="gl">South Africa</label>
+     
+       <label xml:lang="ja">South Africa</label>
+     
+       <label xml:lang="en_GB">South Africa</label>
+     
+   </enum>
+
+  </field>
+
+ </licenseclass>
+
+ <licenseclass id="publicdomain">
+  
+   <label xml:lang="en_CA">Public Domain</label>
+  
+   <label xml:lang="fr">Domaine Public</label>
+  
+   <label xml:lang="en">Public Domain</label>
+  
+   <label xml:lang="nl">Publiek domein</label>
+  
+   <label xml:lang="pt">Domínio Público</label>
+  
+   <label xml:lang="hr">Javna domena</label>
+  
+   <label xml:lang="ca">Domini públic</label>
+  
+   <label xml:lang="de">Public Domain</label>
+  
+   <label xml:lang="it">Pubblico Dominio</label>
+  
+   <label xml:lang="sv">Public Domain</label>
+  
+   <label xml:lang="es">Dominio público</label>
+  
+   <label xml:lang="de_AT">Public Domain</label>
+  
+   <label xml:lang="fi">Public Domain</label>
+  
+   <label xml:lang="zh_TW">公共領域（Public Domain）</label>
+  
+   <label xml:lang="gl">Public Domain</label>
+  
+   <label xml:lang="ja">パブリック・ドメイン</label>
+  
+   <label xml:lang="en_GB">Public Domain</label>
+  
+ </licenseclass>
+
+ <licenseclass id="recombo">
+  
+   <label xml:lang="en_CA">Sampling</label>
+  
+   <label xml:lang="fr">Sampling</label>
+  
+   <label xml:lang="en">Sampling</label>
+  
+   <label xml:lang="nl">Sampling</label>
+  
+   <label xml:lang="pt">Recombinação</label>
+  
+   <label xml:lang="hr">Sempliranje</label>
+  
+   <label xml:lang="ca">Sampling</label>
+  
+   <label xml:lang="de">Recombo</label>
+  
+   <label xml:lang="it">&lt;span lang=\"en\"&gt;Sampling&lt;/span&gt;</label>
+  
+   <label xml:lang="sv">Sampling</label>
+  
+   <label xml:lang="es">Sampling</label>
+  
+   <label xml:lang="de_AT">Sampling</label>
+  
+   <label xml:lang="fi">Recombo</label>
+  
+   <label xml:lang="zh_TW">取樣</label>
+  
+   <label xml:lang="gl">Sampling</label>
+  
+   <label xml:lang="ja">Sampling</label>
+  
+   <label xml:lang="en_GB">Sampling</label>
+  
+
+
+  <field id="jurisdiction">
+   
+     <label xml:lang="en_CA">Jurisdiction of your license:</label>
+   
+     <label xml:lang="fr">Jurisdiction of your license:</label>
+   
+     <label xml:lang="en">Jurisdiction of your license:</label>
+   
+     <label xml:lang="nl">Jurisdiction of your license:</label>
+   
+     <label xml:lang="pt">Jurisdiction of your license:</label>
+   
+     <label xml:lang="hr">Jurisdiction of your license:</label>
+   
+     <label xml:lang="ca">Jurisdiction of your license:</label>
+   
+     <label xml:lang="de">Jurisdiction of your license:</label>
+   
+     <label xml:lang="it">Jurisdiction of your license:</label>
+   
+     <label xml:lang="sv">Jurisdiction of your license:</label>
+   
+     <label xml:lang="es">Jurisdiction of your license:</label>
+   
+     <label xml:lang="de_AT">Jurisdiction of your license:</label>
+   
+     <label xml:lang="fi">Jurisdiction of your license:</label>
+   
+     <label xml:lang="zh_TW">Jurisdiction of your license:</label>
+   
+     <label xml:lang="gl">Jurisdiction of your license:</label>
+   
+     <label xml:lang="ja">Jurisdiction of your license:</label>
+   
+     <label xml:lang="en_GB">Jurisdiction of your license:</label>
+   
+
+   
+     <description xml:lang="en_CA">If you desire a license governed by the Copyright Law of a specific jurisdiction, please select the appropriate jurisdiction.</description>
+   
+     <description xml:lang="fr">Si vous souhaitez obtenir un contrat soumis au droit d'auteur d'un pays particulier, merci de sélectionner la juridiction appropriée.</description>
+   
+     <description xml:lang="en">If you desire a license governed by the Copyright Law of a specific jurisdiction, please select the appropriate jurisdiction.</description>
+   
+     <description xml:lang="nl">U dient de Japanse versie van de licentie te selecteren indien u uw werk krachtens het Japanse auteursrecht wenst te beschermen.</description>
+   
+     <description xml:lang="pt">Se você desejar proteção para seu trabalho sob o Direito Autoral Brasileiro, por favor selecione a versão em português da licença.</description>
+   
+     <description xml:lang="hr">Ako želite licencu koja je usklađena sa zakonom o autorskom pravu nekog drugog nacionalnog pravnog sustava, molimo Vas da izaberete pravni sustav.</description>
+   
+     <description xml:lang="ca">Si desitgeu protegir la vostra obra sota les lleis de propietat intel·lectual d'una jurisdicció específica, si us plau seleccioneu la versió apropiada de la llicència.</description>
+   
+     <description xml:lang="de">Falls Sie Ihren Inhalt unter Verwendung einer anderen Rechtsordnung lizenzieren wollen (bsp. USA oder Japan), wählen Sie bitte die entsprechende internationale Lizenzversion aus.</description>
+   
+     <description xml:lang="it">Se desideri una licenza adattata a una specifica giurisdizione, scegli la giurisdizione appropriata.\nAd esempio, se desideri che la tua opera sia protetta secondo le leggi sul diritto d'autore vigenti in Giappone, \nscegli la versione giapponese della licenza.</description>
+   
+     <description xml:lang="sv">If you desire a license governed by the Copyright Law of a specific jurisdiction, please select the appropriate jurisdiction.</description>
+   
+     <description xml:lang="es">Si desea proteger su obra bajo las leyes de propiedad intelectual de una jurisdicción específica, por favor seleccione la versión apropiada de la licencia.</description>
+   
+     <description xml:lang="de_AT">If you desire a license governed by the Copyright Law of a specific jurisdiction, please select the appropriate jurisdiction.</description>
+   
+     <description xml:lang="fi">Mikäli haluat suojata teostasi Suomen tekijänoikeuslain mukaisesti, käytä suomalaista versiota lisenssistä.</description>
+   
+     <description xml:lang="zh_TW">如果您想要一個受某特定的司法管轄區域的著作權法約束的授權條款，請選擇一適當的司法管轄區域。</description>
+   
+     <description xml:lang="gl">If you desire a license governed by the Copyright Law of a specific jurisdiction, please select the appropriate jurisdiction.</description>
+   
+     <description xml:lang="ja">あなたの作品を日本の著作権法の下で保護してほしい場合には、ライセンスの日本法版を選択してください。</description>
+   
+     <description xml:lang="en_GB">If you desire a license governed by the Copyright Law of a specific jurisdiction, please select the appropriate jurisdiction.</description>
+   
+
+   <type>enum</type>
+
+   <enum id="">
+     
+       <label xml:lang="en_CA">Generic</label>
+     
+       <label xml:lang="fr">Générique</label>
+     
+       <label xml:lang="en">Generic</label>
+     
+       <label xml:lang="nl">Generiek</label>
+     
+       <label xml:lang="pt">Genérica</label>
+     
+       <label xml:lang="hr">SAD</label>
+     
+       <label xml:lang="ca">Genèrica</label>
+     
+       <label xml:lang="de">US-amerikanisch</label>
+     
+       <label xml:lang="it">Generico</label>
+     
+       <label xml:lang="sv">Generic</label>
+     
+       <label xml:lang="es">Genérica</label>
+     
+       <label xml:lang="de_AT">Generic</label>
+     
+       <label xml:lang="fi">Yleisversio</label>
+     
+       <label xml:lang="zh_TW">一般性</label>
+     
+       <label xml:lang="gl">Generic</label>
+     
+       <label xml:lang="ja">一般</label>
+     
+       <label xml:lang="en_GB">Generic</label>
+     
+   </enum>
+
+   <enum id="br">
+     
+       <label xml:lang="en_CA">Brazil</label>
+     
+       <label xml:lang="fr">Brésil</label>
+     
+       <label xml:lang="en">Brazil</label>
+     
+       <label xml:lang="nl">Brazilië</label>
+     
+       <label xml:lang="pt">Brasil</label>
+     
+       <label xml:lang="hr">Brazil</label>
+     
+       <label xml:lang="ca">Brasil</label>
+     
+       <label xml:lang="de">Brasilien</label>
+     
+       <label xml:lang="it">Brasile</label>
+     
+       <label xml:lang="sv">Brazil</label>
+     
+       <label xml:lang="es">Brasil</label>
+     
+       <label xml:lang="de_AT">Brazil</label>
+     
+       <label xml:lang="fi">Brasilia</label>
+     
+       <label xml:lang="zh_TW">巴西</label>
+     
+       <label xml:lang="gl">Brazil</label>
+     
+       <label xml:lang="ja">Brazil</label>
+     
+       <label xml:lang="en_GB">Brazil</label>
+     
+   </enum>
+  </field>
+
+  <field id="sampling">
+    
+      <label xml:lang="en_CA">What flavor of Sampling license?</label>
+    
+      <label xml:lang="fr">What flavor of Sampling license?</label>
+    
+      <label xml:lang="en">What flavor of Sampling license?</label>
+    
+      <label xml:lang="nl">What flavor of Sampling license?</label>
+    
+      <label xml:lang="pt">What flavor of Sampling license?</label>
+    
+      <label xml:lang="hr">What flavor of Sampling license?</label>
+    
+      <label xml:lang="ca">What flavor of Sampling license?</label>
+    
+      <label xml:lang="de">What flavor of Sampling license?</label>
+    
+      <label xml:lang="it">What flavor of Sampling license?</label>
+    
+      <label xml:lang="sv">What flavor of Sampling license?</label>
+    
+      <label xml:lang="es">What flavor of Sampling license?</label>
+    
+      <label xml:lang="de_AT">What flavor of Sampling license?</label>
+    
+      <label xml:lang="fi">What flavor of Sampling license?</label>
+    
+      <label xml:lang="zh_TW">What flavor of Sampling license?</label>
+    
+      <label xml:lang="gl">What flavor of Sampling license?</label>
+    
+      <label xml:lang="ja">What flavor of Sampling license?</label>
+    
+      <label xml:lang="en_GB">What flavor of Sampling license?</label>
+    
+    
+      <description xml:lang="en_CA">The Sampling Flavor determines how much freedom licensees have. Sampling only allows pieces to be used and prohibits sharing of the entire work.  Sampling Plus allows licensees to take and transform pieces of the work, as well as share the entire work for non-commercial purposes.  Noncommercial Sampling Plus further restricts the Sampling Plus license by only authorizing non-commercial derivatives to be created from the pieces of your work.</description>
+    
+      <description xml:lang="fr">The Sampling Flavor determines how much freedom licensees have. Sampling only allows pieces to be used and prohibits sharing of the entire work.  Sampling Plus allows licensees to take and transform pieces of the work, as well as share the entire work for non-commercial purposes.  Noncommercial Sampling Plus further restricts the Sampling Plus license by only authorizing non-commercial derivatives to be created from the pieces of your work.</description>
+    
+      <description xml:lang="en">The Sampling Flavor determines how much freedom licensees have. Sampling only allows pieces to be used and prohibits sharing of the entire work.  Sampling Plus allows licensees to take and transform pieces of the work, as well as share the entire work for non-commercial purposes.  Noncommercial Sampling Plus further restricts the Sampling Plus license by only authorizing non-commercial derivatives to be created from the pieces of your work.</description>
+    
+      <description xml:lang="nl">The Sampling Flavor determines how much freedom licensees have. Sampling only allows pieces to be used and prohibits sharing of the entire work.  Sampling Plus allows licensees to take and transform pieces of the work, as well as share the entire work for non-commercial purposes.  Noncommercial Sampling Plus further restricts the Sampling Plus license by only authorizing non-commercial derivatives to be created from the pieces of your work.</description>
+    
+      <description xml:lang="pt">The Sampling Flavor determines how much freedom licensees have. Sampling only allows pieces to be used and prohibits sharing of the entire work.  Sampling Plus allows licensees to take and transform pieces of the work, as well as share the entire work for non-commercial purposes.  Noncommercial Sampling Plus further restricts the Sampling Plus license by only authorizing non-commercial derivatives to be created from the pieces of your work.</description>
+    
+      <description xml:lang="hr">The Sampling Flavor determines how much freedom licensees have. Sampling only allows pieces to be used and prohibits sharing of the entire work.  Sampling Plus allows licensees to take and transform pieces of the work, as well as share the entire work for non-commercial purposes.  Noncommercial Sampling Plus further restricts the Sampling Plus license by only authorizing non-commercial derivatives to be created from the pieces of your work.</description>
+    
+      <description xml:lang="ca">The Sampling Flavor determines how much freedom licensees have. Sampling only allows pieces to be used and prohibits sharing of the entire work.  Sampling Plus allows licensees to take and transform pieces of the work, as well as share the entire work for non-commercial purposes.  Noncommercial Sampling Plus further restricts the Sampling Plus license by only authorizing non-commercial derivatives to be created from the pieces of your work.</description>
+    
+      <description xml:lang="de">The Sampling Flavor determines how much freedom licensees have. Sampling only allows pieces to be used and prohibits sharing of the entire work.  Sampling Plus allows licensees to take and transform pieces of the work, as well as share the entire work for non-commercial purposes.  Noncommercial Sampling Plus further restricts the Sampling Plus license by only authorizing non-commercial derivatives to be created from the pieces of your work.</description>
+    
+      <description xml:lang="it">The Sampling Flavor determines how much freedom licensees have. Sampling only allows pieces to be used and prohibits sharing of the entire work.  Sampling Plus allows licensees to take and transform pieces of the work, as well as share the entire work for non-commercial purposes.  Noncommercial Sampling Plus further restricts the Sampling Plus license by only authorizing non-commercial derivatives to be created from the pieces of your work.</description>
+    
+      <description xml:lang="sv">The Sampling Flavor determines how much freedom licensees have. Sampling only allows pieces to be used and prohibits sharing of the entire work.  Sampling Plus allows licensees to take and transform pieces of the work, as well as share the entire work for non-commercial purposes.  Noncommercial Sampling Plus further restricts the Sampling Plus license by only authorizing non-commercial derivatives to be created from the pieces of your work.</description>
+    
+      <description xml:lang="es">The Sampling Flavor determines how much freedom licensees have. Sampling only allows pieces to be used and prohibits sharing of the entire work.  Sampling Plus allows licensees to take and transform pieces of the work, as well as share the entire work for non-commercial purposes.  Noncommercial Sampling Plus further restricts the Sampling Plus license by only authorizing non-commercial derivatives to be created from the pieces of your work.</description>
+    
+      <description xml:lang="de_AT">The Sampling Flavor determines how much freedom licensees have. Sampling only allows pieces to be used and prohibits sharing of the entire work.  Sampling Plus allows licensees to take and transform pieces of the work, as well as share the entire work for non-commercial purposes.  Noncommercial Sampling Plus further restricts the Sampling Plus license by only authorizing non-commercial derivatives to be created from the pieces of your work.</description>
+    
+      <description xml:lang="fi">The Sampling Flavor determines how much freedom licensees have. Sampling only allows pieces to be used and prohibits sharing of the entire work.  Sampling Plus allows licensees to take and transform pieces of the work, as well as share the entire work for non-commercial purposes.  Noncommercial Sampling Plus further restricts the Sampling Plus license by only authorizing non-commercial derivatives to be created from the pieces of your work.</description>
+    
+      <description xml:lang="zh_TW">The Sampling Flavor determines how much freedom licensees have. Sampling only allows pieces to be used and prohibits sharing of the entire work.  Sampling Plus allows licensees to take and transform pieces of the work, as well as share the entire work for non-commercial purposes.  Noncommercial Sampling Plus further restricts the Sampling Plus license by only authorizing non-commercial derivatives to be created from the pieces of your work.</description>
+    
+      <description xml:lang="gl">The Sampling Flavor determines how much freedom licensees have. Sampling only allows pieces to be used and prohibits sharing of the entire work.  Sampling Plus allows licensees to take and transform pieces of the work, as well as share the entire work for non-commercial purposes.  Noncommercial Sampling Plus further restricts the Sampling Plus license by only authorizing non-commercial derivatives to be created from the pieces of your work.</description>
+    
+      <description xml:lang="ja">The Sampling Flavor determines how much freedom licensees have. Sampling only allows pieces to be used and prohibits sharing of the entire work.  Sampling Plus allows licensees to take and transform pieces of the work, as well as share the entire work for non-commercial purposes.  Noncommercial Sampling Plus further restricts the Sampling Plus license by only authorizing non-commercial derivatives to be created from the pieces of your work.</description>
+    
+      <description xml:lang="en_GB">The Sampling Flavor determines how much freedom licensees have. Sampling only allows pieces to be used and prohibits sharing of the entire work.  Sampling Plus allows licensees to take and transform pieces of the work, as well as share the entire work for non-commercial purposes.  Noncommercial Sampling Plus further restricts the Sampling Plus license by only authorizing non-commercial derivatives to be created from the pieces of your work.</description>
+    
+
+   <type>enum</type>
+   <enum id="sampling">
+     
+       <label xml:lang="en_CA">Sampling</label>
+     
+       <label xml:lang="fr">Sampling</label>
+     
+       <label xml:lang="en">Sampling</label>
+     
+       <label xml:lang="nl">Sampling</label>
+     
+       <label xml:lang="pt">Recombinação</label>
+     
+       <label xml:lang="hr">Sempliranje</label>
+     
+       <label xml:lang="ca">Sampling</label>
+     
+       <label xml:lang="de">Recombo</label>
+     
+       <label xml:lang="it">&lt;span lang=\"en\"&gt;Sampling&lt;/span&gt;</label>
+     
+       <label xml:lang="sv">Sampling</label>
+     
+       <label xml:lang="es">Sampling</label>
+     
+       <label xml:lang="de_AT">Sampling</label>
+     
+       <label xml:lang="fi">Recombo</label>
+     
+       <label xml:lang="zh_TW">取樣</label>
+     
+       <label xml:lang="gl">Sampling</label>
+     
+       <label xml:lang="ja">Sampling</label>
+     
+       <label xml:lang="en_GB">Sampling</label>
+     
+   </enum>
+   <enum id="samplingplus">
+     
+       <label xml:lang="en_CA">Sampling Plus</label>
+     
+       <label xml:lang="fr">Sampling Plus</label>
+     
+       <label xml:lang="en">Sampling Plus</label>
+     
+       <label xml:lang="nl">Sampling Plus</label>
+     
+       <label xml:lang="pt">Recombinação Plus</label>
+     
+       <label xml:lang="hr">Sempliranje plus</label>
+     
+       <label xml:lang="ca">Sampling Plus</label>
+     
+       <label xml:lang="de">Sampling Plus</label>
+     
+       <label xml:lang="it">&lt;span lang=\"en\"&gt;Sampling Plus&lt;/span&gt;</label>
+     
+       <label xml:lang="sv">Sampling Plus</label>
+     
+       <label xml:lang="es">Sampling Plus</label>
+     
+       <label xml:lang="de_AT">Sampling Plus</label>
+     
+       <label xml:lang="fi">Sämpläys plus</label>
+     
+       <label xml:lang="zh_TW">特別取樣</label>
+     
+       <label xml:lang="gl">Sampling Plus</label>
+     
+       <label xml:lang="ja">Sampling Plus</label>
+     
+       <label xml:lang="en_GB">Sampling Plus</label>
+     
+   </enum>
+   <enum id="ncsamplingplus">
+     
+       <label xml:lang="en_CA">NonCommercial Sampling Plus</label>
+     
+       <label xml:lang="fr">NonCommercial Sampling Plus</label>
+     
+       <label xml:lang="en">NonCommercial Sampling Plus</label>
+     
+       <label xml:lang="nl">NonCommercial Sampling Plus</label>
+     
+       <label xml:lang="pt">Uso Não-Comercial para Recombinação Plus</label>
+     
+       <label xml:lang="hr">Nekompercijalno sempliranje plus</label>
+     
+       <label xml:lang="ca">SamplingPlus NoComercial</label>
+     
+       <label xml:lang="de">NonCommercial Sampling Plus</label>
+     
+       <label xml:lang="it">Sampling Plus NonCommerciale</label>
+     
+       <label xml:lang="sv">NonCommercial Sampling Plus</label>
+     
+       <label xml:lang="es">NonCommercial Sampling Plus</label>
+     
+       <label xml:lang="de_AT">NonCommercial Sampling Plus</label>
+     
+       <label xml:lang="fi">Ei kaupalliseen käyttöön sämpläys plus</label>
+     
+       <label xml:lang="zh_TW">非商業性特別取樣</label>
+     
+       <label xml:lang="gl">NonCommercial Sampling Plus</label>
+     
+       <label xml:lang="ja">NonCommercial Sampling Plus</label>
+     
+       <label xml:lang="en_GB">NonCommercial Sampling Plus</label>
+     
+   </enum>
+ </field>
+
+ </licenseclass>
+
+</questions>
