@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.3.7: http://docutils.sourceforge.net/" />
+<title>api.creativecommons.org</title>
+<link rel="stylesheet" href="default.css" type="text/css" />
+</head>
+<body>
+<div class="document" id="api-creativecommons-org">
+<h1 class="title">api.creativecommons.org</h1>
+<h2 class="subtitle" id="cc-web-services-documentation">CC Web Services Documentation</h2>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Author:</th><td class="field-body">Nathan R. Yergler</td>
+</tr>
+<tr class="field"><th class="field-name">Version:</th><td class="field-body">1.5-candidate (CVS HEAD)</td>
+</tr>
+<tr class="field"><th class="field-name">Updated:</th><td class="field-body">$Date$</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<div class="contents docindex topic" id="document-index">
+<p class="topic-title first"><a name="document-index">Document Index</a></p>
+<ul class="simple">
+<li><a class="reference" href="#changes-since-1-0" id="id1" name="id1">Changes Since 1.0</a></li>
+<li><a class="reference" href="#access-method" id="id2" name="id2">Access Method</a><ul>
+<li><a class="reference" href="#valid-calls" id="id3" name="id3">Valid Calls</a><ul>
+<li><a class="reference" href="#locales" id="id4" name="id4">/locales</a></li>
+<li><a class="reference" href="#locale-xx" id="id5" name="id5">/[?locale=xx]</a></li>
+<li><a class="reference" href="#license-class-locale-xx" id="id6" name="id6">/license/&lt;class&gt;[?locale=xx]</a></li>
+<li><a class="reference" href="#license-class-issue" id="id7" name="id7">/license/&lt;class&gt;/issue</a></li>
+<li><a class="reference" href="#details-license-uri-uri" id="id8" name="id8">/details?license-uri=[uri]</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference" href="#error-handling" id="id9" name="id9">Error Handling</a><ul>
+<li><a class="reference" href="#currently-defined-errors" id="id10" name="id10">Currently Defined Errors</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#additional-resources" id="id11" name="id11">Additional Resources</a></li>
+</ul>
+</div>
+<p>This document covers the current development release of CC Web Services.  This should be considered unstable and only used for application testing and development.  Production applications should use the current stable version, as the development API can and will change.  Information on the curent version can be found at <a class="reference" href="http://api.creativecommons.org">http://api.creativecommons.org</a>.</p>
+<div class="section" id="changes-since-1-0">
+<h1><a name="changes-since-1-0">Changes Since 1.0</a></h1>
+<blockquote>
+<ul>
+<li><dl class="first docutils">
+<dt>/rest/dev/licenses/[class] </dt>
+<dd><p class="first last">Now returns an XML fragment whose top level element is &lt;licenseclass&gt;, not &lt;license&gt;</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>/rest/dev/details</dt>
+<dd><p class="first last">Added details method for retrieving license details from their URI</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>/rest/dev/issue</dt>
+<dd><p class="first last">Now returns an additional element, <tt class="docutils literal"><span class="pre">&lt;licenserdf&gt;</span></tt> which contains the RDF block
+for the license only (no Work block).</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">Invalid calls now return XML-encoded error messages.</p>
+</li>
+<li><p class="first">/locales method returns supported internationalized locales</p>
+</li>
+<li><p class="first">All methods can return localized text.  Note that in some cases a locale
+will have a mix of English and the native language -- English is currently
+the fallback for all locales and is used in the case of partial
+translations.</p>
+</li>
+<li><p class="first">The server has been reimplemented as a <a class="reference" href="http://www.python.org/peps/pep-0333.html">WSGI</a> compliant application.</p>
+</li>
+<li><p class="first">A test suite has been implemented for the server code.</p>
+</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="access-method">
+<h1><a name="access-method">Access Method</a></h1>
+<p>The Creative Commons Web Services are accessible via a REST interface.  
+The interface is rooted at <a class="reference" href="http://api.creativecommons.org/rest/dev">http://api.creativecommons.org/rest/dev</a>.</p>
+<div class="section" id="valid-calls">
+<h2><a name="valid-calls">Valid Calls</a></h2>
+<div class="section" id="locales">
+<h3><a name="locales">/locales</a></h3>
+<blockquote>
+<p>Returns an XML document detailing the available values which may be specified
+for <tt class="docutils literal"><span class="pre">locale</span></tt> in other calls.  The returned document has the following 
+format</p>
+<pre class="literal-block">
+&lt;locales&gt;
+  &lt;locale id=&quot;en_CA&quot;/&gt;
+  &lt;locale id=&quot;fr&quot;/&gt;
+
+  ...
+&lt;/locales&gt;
+</pre>
+<p>A future development version may include labels for the locales if users
+desire it.</p>
+</blockquote>
+</div>
+<div class="section" id="locale-xx">
+<h3><a name="locale-xx">/[?locale=xx]</a></h3>
+<blockquote>
+<p>(synonym for /classes)</p>
+<p>Returns an XML document describing the available license classes.  A license class
+is a &quot;family&quot; of licenses.  Current classes are standard (basic CC licenses), 
+publicdomain, and recombo (the Sampling licenses).  
+Classes may be added at any time in the future without
+breaking 1.0 compatibility.</p>
+<p>A partial example of the returned document is:</p>
+<pre class="literal-block">
+&lt;licenses&gt;
+  &lt;license id=&quot;standard&quot;&gt;Creative Commons&lt;/license&gt;
+  &lt;license id=&quot;publicdomain&quot;&gt;Public Domain&lt;/license&gt;
+  &lt;license id=&quot;recombo&quot;&gt;Sampling&lt;/license&gt;
+&lt;/licenses&gt;
+</pre>
+<p>If a value for locale is supplied, the service will attempt to return
+localized class descriptions.  If not specified, English will
+be returned.</p>
+</blockquote>
+</div>
+<div class="section" id="license-class-locale-xx">
+<h3><a name="license-class-locale-xx">/license/&lt;class&gt;[?locale=xx]</a></h3>
+<blockquote>
+<p>Called with a license class id from the call above as &lt;class&gt;.  
+Returns an XML
+document describing the list of fields which must be supplied in 
+order to issue
+a license of the given class.</p>
+<p>If a value for locale is supplied, the service will attempt to return
+localized labels and descriptions.  If not specified, English will
+be returned.</p>
+<p>A partial example of the returned document for 
+<a class="reference" href="http://api.creativecommons.org/rest/dev/license/standard">http://api.creativecommons.org/rest/dev/license/standard</a></p>
+<pre class="literal-block">
+ &lt;licenseclass id=&quot;standard&quot;&gt;
+  &lt;label xml:lang=&quot;en&quot;&gt;Creative Commons&lt;/label&gt;
+   &lt;field id=&quot;commercial&quot;&gt;
+  &lt;label xml:lang=&quot;en&quot;&gt;Allow commercial uses of your work?&lt;/label&gt;
+  &lt;description xml:lang=&quot;en&quot;&gt;The licensor permits others to copy, distribute, display, and perform the work.  In return, the licensee may not use the work for commercial purposes, unless they get the licensor's permission.&lt;/description&gt;
+  &lt;type&gt;enum&lt;/type&gt;
+  &lt;enum id=&quot;y&quot;&gt;
+    &lt;label xml:lang=&quot;en&quot;&gt;Yes&lt;/label&gt;
+  &lt;/enum&gt;
+  &lt;enum id=&quot;n&quot;&gt;
+    &lt;label xml:lang=&quot;en&quot;&gt;No&lt;/label&gt;
+  &lt;/enum&gt;
+ &lt;/field&gt;
+ &lt;field id=&quot;derivatives&quot;&gt;
+  &lt;label xml:lang=&quot;en&quot;&gt;Allows modifications of your work?&lt;/label&gt;
+  &lt;description xml:lang=&quot;en&quot;&gt;The licensor permits others to copy, distribute and perform only unaltered copies of the work, not derivative works based on it.&lt;/description&gt;
+  &lt;type&gt;enum&lt;/type&gt;
+  &lt;enum id=&quot;y&quot;&gt;
+    &lt;label xml:lang=&quot;en&quot;&gt;Yes&lt;/label&gt;
+  &lt;/enum&gt;
+  &lt;enum id=&quot;sa&quot;&gt;
+    &lt;label xml:lang=&quot;en&quot;&gt;ShareAlike&lt;/label&gt;
+  &lt;/enum&gt;
+  &lt;enum id=&quot;n&quot;&gt;
+    &lt;label xml:lang=&quot;en&quot;&gt;No&lt;/label&gt;
+  &lt;/enum&gt;
+ &lt;/field&gt;
+ &lt;field id=&quot;jurisdiction&quot;&gt;
+  &lt;label xml:lang=&quot;en&quot;&gt;Jurisdiction of your license:&lt;/label&gt;
+  &lt;description xml:lang=&quot;en&quot;&gt;If you desire a license governed by the Copyright Law of a specific jurisdiction, please select the appropriate jurisdiction.&lt;/description&gt;
+  &lt;type&gt;enum&lt;/type&gt;
+  &lt;enum id=&quot;&quot;&gt;
+    &lt;label xml:lang=&quot;en&quot;&gt;Generic&lt;/label&gt;
+  &lt;/enum&gt;
+  &lt;enum id=&quot;at&quot;&gt;
+    &lt;label xml:lang=&quot;en&quot;&gt;Austria&lt;/label&gt;
+  &lt;/enum&gt;
+ &lt;/field&gt;
+&lt;/licenseclass&gt;
+</pre>
+<p>Note that a given field or enum element may have more than one label, so long as they
+have unique xml:lang attributes.  Future language translations may be added at any time
+in the future without breaking 1.0 compatibility.</p>
+</blockquote>
+</div>
+<div class="section" id="license-class-issue">
+<h3><a name="license-class-issue">/license/&lt;class&gt;/issue</a></h3>
+<blockquote>
+<p>Called with an HTTP POST whose contents are a single form variable, 
+<tt class="docutils literal"><span class="pre">answers</span></tt>. 
+The value of answers is an XML string containing values which match 
+each <tt class="docutils literal"><span class="pre">field</span></tt>
+element found in the earlier license/[class] call.  A sample answers 
+string for the 
+previous example is:</p>
+<pre class="literal-block">
+&lt;answers&gt;
+  &lt;locale&gt;en&lt;/locale&gt;
+  &lt;license-standard&gt;
+    &lt;commercial&gt;n&lt;/commercial&gt;
+    &lt;derivatives&gt;y&lt;/derivatives&gt;
+    &lt;jurisdiction&gt;&lt;/jurisdiction&gt;
+  &lt;/license-standard&gt;
+&lt;/answers&gt;
+</pre>
+<p>This example would issue a by-nc license in the generic (default) 
+jurisdiction.  Note
+each element name matches a field id, and the content of the 
+elements match the 
+enum id for the selected choice.  The &lt;license-standard&gt; tag is the
+license class prepended with <tt class="docutils literal"><span class="pre">license-</span></tt>.</p>
+<p>The <tt class="docutils literal"><span class="pre">&lt;locale&gt;</span></tt> element is optional.  If supplied, the license name returned
+will be localized to the selected locale.  If omitted, English will be
+used.</p>
+<p>The issue method uses the chooselicense.xsl document to generate the 
+resulting XML 
+document.  The result of this sample call would be an XML document, such as:</p>
+<pre class="literal-block">
+&lt;?xml version=&quot;1.0&quot;?&gt;
+
+&lt;result&gt;
+  &lt;license-uri&gt;http://creativecommons.org/licenses/by/2.0/Generic/&lt;/license-uri&gt;
+  &lt;license-name&gt;Attribution 2.0&lt;/license-name&gt;
+  &lt;rdf&gt;
+    &lt;rdf:RDF xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot; xmlns=&quot;http://web.resource.org/cc/&quot; xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot;&gt;
+      &lt;Work rdf:about=&quot;&quot;&gt;
+        &lt;license rdf:resource=&quot;http://creativecommons.org/licenses/by/2.0/Generic/&quot;/&gt;
+      &lt;/Work&gt;
+      &lt;License rdf:about=&quot;http://creativecommons.org/licenses/by/2.0/Generic/&quot;&gt;
+        &lt;permits rdf:resource=&quot;http://web.resource.org/cc/Reproduction&quot;/&gt;
+        &lt;permits rdf:resource=&quot;http://web.resource.org/cc/Distribution&quot;/&gt;
+        &lt;requires rdf:resource=&quot;http://web.resource.org/cc/Notice&quot;/&gt;
+        &lt;requires rdf:resource=&quot;http://web.resource.org/cc/Attribution&quot;/&gt;
+        &lt;permits rdf:resource=&quot;http://web.resource.org/cc/DerivativeWorks&quot;/&gt;
+      &lt;/License&gt;
+    &lt;/rdf:RDF&gt;
+  &lt;/rdf&gt;
+  &lt;licenserdf&gt;
+    &lt;rdf:RDF xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot; xmlns=&quot;http://web.resource.org/cc/&quot; xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot;&gt;
+      &lt;License rdf:about=&quot;http://creativecommons.org/licenses/by/2.0/Generic/&quot;&gt;
+        &lt;permits rdf:resource=&quot;http://web.resource.org/cc/Reproduction&quot;/&gt;
+        &lt;permits rdf:resource=&quot;http://web.resource.org/cc/Distribution&quot;/&gt;
+        &lt;requires rdf:resource=&quot;http://web.resource.org/cc/Notice&quot;/&gt;
+        &lt;requires rdf:resource=&quot;http://web.resource.org/cc/Attribution&quot;/&gt;
+        &lt;permits rdf:resource=&quot;http://web.resource.org/cc/DerivativeWorks&quot;/&gt;
+      &lt;/License&gt;
+    &lt;/rdf:RDF&gt;
+  &lt;/licenserdf&gt;
+  &lt;html&gt;&lt;!--Creative Commons License--&gt;
+      &lt;a rel=&quot;license&quot; href=&quot;http://creativecommons.org/licenses/by/2.0/Generic/&quot;&gt;
+      &lt;img alt=&quot;Creative Commons License&quot; border=&quot;0&quot; src=&quot;http://creativecommons.org/images/public/somerights20.gif&quot;/&gt;&lt;/a&gt;&lt;br/&gt;
+            This work is licensed under a &lt;a rel=&quot;license&quot; href=&quot;http://creativecommons.org/licenses/by/2.0/Generic/&quot;&gt;Creative Commons License&lt;/a&gt;.
+            &lt;!--/Creative Commons License--&gt;&lt;!-- &lt;rdf:RDF xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot; xmlns=&quot;http://web.resource.org/cc/&quot; xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot;&gt;&lt;Work rdf:about=&quot;&quot;&gt;&lt;license rdf:resource=&quot;http://creativecommons.org/licenses/by/2.0/Generic/&quot;/&gt;&lt;/Work&gt;&lt;License rdf:about=&quot;http://creativecommons.org/licenses/by/2.0/Generic/&quot;&gt;&lt;permits rdf:resource=&quot;http://web.resource.org/cc/Reproduction&quot;/&gt;&lt;permits rdf:resource=&quot;http://web.resource.org/cc/Distribution&quot;/&gt;&lt;requires rdf:resource=&quot;http://web.resource.org/cc/Notice&quot;/&gt;&lt;requires rdf:resource=&quot;http://web.resource.org/cc/Attribution&quot;/&gt;&lt;permits rdf:resource=&quot;http://web.resource.org/cc/DerivativeWorks&quot;/&gt;&lt;/License&gt;&lt;/rdf:RDF&gt; --&gt;&lt;/html&gt;
+&lt;/result&gt;
+</pre>
+<p>Note the &lt;html&gt; element contains the entire RDF-in-comment which the standard CC license
+engine returns.</p>
+</blockquote>
+</div>
+<div class="section" id="details-license-uri-uri">
+<h3><a name="details-license-uri-uri">/details?license-uri=[uri]</a></h3>
+<blockquote>
+Called with an HTTP POST or GET with a single form variable, 
+<tt class="docutils literal"><span class="pre">license-uri</span></tt>.  The
+value of license-uri is the URI of an existing Creative Commons license.  
+The call returns the same result as issue.  Note that at this time
+<tt class="docutils literal"><span class="pre">details</span></tt> does not support localization.</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="error-handling">
+<h1><a name="error-handling">Error Handling</a></h1>
+<blockquote>
+<p>Errors occuring from either invalid input or server-side problems are 
+returned as an XML block, with an <tt class="docutils literal"><span class="pre">&lt;error&gt;</span></tt> top level element.  For 
+example, a call to details with no <tt class="docutils literal"><span class="pre">license-uri</span></tt> would return the following
+text:</p>
+<pre class="literal-block">
+&lt;error&gt;
+  &lt;id&gt;missingparam&lt;/id&gt;
+  &lt;message&gt;A value for license-uri must be supplied.&lt;/message&gt;
+&lt;/error&gt;
+</pre>
+<p>Error messages are currently not localized.</p>
+<p>If the error occurs due to a server side error, two additional elements
+may be specified: <tt class="docutils literal"><span class="pre">&lt;exception&gt;</span></tt> and <tt class="docutils literal"><span class="pre">&lt;traceback&gt;</span></tt>.  
+<tt class="docutils literal"><span class="pre">&lt;traceback&gt;</span></tt> will contain
+the text of the Python stack trace.  This is usually uninteresting for
+end users, but may help developers when reporting errors.</p>
+<p><tt class="docutils literal"><span class="pre">&lt;exception&gt;</span></tt> contains the Python exception information.  
+A contrived example:</p>
+<pre class="literal-block">
+&lt;exception type=&quot;KeyError&quot;&gt;
+  Unknown Key.
+&lt;/exception&gt;
+</pre>
+<p>Note that the actual contents of the <tt class="docutils literal"><span class="pre">&lt;exception&gt;</span></tt> element is dependent
+on the actual error that occurs; these will only be returned when an 
+otherwise unhandled error has occured.</p>
+</blockquote>
+<div class="section" id="currently-defined-errors">
+<h2><a name="currently-defined-errors">Currently Defined Errors</a></h2>
+<blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th>id</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>missingparam</td>
+<td>A required parameter is missing; for convenience
+the web service
+will check both GET and POST for form values.</td>
+</tr>
+<tr><td>invalidclass</td>
+<td>XXX</td>
+</tr>
+<tr><td>pythonerr</td>
+<td>A Python exception has occured.</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+</div>
+<div class="section" id="additional-resources">
+<h1><a name="additional-resources">Additional Resources</a></h1>
+<blockquote>
+<ul class="simple">
+<li>The Creative Commons developer mailing list, cc-devel; information available
+at <a class="reference" href="http://lists.ibiblio.org/mailman/listinfo/cc-devel">http://lists.ibiblio.org/mailman/listinfo/cc-devel</a></li>
+<li><a class="reference" href="http://wiki.creativecommons.org/wiki/Developer">Creative Commons Developer Wiki</a></li>
+</ul>
+</blockquote>
+</div>
+</div>
+</body>
+</html>

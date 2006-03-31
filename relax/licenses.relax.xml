@@ -1,0 +1,32 @@
+<element name="licenses" xmlns="http://relaxng.org/ns/structure/1.0">
+
+  <oneOrMore>
+    <element name="licenseclass">
+      <attribute name="id" />
+
+      <oneOrMore>
+      	<element name="license">
+	  <attribute name="id" />
+
+	  <oneOrMore>
+	    <element name="jurisdiction">
+	      <attribute name="id" />
+
+	      <oneOrMore>
+		<element name="version">
+		  <attribute name="id" />
+		  <attribute name="uri" />
+		</element>
+	      </oneOrMore>
+
+	    </element>
+	  </oneOrMore>
+
+	</element>
+      </oneOrMore>
+
+    </element>
+  </oneOrMore>
+
+</element>
+
