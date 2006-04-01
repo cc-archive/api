@@ -30,8 +30,10 @@ cherrypy.config.update({
 })
 
 RELAX_PATH = './relax'
-QUESTIONS_XML = ('questions.xml', 'questions.relax.xml')
-LICENSES_XML = ('licenses.xml', 'licenses.relax.xml')
+QUESTIONS_XML = (os.path.join('license_xsl', 'questions.xml'),
+                 'questions.relax.xml')
+LICENSES_XML = (os.path.join('license_xsl', 'licenses.xml'),
+                'licenses.relax.xml')
 
 import cherrypy.test.helper as helper
 

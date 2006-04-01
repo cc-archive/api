@@ -1,3 +1,4 @@
+import os
 import sys
 from StringIO import StringIO
 import traceback
@@ -5,10 +6,12 @@ import traceback
 import lxml.etree
 from cherrypy.lib.filter.basefilter import BaseFilter
 
+DATA_DIR = os.path.join( os.path.dirname(os.path.abspath(__file__)),
+                         'license_xsl')
 
-QUESTIONS_XML = 'questions.xml'
-LICENSES_XML = 'licenses.xml'
-XSLT_SOURCE = 'chooselicense.xsl'
+QUESTIONS_XML = os.path.join(DATA_DIR, 'questions.xml')
+LICENSES_XML = os.path.join(DATA_DIR, 'licenses.xml')
+XSLT_SOURCE = os.path.join(DATA_DIR, 'chooselicense.xsl')
 
 def pruneLocale(element, locale):
     """Prune elelments who have an xml:lang value other than locale."""
