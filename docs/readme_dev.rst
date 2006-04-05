@@ -209,6 +209,30 @@ Valid Calls
   Note the <html> element contains the entire RDF-in-comment which the standard CC license
   engine returns.
 
+
+/license/<class>/get?
+~~~~~~~~~~~~~~~~~~~~~
+
+  Called with an HTTP GET and a query string containing a parameter for each
+  ``field`` specified in the previous call to /license/<class>.  The value
+  of each parameter should match one of the enum values provided.
+
+  For example, a call to retrieve a Creative Commons standard license might
+  look like:
+
+  /license/standard/get?commercial=n&derivatives=y&jurisdiction=
+
+  This example would issue a by-nc license in the generic (default) 
+  jurisdiction.  Note each element name matches a field id, and the 
+  content of the elements match the enum id for the selected choice.  
+
+  The XML returned from this call is identical to the return from 
+  /license/<class>/issue (see above).
+
+  A locale parameter may also be specified.  If supplied, the license 
+  name returned will be localized to the selected locale.  If omitted, 
+  English will be used.  
+
 /details?license-uri=[uri]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 

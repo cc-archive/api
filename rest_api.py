@@ -41,6 +41,22 @@ class LicenseClass:
 	# generate the answers XML document
 	return support.issue(answers)
 
+    @cherrypy.expose
+    def get(self, locale='en', **kwargs):
+        
+        # generate the answers XML
+        answers = "<answers><locale>%s</locale><license-%s>" % (
+            locale, self.name)
+
+        for k in kwargs:
+            answers = answers + "<%s>%s</%s>" % (k, kwargs[k], k)
+
+        answers = answers +  "</license-%s></answers>" % self.name
+
+        # delegate to the normal issue method
+        return self.issue(answers, locale)
+        
+
 class Licenses:
     @cherrypy.expose
     def default(self, l_class, action='index', **kwargs):

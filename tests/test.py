@@ -1,7 +1,8 @@
 """
 Creative Commons Web Services Test Harness
-Copyright (c) 2005, Nathan R. Yergler, 
-                    Creative Commons (software@creativecommons.org)
+Copyright (c) 2005-2006,
+     Nathan R. Yergler, 
+     Creative Commons (software@creativecommons.org)
 
 Based on test code from the CherryPy Project, 
 Copyright (c) 2004, CherryPy Team (team@cherrypy.org)
@@ -122,7 +123,7 @@ class CcApiTest(helper.CPWebCase):
 
 	return classes
 
-    def __testAnswers(self, lclass):
+    def __fieldEnums(self, lclass):
         """Retrieve the license information for this class, and generate
         a set of answers for use with testing."""
 
@@ -141,6 +142,12 @@ class CcApiTest(helper.CPWebCase):
 
             all_answers.append((field_id, answer_values))
 
+        return all_answers
+
+    def __testAnswersXml(self, lclass):
+
+        all_answers = self.__fieldEnums(lclass)
+
         for answer_comb in permute([n[1] for n in all_answers]):
             
             answers_xml = lxml.etree.Element('answers')
@@ -153,6 +160,17 @@ class CcApiTest(helper.CPWebCase):
 
             yield lxml.etree.tostring(answers_xml)
 
+    def __testAnswerQueryStrings(self, lclass):
+        all_answers = self.__fieldEnums(lclass)
+
+        for answer_comb in permute([n[1] for n in all_answers]):
+
+            params = zip([n[0] for n in all_answers], answer_comb)
+            param_strs = ["=".join(n) for n in params]
+            result = "?" + "&".join(param_strs)
+
+            yield result
+        
     def testLicenseClassStructure(self):
 	"""Test that each license class returns a valid XML chunk."""
 
@@ -170,11 +188,12 @@ class CcApiTest(helper.CPWebCase):
 		raise AssertionError
 		    
     def testIssue(self):
-	"""Test that every license class will be successfully issued."""
+	"""Test that every license class will be successfully issued via
+        the /issue method."""
 
 	for lclass in self.__getLicenseClasses():
 
-            for answers in self.__testAnswers(lclass):
+            for answers in self.__testAnswersXml(lclass):
               print >> sys.stderr, ',',
               try:
                 
@@ -189,6 +208,27 @@ class CcApiTest(helper.CPWebCase):
                       "answers: %s\n" % (lclass, answers)
                 raise AssertionError
 
+    def testGet(self):
+	"""Test that every license class will be successfully issued
+        via the /get method."""
+
+	for lclass in self.__getLicenseClasses():
+
+            for queryString in self.__testAnswerQueryStrings(lclass):
+              print >> sys.stderr, ';',
+              try:
+                
+                self.getPage('/license/%s/get%s' % (lclass, queryString))
+
+                assert RelaxValidate(os.path.join(RELAX_PATH, 
+                                               'issue.relax.xml'),
+                                     StringIO(self.body))
+
+              except AssertionError:
+                print "Get license failed for:\nlicense class: %s\n" \
+                      "answers: %s\n" % (lclass, answers)
+                raise AssertionError
+
     def testIssueError(self):
         """Issue with no answers or empty answers should return an error."""
 
@@ -198,7 +238,6 @@ class CcApiTest(helper.CPWebCase):
             assert RelaxValidate(os.path.join(RELAX_PATH,
                                               'error.relax.xml'),
                                  StringIO(self.body))
-
 
     def testI18n(self):
 	"""Make sure i18n calls work right."""
