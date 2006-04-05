@@ -132,16 +132,19 @@ class SupportApi(object):
             yield('<select name="%s">\n' % select)
             
         # retrieve a list of the available jurisdictions in the requested lang
-        jurisdictions = licenses_xml.xpath('//jurisdiction-info[@launched="true"]/@id')
-        jurisdictions.sort()
+        jurisdictions = []
+        j_nodes = licenses_xml.xpath('//jurisdiction-info[@launched="true"]')
+        for j in j_nodes:
+            jurisdictions.append( (j.xpath('@id')[0],
+                                   j.xpath('./uri')[0].text) )
 
         # output each jurisdiction
         for j in jurisdictions:
-            country = locale.get('country.%s' % j,
-                                 en.get('country.%s' % j, j)
+            country = locale.get('country.%s' % j[0],
+                                 en.get('country.%s' % j[0], j[0])
                                  )
             
-            yield(u'<option value="%s">%s</option>\n' % (j, country) )
+            yield(u'<option value="%s">%s</option>\n' % (j[1], country) )
 
         if select:
             yield('</select>')
