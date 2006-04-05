@@ -7,6 +7,7 @@ import lxml.etree
 
 import support
 import simplechooser
+import supportapi
 
 class LicenseClass:
     def __init__(self, classname):
@@ -151,6 +152,8 @@ class RestApi:
 
 cherrypy.root = RestApi()
 cherrypy.root.simple = simplechooser.SimpleChooser()
+cherrypy.root.support = supportapi.SupportApi()
+
 cherrypy.config.update(file='rest_api.cfg')
 
 def serveapi(host='localhost', port=8080):
