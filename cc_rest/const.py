@@ -13,7 +13,10 @@ XML_SOURCE = "questions.xml"
 XSLT_SOURCE = 'chooselicense.xsl'
 
 # make absolute paths to the filenames
-CC_REST_PATH = os.path.dirname(os.path.abspath(__file__))
+CC_REST_PATH = os.path.join( os.path.dirname(os.path.abspath(__file__)),
+                             'license_xsl'
+                             )
+
 XML_SOURCE = os.path.join(CC_REST_PATH, XML_SOURCE)
 XSLT_SOURCE = os.path.join(CC_REST_PATH, XSLT_SOURCE)
 
