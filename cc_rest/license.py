@@ -22,7 +22,7 @@ def classes (request):
     ctxt = doc.xpathNewContext()
 
     # extract the label list
-    labels = ctxt.xpathEval('//licenseclass/label')
+    labels = ctxt.xpathEval('//licenseclass/label[@xml:lang="en"]')
     result = "<licenses>"
     
     for label in labels:
