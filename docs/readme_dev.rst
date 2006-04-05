@@ -34,7 +34,7 @@ The Creative Commons Web Services are accessible via a REST interface.
 The interface is rooted at http://api.creativecommons.org/rest/dev.
   
 Valid Calls
-^^^^^^^^^^^
+===========
 
 /locales
 ~~~~~~~~
@@ -255,6 +255,30 @@ Valid Calls
   If invoked as the former, the result is raw HTML.  If invoked as the
   latter, the result is wrapped in document.write() calls.
 
+/support/jurisdictions
+~~~~~~~~~~~~~~~~~~~~~~
+
+  Returns a simple jurisdiction chooser in the form of an HTML drop-down. The
+  format of the returned chooser can be customized with the following 
+  parameters
+
+  ============== ========= ==============================================
+  Name           Number    Description
+  ============== ========= ==============================================
+  language       0 or 1    Language to use for license names; defaults to
+                           English (en).  Example: ja
+  select         0 or 1    If specified, the value used for the name 
+                           attribute of the <select> element; if not 
+                           specified, the select element is omitted.
+  ============== ========= ==============================================
+
+  In addition to these parameters, the dropdown call can be further 
+  customized by invoking as either /support/jurisdictions or 
+  /support/jurisdictions.js.
+  If invoked as the former, the result is raw HTML.  If invoked as the
+  latter, the result is wrapped in document.write() calls.
+
+ 
 Error Handling
 ==============
 
