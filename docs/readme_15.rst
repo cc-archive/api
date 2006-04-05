@@ -15,12 +15,15 @@ CC Web Services Documentation
 
 This document covers the 1.5 release of CC Web Services.  
 Information on the version in development can be found at 
-http://api.creativecommons.org.  The 1.5 API is frozen and will not change; 
-however, translations and jurisdictions will be added as they become available.
+http://api.creativecommons.org. The format of information returned 
+by the 1.5 API will not change.  However, features may be added in 
+a backwards compatible way.
 
 Changes Since 1.0
 =================
 
+  * /rest/1.5/simple/chooser
+      Simple license chooser API added.
   * /rest/1.5/licenses/[class] 
       Now returns an XML fragment whose top level element is <licenseclass>, not <license>
   * /rest/1.5/details
@@ -28,6 +31,8 @@ Changes Since 1.0
   * /rest/1.5/issue
       Now returns an additional element, ``<licenserdf>`` which contains the RDF block
       for the license only (no Work block).
+  * /rest/1.5/simple
+      Interface for simple integration added.
   * Invalid calls now return XML-encoded error messages.
   * /locales method returns supported internationalized locales
   * All methods can return localized text.  Note that in some cases a locale
@@ -227,6 +232,43 @@ Valid Calls
   value of license-uri is the URI of an existing Creative Commons license.  
   The call returns the same result as issue.  Note that at this time
   ``details`` does not support localization.
+
+  If the uri specified by ``license-uri`` is not a valid Creative Commons 
+  license, the web service will reject the request and return an error block.
+  For example, ::
+
+    <error>
+      <id>invalid</id>
+      <message>Invalid license uri.</message>
+    </error>
+
+
+/simple/chooser
+~~~~~~~~~~~~~~~
+
+  Returns a simple license chooser in the form of an HTML-drop down.  The
+  format of the returned chooser can be customized with the following 
+  parameters
+
+  ============== ========= ==============================================
+  Name           Number    Description
+  ============== ========= ==============================================
+  jurisdiction   0 or 1    Returns licenses for the specified 
+                           jurisdiction.  Example: de
+  exclude        0 or more Excludes license urls containing the specified
+                           string.  Example: nc will exclude 
+                           NonCommercial licenses.
+  language       0 or 1    Language to use for license names; defaults to
+                           English (en).  Example: ja
+  select         0 or 1    If specified, the value used for the name 
+                           attribute of the <select> element; if not 
+                           specified, the select element is omitted.
+  ============== ========= ==============================================
+
+  In addition to these parameters, the Simple Chooser can be further 
+  customized by invoking as either /simple/chooser or /simple/chooser.js.
+  If invoked as the former, the result is raw HTML.  If invoked as the
+  latter, the result is wrapped in document.write() calls.
 
 
 Error Handling

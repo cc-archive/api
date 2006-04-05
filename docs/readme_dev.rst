@@ -228,6 +228,33 @@ Valid Calls
     </error>
 
 
+/simple/chooser
+~~~~~~~~~~~~~~~
+
+  Returns a simple license chooser in the form of an HTML-drop down.  The
+  format of the returned chooser can be customized with the following 
+  parameters
+
+  ============== ========= ==============================================
+  Name           Number    Description
+  ============== ========= ==============================================
+  jurisdiction   0 or 1    Returns licenses for the specified 
+                           jurisdiction.  Example: de
+  exclude        0 or more Excludes license urls containing the specified
+                           string.  Example: nc will exclude 
+                           NonCommercial licenses.
+  language       0 or 1    Language to use for license names; defaults to
+                           English (en).  Example: ja
+  select         0 or 1    If specified, the value used for the name 
+                           attribute of the <select> element; if not 
+                           specified, the select element is omitted.
+  ============== ========= ==============================================
+
+  In addition to these parameters, the Simple Chooser can be further 
+  customized by invoking as either /simple/chooser or /simple/chooser.js.
+  If invoked as the former, the result is raw HTML.  If invoked as the
+  latter, the result is wrapped in document.write() calls.
+
 Error Handling
 ==============
 
