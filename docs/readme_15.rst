@@ -224,6 +224,29 @@ Valid Calls
   Note the <html> element contains the entire RDF-in-comment which the standard CC license
   engine returns.
 
+/license/<class>/get?
+~~~~~~~~~~~~~~~~~~~~~
+
+  Called with an HTTP GET and a query string containing a parameter for each
+  ``field`` specified in the previous call to /license/<class>.  The value
+  of each parameter should match one of the enum values provided.
+
+  For example, a call to retrieve a Creative Commons standard license might
+  look like:
+
+  /license/standard/get?commercial=n&derivatives=y&jurisdiction=
+
+  This example would issue a by-nc license in the generic (default) 
+  jurisdiction.  Note each element name matches a field id, and the 
+  content of the elements match the enum id for the selected choice.  
+
+  The XML returned from this call is identical to the return from 
+  /license/<class>/issue (see above).
+
+  A locale parameter may also be specified.  If supplied, the license 
+  name returned will be localized to the selected locale.  If omitted, 
+  English will be used.  
+
 /details?license-uri=[uri]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -267,6 +290,29 @@ Valid Calls
 
   In addition to these parameters, the Simple Chooser can be further 
   customized by invoking as either /simple/chooser or /simple/chooser.js.
+  If invoked as the former, the result is raw HTML.  If invoked as the
+  latter, the result is wrapped in document.write() calls.
+
+/support/jurisdictions
+~~~~~~~~~~~~~~~~~~~~~~
+
+  Returns a simple jurisdiction chooser in the form of an HTML drop-down. The
+  format of the returned chooser can be customized with the following 
+  parameters
+
+  ============== ========= ==============================================
+  Name           Number    Description
+  ============== ========= ==============================================
+  language       0 or 1    Language to use for license names; defaults to
+                           English (en).  Example: ja
+  select         0 or 1    If specified, the value used for the name 
+                           attribute of the <select> element; if not 
+                           specified, the select element is omitted.
+  ============== ========= ==============================================
+
+  In addition to these parameters, the dropdown call can be further 
+  customized by invoking as either /support/jurisdictions or 
+  /support/jurisdictions.js.
   If invoked as the former, the result is raw HTML.  If invoked as the
   latter, the result is wrapped in document.write() calls.
 
