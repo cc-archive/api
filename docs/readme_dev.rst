@@ -209,6 +209,31 @@ Valid Calls
   Note the <html> element contains the entire RDF-in-comment which the standard CC license
   engine returns.
 
+  The information passed to the licensing web service may be augmented with
+  optional information about the work to be licensed.  If included this 
+  information will be included in the returned RDF and RDF-in-comment.  For
+  example::
+
+    <answers>
+      <locale>en</locale>
+      <license-standard>
+        <commercial>n</commercial>
+        <derivatives>y</derivatives>
+        <jurisdiction></jurisdiction>
+      </license-standard>
+      <work-info>
+        <title>The Title</title>
+	<work-url>http://example.com/work</work-url>
+	<source-url>http://example.com/source</source-url>
+	<type>Text</type>
+	<year>2006</year>
+	<description>A brief description...</description>
+	<creator>John Q. Public</creator>
+	<holder>John Q. Public</holder>
+      </work-info>
+    </answers>
+
+  All work-info sub-elements are optional.
 
 /license/<class>/get?
 ~~~~~~~~~~~~~~~~~~~~~
