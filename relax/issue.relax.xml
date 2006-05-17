@@ -64,16 +64,59 @@
       <group>
         <optional>
           <element ns="http://web.resource.org/cc/" name="Work">
-            <group>
-              <attribute ns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" name="about">
-                <text/>
-              </attribute>
+            <attribute ns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" name="about">
+              <text/>
+            </attribute>
+            <interleave>
               <element name="license">
                 <attribute ns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" name="resource">
                   <text/>
                 </attribute>
               </element>
-            </group>
+	      <optional>
+	          <element ns="http://purl.org/dc/elements/1.1/" name="title">
+		      <text/>
+		  </element>
+	      </optional>
+	      <optional>
+	          <element ns="http://purl.org/dc/elements/1.1/" name="date">
+		      <text/>
+		  </element>
+	      </optional>
+	      <optional>
+	          <element ns="http://purl.org/dc/elements/1.1/" name="description">
+		      <text/>
+		  </element>
+	      </optional>
+	      <optional>
+	          <element ns="http://purl.org/dc/elements/1.1/" name="type">
+                      <attribute ns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" name="resource">
+                        <text/>
+                      </attribute>
+		  </element>
+	      </optional>
+	      <optional>
+	          <element ns="http://purl.org/dc/elements/1.1/" name="source">
+                      <attribute ns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" name="resource">
+                        <text/>
+                      </attribute>
+		  </element>
+	      </optional>
+	      <optional>
+	          <element ns="http://purl.org/dc/elements/1.1/" name="creator">
+                      <element name="Agent">
+                        <text/>
+                      </element>
+		  </element>
+	      </optional>
+	      <optional>
+	          <element ns="http://purl.org/dc/elements/1.1/" name="rights">
+                      <element name="Agent">
+                        <text/>
+                      </element>
+		  </element>
+	      </optional>
+            </interleave>
           </element>
         </optional>
         <element ns="http://web.resource.org/cc/" name="License">
