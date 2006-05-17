@@ -198,7 +198,7 @@ class CcApiTest(helper.CPWebCase):
               try:
                 
                 self.getPage('/license/%s/issue?answers=%s' % (lclass, answers))
-
+              
                 assert RelaxValidate(os.path.join(RELAX_PATH, 
                                                'issue.relax.xml'),
                                      StringIO(self.body))
@@ -226,7 +226,7 @@ class CcApiTest(helper.CPWebCase):
 
               except AssertionError:
                 print "Get license failed for:\nlicense class: %s\n" \
-                      "answers: %s\n" % (lclass, answers)
+                      "answers: %s\n" % (lclass, queryString)
                 raise AssertionError
 
     def testIssueError(self):
