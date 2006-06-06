@@ -116,8 +116,12 @@ class SupportApi(object):
         return result
     
     @cherrypy.expose
-    def jurisdictions(self, select=None, language='en'):
+    def jurisdictions(self, select=None, locale='en', language=None):
 
+        # backward compatibility for crufted "language" param
+        if language is None:
+            language = locale
+            
         # load the licenses file
         licenses_xml = lxml.etree.parse(support.LICENSES_XML)
 
@@ -150,7 +154,12 @@ class SupportApi(object):
             yield('</select>')
 
     @cherrypy.expose
-    def jurisdictions_js(self, select=None, language='en'):
+    def jurisdictions_js(self, select=None, locale='en', language=None):
+
+        # backward compatibility for crufted "language" param
+        if language is None:
+            language = locale
+
         # set the content type
         cherrypy.response.headerMap['Content-Type'] = 'text/javascript'
 

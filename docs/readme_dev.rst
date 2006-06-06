@@ -26,6 +26,12 @@ Changes Since 1.5
   * /rest/dev/details
       Added validation for the specified license URI; returns error 
       block if invalid
+  * /simple/chooser
+      The ``language`` parameter is no longer supported; use ``locale`` 
+      instead.
+  * /support/jurisdictions
+      The ``language`` parameter is no longer supported; use ``locale`` 
+      instead.
 
 Access Method
 =============
@@ -292,7 +298,7 @@ Valid Calls
   exclude        0 or more Excludes license urls containing the specified
                            string.  Example: nc will exclude 
                            NonCommercial licenses.
-  language       0 or 1    Language to use for license names; defaults to
+  locale         0 or 1    Locale to use for license names; defaults to
                            English (en).  Example: ja
   select         0 or 1    If specified, the value used for the name 
                            attribute of the <select> element; if not 
@@ -314,7 +320,7 @@ Valid Calls
   ============== ========= ==============================================
   Name           Number    Description
   ============== ========= ==============================================
-  language       0 or 1    Language to use for license names; defaults to
+  locale         0 or 1    Locale to use for license names; defaults to
                            English (en).  Example: ja
   select         0 or 1    If specified, the value used for the name 
                            attribute of the <select> element; if not 

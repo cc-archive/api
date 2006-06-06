@@ -281,7 +281,12 @@ Valid Calls
   exclude        0 or more Excludes license urls containing the specified
                            string.  Example: nc will exclude 
                            NonCommercial licenses.
-  language       0 or 1    Language to use for license names; defaults to
+  locale         0 or 1    Locale to use for license names; defaults to
+                           English (en).  Example: ja
+  language       0 or 1    **DEPRECATED** *This parameter is deprecated
+                           in favor of locale for consistency.*
+
+                           Language to use for license names; defaults to
                            English (en).  Example: ja
   select         0 or 1    If specified, the value used for the name 
                            attribute of the <select> element; if not 
@@ -291,7 +296,7 @@ Valid Calls
   In addition to these parameters, the Simple Chooser can be further 
   customized by invoking as either /simple/chooser or /simple/chooser.js.
   If invoked as the former, the result is raw HTML.  If invoked as the
-  latter, the result is wrapped in document.write() calls.
+  latter, the result is wrapped in ``document.write()`` calls.
 
 /support/jurisdictions
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -303,7 +308,12 @@ Valid Calls
   ============== ========= ==============================================
   Name           Number    Description
   ============== ========= ==============================================
-  language       0 or 1    Language to use for license names; defaults to
+  locale         0 or 1    Locale to use for license names; defaults to
+                           English (en).  Example: ja
+  language       0 or 1    **DEPRECATED** *This parameter is deprecated 
+                           in favor of locale for consistency.*
+
+                           Language to use for license names; defaults to
                            English (en).  Example: ja
   select         0 or 1    If specified, the value used for the name 
                            attribute of the <select> element; if not 
@@ -314,7 +324,7 @@ Valid Calls
   customized by invoking as either /support/jurisdictions or 
   /support/jurisdictions.js.
   If invoked as the former, the result is raw HTML.  If invoked as the
-  latter, the result is wrapped in document.write() calls.
+  latter, the result is wrapped in ``document.write()`` calls.
 
 
 Error Handling

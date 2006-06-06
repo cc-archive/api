@@ -13,9 +13,13 @@ class SimpleChooser(object):
         pass
 
     @cherrypy.expose
-    def chooser(self, jurisdiction='-', exclude=[], language='en',
+    def chooser(self, jurisdiction='-', exclude=[], locale='en', language=None,
                 select=None):
 
+        # backward compatibility for the language parameter
+        if language is None:
+            language = locale
+            
         # make sure exclude is a list
         try:
             exclude.append(None)
@@ -40,13 +44,15 @@ class SimpleChooser(object):
             
 
     @cherrypy.expose
-    def chooser_js(self, jurisdiction='-', exclude=[], language='en', select=None):
+    def chooser_js(self, jurisdiction='-', exclude=[], locale='en',
+                   language=None, select=None):
 
         # set the content type
         cherrypy.response.headerMap['Content-Type'] = 'text/javascript'
 
         # delegate to the basic method
-        for line in self.chooser(jurisdiction, exclude, language, select):
+        for line in self.chooser(jurisdiction, exclude,
+                                 locale, language, select):
             yield("document.write('%s');\n" % line.strip())
 
     def __getLicenses(self, jurisdiction='', exclude=[], language='en'):
