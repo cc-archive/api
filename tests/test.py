@@ -77,9 +77,25 @@ class TestXmlFiles(unittest.TestCase):
                     
 
 class CcApiTest(helper.CPWebCase):
-    def testLocalizations(self):
+    def testLocales(self):
         """Test that /locales returns a list of supported languages."""
         self.getPage('/locales')
+
+        assert RelaxValidate(os.path.join(RELAX_PATH,
+                                          'locales.relax.xml'),
+                             StringIO(self.body))
+
+    def testLocalesExtraArgs(self):
+        """Test the /locales method with extra non-sense arguments;
+        extra arguments should be ignored."""
+
+        self.getPage('/locales?foo=bar')
+
+        assert RelaxValidate(os.path.join(RELAX_PATH,
+                                          'locales.relax.xml'),
+                             StringIO(self.body))
+        
+        self.getPage('/locales?lang=en_US&blarf=%s' % hash(self))
 
         assert RelaxValidate(os.path.join(RELAX_PATH,
                                           'locales.relax.xml'),
@@ -112,6 +128,14 @@ class CcApiTest(helper.CPWebCase):
 	assert RelaxValidate(os.path.join(RELAX_PATH, 'classes.relax.xml'),
 			     StringIO(self.body))
 
+    def __getLocales(self):
+        """Return a list of supported locales."""
+
+        self.getPage('/locales')
+
+        locale_doc = lxml.etree.parse(StringIO(self.body))
+        return [n for n in locale_doc.xpath('//locale/@id')]
+    
     def __getLicenseClasses(self):
 	"""Get the license classes."""
 	self.getPage('/classes')
@@ -147,29 +171,44 @@ class CcApiTest(helper.CPWebCase):
     def __testAnswersXml(self, lclass):
 
         all_answers = self.__fieldEnums(lclass)
+        all_locales = self.__getLocales()
 
         for answer_comb in permute([n[1] for n in all_answers]):
-            
-            answers_xml = lxml.etree.Element('answers')
-            class_node = lxml.etree.SubElement(answers_xml, 'license-%s' % lclass)
+
+            for locale in all_locales:
+                answers_xml = lxml.etree.Element('answers')
+                locale_node = lxml.etree.SubElement(answers_xml, 'locale')
+                locale_node.text = locale
+                
+                class_node = lxml.etree.SubElement(answers_xml, 'license-%s' % lclass)
 
 
-            for a in zip([n[0] for n in all_answers], answer_comb):
-                a_node = lxml.etree.SubElement(class_node, a[0])
-                a_node.text = a[1]
+                for a in zip([n[0] for n in all_answers], answer_comb):
+                    a_node = lxml.etree.SubElement(class_node, a[0])
+                    a_node.text = a[1]
 
-            yield lxml.etree.tostring(answers_xml)
+                yield lxml.etree.tostring(answers_xml)
 
     def __testAnswerQueryStrings(self, lclass):
-        all_answers = self.__fieldEnums(lclass)
 
+        all_answers = self.__fieldEnums(lclass)
+        all_locales = self.__getLocales()
+        
         for answer_comb in permute([n[1] for n in all_answers]):
 
-            params = zip([n[0] for n in all_answers], answer_comb)
-            param_strs = ["=".join(n) for n in params]
-            result = "?" + "&".join(param_strs)
+            for locale in all_locales:
+                
+                params = zip([n[0] for n in all_answers], answer_comb)
+                param_strs = ["=".join(n) for n in params]
 
-            yield result
+                # append each locale in turn
+                param_strs.append('locale=%s' % locale)
+
+                # generate the query string
+                result = "?" + "&".join(param_strs)
+
+                # yield each
+                yield result
         
     def testLicenseClassStructure(self):
 	"""Test that each license class returns a valid XML chunk."""
@@ -194,10 +233,11 @@ class CcApiTest(helper.CPWebCase):
 	for lclass in self.__getLicenseClasses():
 
             for answers in self.__testAnswersXml(lclass):
-              print >> sys.stderr, ',',
+              print >> sys.stderr, '*',
               try:
                 
-                self.getPage('/license/%s/issue?answers=%s' % (lclass, answers))
+                self.getPage('/license/%s/issue?answers=%s' %
+                             (lclass, answers))
               
                 assert RelaxValidate(os.path.join(RELAX_PATH, 
                                                'issue.relax.xml'),
@@ -206,6 +246,7 @@ class CcApiTest(helper.CPWebCase):
               except AssertionError:
                 print "Issue license failed for:\nlicense class: %s\n" \
                       "answers: %s\n" % (lclass, answers)
+
                 raise AssertionError
 
     def testGet(self):
@@ -215,7 +256,7 @@ class CcApiTest(helper.CPWebCase):
 	for lclass in self.__getLicenseClasses():
 
             for queryString in self.__testAnswerQueryStrings(lclass):
-              print >> sys.stderr, ';',
+              print >> sys.stderr, '-',
               try:
                 
                 self.getPage('/license/%s/get%s' % (lclass, queryString))
@@ -227,8 +268,33 @@ class CcApiTest(helper.CPWebCase):
               except AssertionError:
                 print "Get license failed for:\nlicense class: %s\n" \
                       "answers: %s\n" % (lclass, queryString)
+
                 raise AssertionError
 
+    def testGetExtraArgs(self):
+        """Test the /get method with extra non-sense arguments; extra
+        arguments should be ignored."""
+
+
+	for lclass in self.__getLicenseClasses():
+
+            for queryString in self.__testAnswerQueryStrings(lclass):
+              print >> sys.stderr, '-',
+              try:
+                
+                self.getPage('/license/%s/get%s&foo=bar' % (lclass, queryString))
+
+                assert RelaxValidate(os.path.join(RELAX_PATH, 
+                                               'issue.relax.xml'),
+                                     StringIO(self.body))
+
+              except AssertionError:
+                print "Get license failed for:\nlicense class: %s\n" \
+                      "answers: %s\n" % (lclass, queryString)
+
+                raise AssertionError
+
+        
     def testIssueError(self):
         """Issue with no answers or empty answers should return an error."""
 

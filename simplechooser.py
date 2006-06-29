@@ -14,7 +14,7 @@ class SimpleChooser(object):
 
     @cherrypy.expose
     def chooser(self, jurisdiction='-', exclude=[], locale='en', language=None,
-                select=None):
+                select=None, **kwargs):
 
         # backward compatibility for the language parameter
         if language is None:
@@ -45,7 +45,7 @@ class SimpleChooser(object):
 
     @cherrypy.expose
     def chooser_js(self, jurisdiction='-', exclude=[], locale='en',
-                   language=None, select=None):
+                   language=None, select=None, **kwargs):
 
         # set the content type
         cherrypy.response.headerMap['Content-Type'] = 'text/javascript'

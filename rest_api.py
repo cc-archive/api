@@ -14,7 +14,7 @@ class LicenseClass:
 	self.name = classname
 
     @cherrypy.expose
-    def index(self, locale='en'):
+    def index(self, locale='en', **kwargs):
         doc = lxml.etree.parse(support.QUESTIONS_XML)
 
         license = doc.xpath('//licenseclass[@id="%s"]' % self.name)
@@ -30,7 +30,7 @@ class LicenseClass:
             return support.xmlError('invalidclass', 'Invalid License Class.')
 
     @cherrypy.expose
-    def issue(self, answers=None, locale='en'):
+    def issue(self, answers=None, locale='en', **kwargs):
 	if answers is None:
 	    # return an XML error message
             return support.xmlError('missingparam',
@@ -65,7 +65,7 @@ class Licenses:
 
 class RestApi:
     @cherrypy.expose
-    def index(self, locale='en'):
+    def index(self, locale='en', **kwargs):
 	# create the root level element to return
 	l_classes = lxml.etree.Element('licenses')
 
@@ -123,7 +123,7 @@ class RestApi:
         return support.license_details(license_uri)
             
     @cherrypy.expose
-    def locales(self):
+    def locales(self, **kwargs):
         """Return a list of supported locales for i18n."""
         
 	# create the root level element to return
@@ -141,7 +141,7 @@ class RestApi:
 
         return lxml.etree.tostring(locales)
 
-    def validLicense(self, uri):
+    def validLicense(self, uri, **kwargs):
         doc = lxml.etree.parse(support.LICENSES_XML)
 
         return doc.xpath('//version/@uri="%s"' % uri)

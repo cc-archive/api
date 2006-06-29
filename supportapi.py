@@ -116,7 +116,8 @@ class SupportApi(object):
         return result
     
     @cherrypy.expose
-    def jurisdictions(self, select=None, locale='en', language=None):
+    def jurisdictions(self, select=None, locale='en', language=None,
+                      **kwargs):
 
         # backward compatibility for crufted "language" param
         if language is None:
@@ -154,7 +155,8 @@ class SupportApi(object):
             yield('</select>')
 
     @cherrypy.expose
-    def jurisdictions_js(self, select=None, locale='en', language=None):
+    def jurisdictions_js(self, select=None, locale='en', language=None,
+                         **kwargs):
 
         # backward compatibility for crufted "language" param
         if language is None:
