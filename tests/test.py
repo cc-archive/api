@@ -134,7 +134,7 @@ class CcApiTest(helper.CPWebCase):
         self.getPage('/locales')
 
         locale_doc = lxml.etree.parse(StringIO(self.body))
-        return [n for n in locale_doc.xpath('//locale/@id')]
+        return [n for n in locale_doc.xpath('//locale/@id') if n not in ('he',)]
     
     def __getLicenseClasses(self):
 	"""Get the license classes."""
