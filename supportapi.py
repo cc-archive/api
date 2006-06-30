@@ -123,6 +123,9 @@ class SupportApi(object):
         if language is None:
             language = locale
             
+        # determine our actual functional locale
+        language = support.actualLocale(language)
+        
         # load the licenses file
         licenses_xml = lxml.etree.parse(support.LICENSES_XML)
 
@@ -162,6 +165,9 @@ class SupportApi(object):
         if language is None:
             language = locale
 
+        # determine our actual functional locale
+        language = support.actualLocale(language)
+        
         # set the content type
         cherrypy.response.headerMap['Content-Type'] = 'text/javascript'
 

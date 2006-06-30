@@ -15,6 +15,10 @@ class LicenseClass:
 
     @cherrypy.expose
     def index(self, locale='en', **kwargs):
+
+        # determine our actual functional locale
+        locale = support.actualLocale(locale)
+        
         doc = lxml.etree.parse(support.QUESTIONS_XML)
 
         license = doc.xpath('//licenseclass[@id="%s"]' % self.name)
@@ -31,6 +35,10 @@ class LicenseClass:
 
     @cherrypy.expose
     def issue(self, answers=None, locale='en', **kwargs):
+
+        # determine our actual functional locale
+        locale = support.actualLocale(locale)
+        
 	if answers is None:
 	    # return an XML error message
             return support.xmlError('missingparam',
@@ -43,6 +51,9 @@ class LicenseClass:
 
     @cherrypy.expose
     def get(self, locale='en', **kwargs):
+        
+        # determine our actual functional locale
+        locale = support.actualLocale(locale)
         
         # generate the answers XML
         answers = "<answers><locale>%s</locale><license-%s>" % (
@@ -66,6 +77,10 @@ class Licenses:
 class RestApi:
     @cherrypy.expose
     def index(self, locale='en', **kwargs):
+
+        # determine our actual functional locale
+        locale = support.actualLocale(locale)
+        
 	# create the root level element to return
 	l_classes = lxml.etree.Element('licenses')
 
@@ -98,7 +113,12 @@ class RestApi:
     license.exposed = True
 
     @cherrypy.expose
-    def details(self, **kwargs):
+    def details(self, locale='en', **kwargs):
+
+        # determine the actual functional locale
+        locale = support.actualLocale(locale)
+
+        # make sure they supplied the required parameter
         if 'license-uri' not in kwargs:
            # missing parameter; return XML-encoded error
            return support.xmlError('missingparam',
@@ -120,7 +140,7 @@ class RestApi:
                                     'Invalid license uri.',
                                     suggestion=suggestion)
 
-        return support.license_details(license_uri)
+        return support.license_details(license_uri, locale)
             
     @cherrypy.expose
     def locales(self, **kwargs):
@@ -129,13 +149,8 @@ class RestApi:
 	# create the root level element to return
 	locales = lxml.etree.Element('locales')
 
-	# use XPath to extract the license nodes from the source document
-	doc = lxml.etree.parse(support.QUESTIONS_XML)
-
-	# extract the label list
-	l_ids = set([n for n in doc.xpath('//@xml:lang')])
-
-        for item in l_ids:
+        # create a sub element for each locale
+        for item in support.locales():
 	    # for each label, get the ID and add the XML to the result
 	    lc = lxml.etree.SubElement(locales, 'locale', id=item)
 

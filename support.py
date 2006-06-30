@@ -150,7 +150,31 @@ def license_details(license_uri, locale='en'):
 
     return issue(answers)
     
-    
+def locales():
+    """Return a list of available locales based on the translations in
+    licenses.xml."""
+
+    # use XPath to extract the license nodes from the source document
+    doc = lxml.etree.parse(QUESTIONS_XML)
+
+    # extract and return the locale list
+    return set([n for n in doc.xpath('//@xml:lang')])
+
+def actualLocale(locale):
+    """Determine and return the actual locale based on the requested one.
+    If the requested locale is supported, simply return that.  If not, check
+    the language only specification (i.e. es instead of es_ES).  If that
+    is not supported, return our fallback (English)."""
+
+    supported_locales = locales()
+    if locale in supported_locales:
+        return locale
+
+    if locale.split('_')[0] in supported_locales:
+        return locale.split('_')[0]
+
+    return 'en'
+
 class UrlSpaceFilter(BaseFilter):
     """Filter that masks the fact that the CP app may be in a sub-space of the
     URL root.

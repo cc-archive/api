@@ -20,6 +20,9 @@ class SimpleChooser(object):
         if language is None:
             language = locale
             
+        # determine our actual functional locale
+        language = support.actualLocale(language)
+        
         # make sure exclude is a list
         try:
             exclude.append(None)
