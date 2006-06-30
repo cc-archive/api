@@ -6,6 +6,8 @@ import traceback
 import lxml.etree
 from cherrypy.lib.filter.basefilter import BaseFilter
 
+import api_exceptions
+
 DATA_DIR = os.path.join( os.path.dirname(os.path.abspath(__file__)),
                          'license_xsl')
 
@@ -123,8 +125,78 @@ def licenseCodeToAnswers(licenseCode, jurisdiction='', locale=''):
 
     return xml
 
-def issue(answers_xml):
+def valid_jurisdictions():
+    """Load the list of valid, launched jurisdictions."""
+
+    license_xml = lxml.etree.parse(LICENSES_XML)
+
+    return license_xml.xpath('//jurisdiction-info[@launched="true"]/@id')
+
+def valid_classes():
+    """Return a list of valid license classes, extracted from questions.xml"""
+
+    questions = lxml.etree.parse(QUESTIONS_XML)
+
+    return questions.xpath('//licenseclass/@id')
+
+def valid_fields(license_class):
+    """Returns a list of valid field names for the license class."""
+
+    questions = lxml.etree.parse(QUESTIONS_XML)
+
+    return questions.xpath('//licenseclass[@id="%s"]/field/@id' %
+                           license_class)
+
+def valid_values(license_class, field_id):
+    """Returns a list of valid values for the specified field and license."""
+
+    questions = lxml.etree.parse(QUESTIONS_XML)
+
+    return questions.xpath('//licenseclass[@id="%s"]/field[@id="%s"]/enum/@id'
+                           % (license_class, field_id))
+
+def validateAnswers(answers_xml):
+    """Take a string containing the answers.xml for a license and make
+    sure they pass basic sanity checks.  Return True if they pass, raise
+    an AnswerXmlException (or sub-class) if they do not."""
+
+    # parse the answers
+    answers_doc = lxml.etree.parse(StringIO(answers_xml))
+
+    # validate license class
+    license_root = None
+    license_class = None
+    for c in valid_classes():
+        if len(answers_doc.xpath('//license-%s' % c)) > 0:
+            license_root = answers_doc.xpath('//license-%s' % c)[0]
+            license_class = c
+
+            break
+
+    # see if we exited without finding a <license-*> element
+    if license_root is None:
+        raise api_exceptions.InvalidClassException()
+
+    # validate each field answer
+    for f in license_root:
+        if f.tag == 'locale':
+            continue
+        
+        if f.text not in valid_values(license_class, f.tag):
+            # special case handling for jurisdiction
+            if f.tag == 'jurisdiction' and f.text in (None, '-', ''):
+                continue
+            
+            raise api_exceptions.InvalidFieldValue(f.tag, f.text)
     
+    # all tests pass -- return True
+    return True
+
+def issue(answers_xml):
+
+    # validate the answers
+    validateAnswers(answers_xml)
+        
     # generate the answers XML document
     ctxt = lxml.etree.parse(StringIO(answers_xml)) 
 

@@ -305,6 +305,22 @@ class CcApiTest(helper.CPWebCase):
                                               'error.relax.xml'),
                                  StringIO(self.body))
 
+    def testIssueInvalidClass(self):
+        """/issue should return an error with an invalid class."""
+
+        self.getPage('/license/blarf/issue?answers=<foo/>')
+
+        assert RelaxValidate(os.path.join(RELAX_PATH, 'error.relax.xml'),
+                             StringIO(self.body))
+
+    def testGetInvalidClass(self):
+        """/get should return an error with an invalid class."""
+
+        self.getPage('/license/%s/get' % hash(self))
+
+        assert RelaxValidate(os.path.join(RELAX_PATH, 'error.relax.xml'),
+                             StringIO(self.body))
+
     def testI18n(self):
 	"""Make sure i18n calls work right."""
 

@@ -378,6 +378,8 @@ Currently Defined Errors
                  will check both GET and POST for form values.
  invalidclass    XXX
  pythonerr       A Python exception has occured.
+ invalidanswer   Returned when a value passed into issue or get
+                 for a field (question) is not a valid value.
  ============== ==================================================
 
 Additional Resources
@@ -386,5 +388,6 @@ Additional Resources
  * The Creative Commons developer mailing list, cc-devel; information available
    at http://lists.ibiblio.org/mailman/listinfo/cc-devel
  * `Creative Commons Developer Wiki`_ 
+ * `CC Web Services in the Wiki`_
 
-.. _`Creative Commons Developer Wiki`: http://wiki.creativecommons.org/Developer
+.. _`Creative Commons Developer Wiki`: http://wiki.creativecommons.org/Developer.. _`CC Web Services in the Wiki`: http://wiki.creativecommons.org/Creative_Commons_Web_Services

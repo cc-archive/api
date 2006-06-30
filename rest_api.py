@@ -6,6 +6,7 @@ import cherrypy._cperror as cperror
 import lxml.etree 
 
 import support
+import api_exceptions
 import simplechooser
 import supportapi
 
@@ -44,11 +45,14 @@ class LicenseClass:
             return support.xmlError('missingparam',
                                     'A value must be provided for answers.')
 
-        # XXX can we check for ill-formed answers here?
-        
-	# generate the answers XML document
-	return support.issue(answers)
-
+        # attempt to issue the license, catching value errors
+        try:
+            # generate the answers XML document
+            return support.issue(answers)
+        except api_exceptions.AnswerXmlException, e:
+            # mal-formed answers
+            return support.xmlError(e.error_id, e.error_msg)
+            
     @cherrypy.expose
     def get(self, locale='en', **kwargs):
         
@@ -59,8 +63,12 @@ class LicenseClass:
         answers = "<answers><locale>%s</locale><license-%s>" % (
             locale, self.name)
 
+        # get the list of valid fields for this license class
+        fields = support.valid_fields(self.name)
+        
         for k in kwargs:
-            answers = answers + "<%s>%s</%s>" % (k, kwargs[k], k)
+            if k in fields:
+                answers = answers + "<%s>%s</%s>" % (k, kwargs[k], k)
 
         answers = answers +  "</license-%s></answers>" % self.name
 
