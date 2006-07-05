@@ -19,10 +19,10 @@ import operator
 from StringIO import StringIO
 import random
 
-# fix up the PYTHON PATH to include the directory we're running from
-sys.path.insert(0, os.getcwd())
+# fix up the PYTHON PATH to include the src directory
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
 
-from rest_api import *
+from cc.api.rest_api import *
 
 cherrypy.config.update({
     'global': {
@@ -31,7 +31,7 @@ cherrypy.config.update({
     }
 })
 
-RELAX_PATH = './relax'
+RELAX_PATH = './docs/relax'
 QUESTIONS_XML = (os.path.join('license_xsl', 'questions.xml'),
                  'questions.relax.xml')
 LICENSES_XML = (os.path.join('license_xsl', 'licenses.xml'),
