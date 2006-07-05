@@ -398,4 +398,5 @@ Additional Resources
  * `Creative Commons Developer Wiki`_ 
  * `CC Web Services in the Wiki`_
 
-.. _`Creative Commons Developer Wiki`: http://wiki.creativecommons.org/Developer.. _`CC Web Services in the Wiki`: http://wiki.creativecommons.org/Creative_Commons_Web_Services
+.. _`Creative Commons Developer Wiki`: http://wiki.creativecommons.org/Developer
+.. _`CC Web Services in the Wiki`: http://wiki.creativecommons.org/Creative_Commons_Web_Services

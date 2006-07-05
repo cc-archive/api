@@ -389,6 +389,8 @@ Additional Resources
  * The Creative Commons developer mailing list, cc-devel; information available
    at http://lists.ibiblio.org/mailman/listinfo/cc-devel
  * `Creative Commons Developer Wiki`_ 
+ * `CC Web Services in the Wiki`_
 
 .. _WSGI: http://www.python.org/peps/pep-0333.html
 .. _`Creative Commons Developer Wiki`: http://wiki.creativecommons.org/wiki/Developer
+.. _`CC Web Services in the Wiki`: http://wiki.creativecommons.org/Creative_Commons_Web_Services
