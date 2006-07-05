@@ -15,6 +15,7 @@ See docs/LICENSE for redistribution restrictions.
 import os
 import sys
 import unittest
+import operator
 from StringIO import StringIO
 import random
 
@@ -46,33 +47,32 @@ def RelaxValidate(schemaFileName, instanceFileName):
     return relaxng.validate(instance)
 
 def permute(Lists):
-  import operator
-  if Lists:
-    result = map(lambda I: (I,), Lists[0])
-
-    for list in Lists[1:]:
-      curr = []
-      for item in list:
-        new = map(operator.add, result, [(item,)]*len(result))
-        curr[len(curr):] = new
-      result = curr
-  else:
-    result = []
-
-  return result
+    if Lists:
+        result = map(lambda I: (I,), Lists[0])
+    
+        for list in Lists[1:]:
+            curr = []
+            for item in list:
+                new = map(operator.add, result, [(item,)]*len(result))
+                curr[len(curr):] = new
+            result = curr
+    else:
+        result = []
+  
+    return result
 
 class TestXmlFiles(unittest.TestCase):
 
     def testQuestionsXml(self):
-	"""Make sure questions.xml is compliant."""
+        """Make sure questions.xml is compliant."""
         self.assert_(RelaxValidate(os.path.join(RELAX_PATH, QUESTIONS_XML[1]), 
-				   QUESTIONS_XML[0]),
+                                   QUESTIONS_XML[0]),
                     "questions.xml does not comply to the Relax-NG schema.")
 
     def testLicensesXml(self):
-	"""Make sure licenses.xml is compliant."""
+        """Make sure licenses.xml is compliant."""
         self.assert_(RelaxValidate(os.path.join(RELAX_PATH, LICENSES_XML[1]), 
-				   LICENSES_XML[0]),
+                                   LICENSES_XML[0]),
                     "licenses.xml does not comply to the Relax-NG schema.")
                     
 
@@ -102,14 +102,14 @@ class CcApiTest(helper.CPWebCase):
                              StringIO(self.body))
 
     def testClasses(self):
-	"""Test that /classes and / are synonyms."""
-	self.getPage('/')
-	root_body = self.body
-	
-	self.getPage('/classes')
-	classes_body = self.body
+        """Test that /classes and / are synonyms."""
+        self.getPage('/')
+        root_body = self.body
+        
+        self.getPage('/classes')
+        classes_body = self.body
 
-	assert root_body == classes_body
+        assert root_body == classes_body
 
     def testInvalidClass(self):
         """An invalid license class name should return an explicit error."""
@@ -121,12 +121,12 @@ class CcApiTest(helper.CPWebCase):
                              StringIO(self.body))
 
     def testClassesStructure(self):
-	"""Test the return value of /classes to ensure it fits with our
-	claims."""
-	self.getPage('/classes')
-	
-	assert RelaxValidate(os.path.join(RELAX_PATH, 'classes.relax.xml'),
-			     StringIO(self.body))
+        """Test the return value of /classes to ensure it fits with our
+        claims."""
+        self.getPage('/classes')
+        
+        assert RelaxValidate(os.path.join(RELAX_PATH, 'classes.relax.xml'),
+                             StringIO(self.body))
 
     def __getLocales(self):
         """Return a list of supported locales."""
@@ -137,15 +137,15 @@ class CcApiTest(helper.CPWebCase):
         return [n for n in locale_doc.xpath('//locale/@id') if n not in ('he',)]
     
     def __getLicenseClasses(self):
-	"""Get the license classes."""
-	self.getPage('/classes')
+        """Get the license classes."""
+        self.getPage('/classes')
 
-	classes = []
-	classdoc = lxml.etree.parse(StringIO(self.body))
-	for license in classdoc.xpath('//license/@id'):
-	    classes.append(license)
+        classes = []
+        classdoc = lxml.etree.parse(StringIO(self.body))
+        for license in classdoc.xpath('//license/@id'):
+            classes.append(license)
 
-	return classes
+        return classes
 
     def __fieldEnums(self, lclass):
         """Retrieve the license information for this class, and generate
@@ -211,26 +211,26 @@ class CcApiTest(helper.CPWebCase):
                 yield result
         
     def testLicenseClassStructure(self):
-	"""Test that each license class returns a valid XML chunk."""
+        """Test that each license class returns a valid XML chunk."""
 
-	for lclass in self.__getLicenseClasses():
-	    self.getPage('/license/%s' % lclass)
+        for lclass in self.__getLicenseClasses():
+            self.getPage('/license/%s' % lclass)
 
-	    try:
-		assert RelaxValidate(os.path.join(RELAX_PATH, 
-					      'licenseclass.relax.xml'),
-				 StringIO(self.body))
-	    except AssertionError:
+            try:
+                assert RelaxValidate(os.path.join(RELAX_PATH, 
+                                              'licenseclass.relax.xml'),
+                                 StringIO(self.body))
+            except AssertionError:
                 print self.body
-		print "Returned value for %s does not comply with " \
-		      "RelaxNG schema." % lclass
-		raise AssertionError
-		    
+                print "Returned value for %s does not comply with " \
+                      "RelaxNG schema." % lclass
+                raise AssertionError
+                    
     def testIssue(self):
-	"""Test that every license class will be successfully issued via
+        """Test that every license class will be successfully issued via
         the /issue method."""
 
-	for lclass in self.__getLicenseClasses():
+        for lclass in self.__getLicenseClasses():
 
             for answers in self.__testAnswersXml(lclass):
               print >> sys.stderr, '*',
@@ -250,33 +250,37 @@ class CcApiTest(helper.CPWebCase):
                 raise AssertionError
 
     def testGet(self):
-	"""Test that every license class will be successfully issued
+        """Test that every license class will be successfully issued
         via the /get method."""
 
-	for lclass in self.__getLicenseClasses():
+        for lclass in self.__getLicenseClasses():
 
             for queryString in self.__testAnswerQueryStrings(lclass):
-              print >> sys.stderr, '-',
-              try:
-                
-                self.getPage('/license/%s/get%s' % (lclass, queryString))
-
-                assert RelaxValidate(os.path.join(RELAX_PATH, 
-                                               'issue.relax.xml'),
-                                     StringIO(self.body))
-
-              except AssertionError:
-                print "Get license failed for:\nlicense class: %s\n" \
-                      "answers: %s\n" % (lclass, queryString)
-
-                raise AssertionError
+                print >> sys.stderr, '-',
+                try:
+                    
+                    self.getPage('/license/%s/get%s' % (lclass, queryString))
+      
+                    assert RelaxValidate(os.path.join(RELAX_PATH, 'issue.relax.xml'),
+                                         StringIO(self.body))
+    
+                except AssertionError:
+                    print "Get license failed for:\nlicense class: %s\n" \
+                          "answers: %s\n" % (lclass, queryString)
+      
+                    raise AssertionError
+                except Exception, e:
+                    print "Get license failed with an exception for:\nlicense class: %s\n" \
+                          "answers: %s\n" % (lclass, queryString)
+      
+                    raise e
 
     def testGetExtraArgs(self):
         """Test the /get method with extra non-sense arguments; extra
         arguments should be ignored."""
 
 
-	for lclass in self.__getLicenseClasses():
+        for lclass in self.__getLicenseClasses():
 
             for queryString in self.__testAnswerQueryStrings(lclass):
               print >> sys.stderr, '-',
@@ -298,7 +302,7 @@ class CcApiTest(helper.CPWebCase):
     def testIssueError(self):
         """Issue with no answers or empty answers should return an error."""
 
-	for lclass in self.__getLicenseClasses():
+        for lclass in self.__getLicenseClasses():
             self.getPage('/license/%s/issue' % lclass)
 
             assert RelaxValidate(os.path.join(RELAX_PATH,
@@ -322,13 +326,13 @@ class CcApiTest(helper.CPWebCase):
                              StringIO(self.body))
 
     def testI18n(self):
-	"""Make sure i18n calls work right."""
+        """Make sure i18n calls work right."""
 
     def testLicenseDetails(self):
-	"""Test that the license details call responds appropriately."""
+        """Test that the license details call responds appropriately."""
 
         # test valid URIs
-	TEST_URIS = ('http://creativecommons.org/licenses/by-nc-nd/2.5/',
+        TEST_URIS = ('http://creativecommons.org/licenses/by-nc-nd/2.5/',
                      'http://creativecommons.org/licenses/by-nc-sa/2.5/',
                      'http://creativecommons.org/licenses/by-sa/2.5/',
                      'http://creativecommons.org/licenses/by/2.0/nl/',
