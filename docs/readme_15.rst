@@ -172,9 +172,13 @@ Valid Calls
   This example would issue a by-nc license in the generic (default) 
   jurisdiction.  Note
   each element name matches a field id, and the content of the 
-  elements match the 
-  enum id for the selected choice.  The <license-standard> tag is the
-  license class prepended with ``license-``.
+  elements matches the 
+  enum id for the selected choice.  Only values specified as the ``id``
+  attribute for ``enum`` elements are accepted as values for each field.
+  If other values are specified, the server will return an ``invalidanswer``
+  error.
+  
+  The <license-standard> tag is the license class prepended with ``license-``.
 
   The ``<locale>`` element is optional.  If supplied, the license name returned
   will be localized to the selected locale.  If omitted, English will be
@@ -238,7 +242,9 @@ Valid Calls
 
   This example would issue a by-nc license in the generic (default) 
   jurisdiction.  Note each element name matches a field id, and the 
-  content of the elements match the enum id for the selected choice.  
+  content of the elements match the enum id for the selected choice.  Only
+  those values specified as ``enum`` element ``id`` attributes are accepted
+  as values for each parameter.
 
   The XML returned from this call is identical to the return from 
   /license/<class>/issue (see above).
@@ -369,8 +375,12 @@ Currently Defined Errors
  missingparam    A required parameter is missing; for convenience
                  the web service
                  will check both GET and POST for form values.
- invalidclass    An unknown license class was specified in the URL.
+ invalidclass    Returned when details are requested for an 
+                 invalid license class.  For example, calling
+                 ``/license/blarf`` will return this error code.
  pythonerr       A Python exception has occured.
+ invalidanswer   Returned when a value passed into issue or get
+                 for a field (question) is not a valid value.
  ============== ==================================================
 
 Additional Resources
