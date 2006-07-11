@@ -48,7 +48,7 @@ class LicenseClass:
         # attempt to issue the license, catching value errors
         try:
             # generate the answers XML document
-            return support.issue(answers)
+            return support.issue(answers.decode(sys.getdefaultencoding()))
         except api_exceptions.AnswerXmlException, e:
             # mal-formed answers
             return support.xmlError(e.error_id, e.error_msg)
