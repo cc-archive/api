@@ -11,6 +11,8 @@ Licensed under the GNU GPL 2 or later.
 import libxml2
 import libxslt
 
+import lxml.etree as et
+
 import quixote
 import const
 
@@ -52,11 +54,25 @@ class License:
         license = ctxt.xpathEval('//licenseclass[@id="%s"]' % self.name)
         if len(license) > 0:
             self.license = license[0]
-            return self.license.serialize()
-        #else:
-        #    self.license = None
-        #    return None
 
+            # we found the license, now we need to strip out the
+            # non-English strings since the 1.0 API isn't i18n'd
+
+            tmp_license_doc = et.parse(const.XML_SOURCE)
+            license = tmp_license_doc.xpath(
+                '//licenseclass[@id="%s"]' % self.name)[0]
+
+
+            XML_LANG = '{http://www.w3.org/XML/1998/namespace}lang'
+
+            for node in license.xpath('//*[@xml:lang]'):
+                if node.get(XML_LANG) != 'en':
+                    node.xpath('..')[0].remove(node)
+            
+            return et.tostring(license)
+        
+            #return self.license.serialize()
+    
         # if not found, raise error
         raise quixote.errors.TraversalError("No such license: %s" % self.name)
 
