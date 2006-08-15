@@ -35,9 +35,9 @@ class SimpleChooser(object):
             yield('<select name="%s">\n' % select)
             
         # just delegate to the chooser generator
-        licenses = self.__getLicenses(jurisdiction=jurisdiction,
-                               exclude=exclude,
-                               language=language)
+        licenses = self.__getLicenses(
+            jurisdiction = support.actualJurisdiction(jurisdiction),
+            language = language)
 
         for l in licenses:
             yield('<option value="%s">%s</option>\n' % l)

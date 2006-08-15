@@ -247,6 +247,15 @@ def actualLocale(locale):
 
     return 'en'
 
+def actualJurisdiction(jurisdiction, default='-'):
+    """Check if the specified jurisdiction is actually supported; if it
+    is, return it unchanged.  Otherwise return the [default] value."""
+
+    if jurisdiction in valid_jurisdictions():
+        return jurisdiction
+
+    return default
+
 class UrlSpaceFilter(BaseFilter):
     """Filter that masks the fact that the CP app may be in a sub-space of the
     URL root.
