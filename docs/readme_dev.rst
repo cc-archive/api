@@ -311,6 +311,10 @@ Valid Calls
                            specified, the select element is omitted.
   ============== ========= ==============================================
 
+  If an unknown or unsupported locale is specified, the service will fall
+  back to English.  If an unknown jurisdiction is specified, the service
+  will fall back to the Generic jurisdiction.
+
   In addition to these parameters, the Simple Chooser can be further 
   customized by invoking as either /simple/chooser or /simple/chooser.js.
   If invoked as the former, the result is raw HTML.  If invoked as the
