@@ -184,21 +184,23 @@ def validateAnswers(answers_xml):
         
         if f.text not in valid_values(license_class, f.tag):
             # special case handling for jurisdiction
-            if f.tag == 'jurisdiction' and f.text in (None, '-', ''):
+            if f.tag == 'jurisdiction': # and f.text not in (None, '-', ''):
+                # fall back to the generic jurisdiction
+                f.text = '-'
                 continue
             
             raise api_exceptions.InvalidFieldValue(f.tag, f.text)
     
-    # all tests pass -- return True
-    return True
+    # all tests pass -- return the XML document (which we may have twiddled)
+    return answers_doc
 
 def issue(answers_xml):
 
     # validate the answers
-    validateAnswers(answers_xml)
+    # validateAnswers(answers_xml)
         
     # generate the answers XML document
-    ctxt = lxml.etree.parse(StringIO(answers_xml)) 
+    ctxt = validateAnswers(answers_xml) # lxml.etree.parse(StringIO(answers_xml)) 
 
     # apply the xslt transform
     transform = lxml.etree.XSLT(
