@@ -144,11 +144,9 @@ Valid Calls
 ~~~~~~~~~~~~~~~~~~~~~~
 
   Called with an HTTP POST whose contents are a single form variable, 
-  ``answers``. 
-  The value of answers is an XML string containing values which match 
-  each ``field``
-  element found in the earlier license/[class] call.  A sample answers 
-  string for the 
+  ``answers``.  The value of answers is an XML string containing values 
+  which match each ``field`` element found in the earlier  
+  `/license/<class>[?locale=xx]`_ call.  A sample answers string for the 
   previous example is::
 
     <answers>
@@ -161,19 +159,33 @@ Valid Calls
     </answers>
 
   This example would issue a by-nc license in the generic (default) 
-  jurisdiction.  Note
-  each element name matches a field id, and the content of the 
-  elements matches the 
-  enum id for the selected choice.  Only values specified as the ``id``
-  attribute for ``enum`` elements are accepted as values for each field.
-  If other values are specified, the server will return an ``invalidanswer``
-  error.
-  
-  The <license-standard> tag is the license class prepended with ``license-``.
+  jurisdiction.  
 
-  The ``<locale>`` element is optional.  If supplied, the license name returned
-  will be localized to the selected locale.  If omitted, English will be
-  used.  
+
+<answers> XML syntax
+--------------------  
+    The ``<answers>`` block is structured using the following
+    rules:
+
+      * The ``<locale>`` element is optional and specifies the language to use
+        when localizing the license HTML and name.  If omitted, English (US)
+        will be used.  See `/locales`_ for information on obtaining a 
+	list of valid locales.
+      * The ``<license-standard>`` tag is the license class prepended 
+        with ``license-``.
+      * Each sub-element of ``<license-xxx>`` matches a field id, 
+        and the content of the elements matches the 
+        enum id for the selected choice.  Only values specified as the ``id``
+        attribute for ``enum`` elements are accepted as values for each field.
+        If other values are specified, the server will return an 
+	``invalidanswer`` error.
+      * The exception to this rule is the ``<jurisdiction>`` tag.  If an unknown
+        jurisdiction is specified, the web services will silently fall back to
+        the generic jurisdiction.
+  
+
+License return format
+---------------------
 
   The issue method uses the chooselicense.xsl document to generate the 
   resulting XML 
@@ -249,8 +261,8 @@ Valid Calls
 ~~~~~~~~~~~~~~~~~~~~~
 
   Called with an HTTP GET and a query string containing a parameter for each
-  ``field`` specified in the previous call to /license/<class>.  The value
-  of each parameter should match one of the enum values provided.
+  ``field`` specified in the previous call to `/license/<class>[?locale=xx]`_
+  The value of each parameter should match one of the enum values provided.
 
   For example, a call to retrieve a Creative Commons standard license might
   look like:
@@ -258,17 +270,11 @@ Valid Calls
   /license/standard/get?commercial=n&derivatives=y&jurisdiction=
 
   This example would issue a by-nc license in the generic (default) 
-  jurisdiction.  Note each element name matches a field id, and the 
-  content of the elements match the enum id for the selected choice.  Only
-  those values specified as ``enum`` element ``id`` attributes are accepted
-  as values for each parameter.
+  jurisdiction.  The guidelines regarding `<answers> XML syntax`_ apply to
+  the parameters on the querystring.
 
   The XML returned from this call is identical to the return from 
-  /license/<class>/issue (see above).
-
-  A locale parameter may also be specified.  If supplied, the license 
-  name returned will be localized to the selected locale.  If omitted, 
-  English will be used.  
+  `/license/<class>/issue`_.
 
 /details?license-uri=[uri]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
