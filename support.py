@@ -92,8 +92,8 @@ def licenseCodeToAnswers(licenseCode, jurisdiction='', locale=''):
 
     # munch the pieces
     if is_samp:
-       # this is a sampling license
-       answers['sampling'] = [n for n in pieces if n.find('sampling') > -1][0]
+       # this is a sampling license -- which is just a single question
+       answers['sampling'] = "".join(pieces).replace('+', 'plus')
 
     # generate and return the XML
     for p in pieces:
@@ -104,7 +104,7 @@ def licenseCodeToAnswers(licenseCode, jurisdiction='', locale=''):
               else:
                      answers['derivatives'] = p
 
-       if p == 'nc':
+       if p == 'nc' and not(is_samp):
               answers['commercial'] = 'n'
 
     if is_plain:
