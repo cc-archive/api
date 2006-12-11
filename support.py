@@ -4,7 +4,7 @@ from StringIO import StringIO
 import traceback
 
 import lxml.etree
-from cherrypy.lib.filter.basefilter import BaseFilter
+#from cherrypy.lib.filter.basefilter import BaseFilter
 
 import api_exceptions
 
@@ -258,21 +258,21 @@ def actualJurisdiction(jurisdiction, default='-'):
 
     return default
 
-class UrlSpaceFilter(BaseFilter):
-    """Filter that masks the fact that the CP app may be in a sub-space of the
-    URL root.
-    """
+## class UrlSpaceFilter(BaseFilter):
+##     """Filter that masks the fact that the CP app may be in a sub-space of the
+##     URL root.
+##     """
     
-    def beforeRequestBody(self):
-        import cherrypy
+##     def beforeRequestBody(self):
+##         import cherrypy
         
-        if not cherrypy.config.get('urlSpaceFilter.on', False):
-            return
+##         if not cherrypy.config.get('urlSpaceFilter.on', False):
+##             return
         
-        req = cherrypy.request
-        urlSpace = cherrypy.config.get('urlSpaceFilter.urlSpace', '')
+##         req = cherrypy.request
+##         urlSpace = cherrypy.config.get('urlSpaceFilter.urlSpace', '')
 
-        req.path = req.path.replace(urlSpace, '')
-	if req.path == '':
-	   req.path = '/'
-        #req.base = newBaseUrl
+##         req.path = req.path.replace(urlSpace, '')
+## 	if req.path == '':
+## 	   req.path = '/'
+##         #req.base = newBaseUrl

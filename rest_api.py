@@ -189,18 +189,29 @@ class RestApi:
                                     sys.exc_info()
                                     )
 
-cherrypy.root = RestApi()
-cherrypy.root.simple = simplechooser.SimpleChooser()
-cherrypy.root.support = supportapi.SupportApi()
+def serveapi(host='localhost', port=8082):
+    """Run the application using CherryPy's built-in server."""
 
-cherrypy.config.update(file='rest_api.cfg')
+    cherrypy.tree.mount(RestApi())
+    cherrypy.tree.mount(simplechooser.SimpleChooser(), "/simple")
+    cherrypy.tree.mount(supportapi.SupportApi(), "/support")
+    
+    cherrypy.server.socket_host = host
+    cherrypy.server.socket_port = port
+    cherrypy.server.quickstart()
+    cherrypy.engine.start()
 
-def serveapi(host='localhost', port=8080):
-    cherrypy.config.update({'server.socketPort': port,
-		 	   'server.socketHost': host,
-			   })
+def app_factory(*args):
+    """Application factory for use with Python Paste deployments."""
 
-    cherrypy.server.start()
+    cherrypy.tree.mount(RestApi())
+    cherrypy.tree.mount(simplechooser.SimpleChooser(), "/simple")
+    cherrypy.tree.mount(supportapi.SupportApi(), "/support")
+
+    cherrypy.engine.autoreload_match = None
+    cherrypy.engine.start(blocking=False)
+    
+    return cherrypy.tree# wsgi_app
 
 if __name__ == '__main__':
     serveapi()
