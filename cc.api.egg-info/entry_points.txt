@@ -1,0 +1,7 @@
+[paste.app_factory]
+rest_api = rest_api:app_factory
+
+[console_scripts]
+paster = paste.script.command:run
+server = rest_api:serveapi
+
