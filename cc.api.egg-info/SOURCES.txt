@@ -1,10 +1,13 @@
 .cvsignore
 .project
 api_exceptions.py
+bootstrap.py
+buildout.cfg
 rest.cgi
 rest_api.cfg
 rest_api.py
 rest_wsgi.cgi
+server.cfg
 setup.py
 simplechooser.py
 support.py
@@ -162,5 +165,6 @@ soap/soap-wx-client.py
 soap/soap.py
 soap/xmlutils.py
 tests/.cvsignore
+tests/__init__.py
 tests/relax.py
 tests/test.py
