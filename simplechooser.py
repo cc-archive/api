@@ -51,7 +51,7 @@ class SimpleChooser(object):
                    language=None, select=None, **kwargs):
 
         # set the content type
-        cherrypy.response.headerMap['Content-Type'] = 'text/javascript'
+        cherrypy.response.headers['Content-Type'] = 'text/javascript'
 
         # delegate to the basic method
         for line in self.chooser(jurisdiction, exclude,

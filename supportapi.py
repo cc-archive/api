@@ -169,7 +169,7 @@ class SupportApi(object):
         language = support.actualLocale(language)
         
         # set the content type
-        cherrypy.response.headerMap['Content-Type'] = 'text/javascript'
+        cherrypy.response.headers['Content-Type'] = 'text/javascript'
 
         # delegate to the basic method
         for line in self.jurisdictions(select, language):
