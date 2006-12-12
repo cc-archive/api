@@ -368,5 +368,9 @@ class CcApiTest(helper.CPWebCase):
                                           'error.relax.xml'),
                              StringIO(self.body))
 
-if __name__ == "__main__":
+def runTests():
     helper.testmain()
+    
+if __name__ == "__main__":
+    runTests()
+    
