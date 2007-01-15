@@ -39,12 +39,16 @@ LICENSES_XML = (os.path.join('license_xsl', 'licenses.xml'),
 
 import cherrypy.test.helper as helper
 
-def RelaxValidate(schemaFileName, instanceFileName):
+def RelaxValidate(schemaFileName, instanceFile):
 
     relaxng = lxml.etree.RelaxNG(lxml.etree.parse(schemaFileName))
-    instance = lxml.etree.parse(instanceFileName)
+    instance = lxml.etree.parse(instanceFile)
 
-    return relaxng.validate(instance)
+    if not(relaxng.validate(instance)):
+        print relaxng.error_log.last_error
+        return False
+    else:
+        return True
 
 def permute(Lists):
     if Lists:
@@ -124,7 +128,7 @@ class CcApiTest(helper.CPWebCase):
         """Test the return value of /classes to ensure it fits with our
         claims."""
         self.getPage('/classes')
-        
+
         assert RelaxValidate(os.path.join(RELAX_PATH, 'classes.relax.xml'),
                              StringIO(self.body))
 
@@ -369,6 +373,11 @@ class CcApiTest(helper.CPWebCase):
                              StringIO(self.body))
 
 def runTests():
+
+    cherrypy.tree.mount(RestApi())
+    cherrypy.tree.mount(simplechooser.SimpleChooser(), "/simple")
+    cherrypy.tree.mount(supportapi.SupportApi(), "/support")
+    
     helper.testmain()
     
 if __name__ == "__main__":
