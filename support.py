@@ -22,7 +22,9 @@ def pruneLocale(element, locale):
 
     for node in element.xpath('//*[@xml:lang]'):
         if node.get(XML_LANG) != locale:
+            node.clear()
             node.xpath('..')[0].remove(node)
+            del node
     
 def xmlError(error_id, message, exc_info=None, suggestion=None):
     """Generate an XML encoded error message with the specified error_id
