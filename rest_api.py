@@ -196,8 +196,9 @@ def serveapi(host='localhost', port=8082):
     cherrypy.tree.mount(simplechooser.SimpleChooser(), "/simple")
     cherrypy.tree.mount(supportapi.SupportApi(), "/support")
     
-    cherrypy.server.socket_host = host
+    #cherrypy.server.socket_host = host
     cherrypy.server.socket_port = port
+
     cherrypy.server.quickstart()
     cherrypy.engine.start()
 
@@ -211,7 +212,7 @@ def app_factory(*args):
     cherrypy.engine.autoreload_match = None
     cherrypy.engine.start(blocking=False)
     
-    return cherrypy.tree# wsgi_app
+    return cherrypy.tree
 
 if __name__ == '__main__':
     serveapi()
