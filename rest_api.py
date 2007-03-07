@@ -65,12 +65,19 @@ class LicenseClass:
 
         # get the list of valid fields for this license class
         fields = support.valid_fields(self.name)
-        
+        work_info = {}
+
         for k in kwargs:
             if k in fields:
                 answers = answers + "<%s>%s</%s>" % (k, kwargs[k], k)
+            else:
+                work_info[k] = kwargs[k]
 
-        answers = answers +  "</license-%s></answers>" % self.name
+        str_work_info = "".join(
+            ["<%s>%s</%s>" % (k, work_info[k], k) for k in work_info]
+            )
+
+        answers = answers +  "</license-%s><work-info>%s</work-info></answers>" % (self.name, str_work_info)
 
         # delegate to the normal issue method
         return self.issue(answers, locale)
