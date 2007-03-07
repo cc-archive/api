@@ -183,6 +183,46 @@ Valid Calls
         jurisdiction is specified, the web services will silently fall back to
         the generic jurisdiction.
   
+Providing work information
+--------------------------
+
+  The information passed to the licensing web service may be augmented with
+  optional information about the work to be licensed.  If included this 
+  information will be included in the returned RDF and RDF-in-comment.  For
+  example::
+
+    <answers>
+      <locale>en</locale>
+      <license-standard>
+        <commercial>n</commercial>
+        <derivatives>y</derivatives>
+        <jurisdiction></jurisdiction>
+      </license-standard>
+      <work-info>
+        <title>The Title</title>
+	<work-url>http://example.com/work</work-url>
+	<source-url>http://example.com/source</source-url>
+	<type>Text</type>
+	<year>2006</year>
+	<description>A brief description...</description>
+	<creator>John Q. Public</creator>
+	<holder>John Q. Public</holder>
+      </work-info>
+    </answers>
+
+  The work-info element and all sub-elements are optional.
+
+  The work type should be specified as a valid Dublin Core dc:type; common 
+  values are:
+
+    * Text
+    * StillImage
+    * MovingImage
+    * InteractiveResource
+    * Sound
+
+  This may also be left blank, in which case no assertion about the work type
+  will be included.
 
 License return format
 ---------------------
@@ -230,32 +270,6 @@ License return format
         
   Note the <html> element contains the entire RDF-in-comment which the standard CC license
   engine returns.
-
-  The information passed to the licensing web service may be augmented with
-  optional information about the work to be licensed.  If included this 
-  information will be included in the returned RDF and RDF-in-comment.  For
-  example::
-
-    <answers>
-      <locale>en</locale>
-      <license-standard>
-        <commercial>n</commercial>
-        <derivatives>y</derivatives>
-        <jurisdiction></jurisdiction>
-      </license-standard>
-      <work-info>
-        <title>The Title</title>
-	<work-url>http://example.com/work</work-url>
-	<source-url>http://example.com/source</source-url>
-	<type>Text</type>
-	<year>2006</year>
-	<description>A brief description...</description>
-	<creator>John Q. Public</creator>
-	<holder>John Q. Public</holder>
-      </work-info>
-    </answers>
-
-  All work-info sub-elements are optional.
 
 /license/<class>/get?
 ~~~~~~~~~~~~~~~~~~~~~
