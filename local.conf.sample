@@ -1,0 +1,6 @@
+[global]
+environment = 'production'
+server.socket_host = 'localhost'
+
+# Current CC setup: 7000 for dev, 7015 for 1.5
+server.socket_port = 8082

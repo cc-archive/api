@@ -1,4 +1,5 @@
 from StringIO import StringIO
+import os
 import sys
 
 import cherrypy
@@ -196,16 +197,20 @@ class RestApi:
                                     sys.exc_info()
                                     )
 
-def serveapi(host='localhost', port=8082):
+def serveapi():
     """Run the application using CherryPy's built-in server."""
 
+    # load the local configuration
+    cherrypy.config.update( file(
+            os.path.join( os.path.dirname(__file__), 'local.conf' )
+            ) )
+
+    # mount the applications
     cherrypy.tree.mount(RestApi())
     cherrypy.tree.mount(simplechooser.SimpleChooser(), "/simple")
     cherrypy.tree.mount(supportapi.SupportApi(), "/support")
-    
-    #cherrypy.server.socket_host = host
-    cherrypy.server.socket_port = port
 
+    # start the server and engine
     cherrypy.server.quickstart()
     cherrypy.engine.start()
 
