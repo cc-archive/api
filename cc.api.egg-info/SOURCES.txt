@@ -1,8 +1,10 @@
 .cvsignore
 .project
 api_exceptions.py
+api_zd.conf
 bootstrap.py
 buildout.cfg
+local.conf.sample
 rest.cgi
 rest_api.cfg
 rest_api.py
@@ -51,6 +53,8 @@ license_xsl/i18n/i18n_po/icommons-de_AT.po
 license_xsl/i18n/i18n_po/icommons-en.po
 license_xsl/i18n/i18n_po/icommons-en_CA.po
 license_xsl/i18n/i18n_po/icommons-en_GB.po
+license_xsl/i18n/i18n_po/icommons-en_US.po
+license_xsl/i18n/i18n_po/icommons-eo.po
 license_xsl/i18n/i18n_po/icommons-es.po
 license_xsl/i18n/i18n_po/icommons-es_AR.po
 license_xsl/i18n/i18n_po/icommons-es_CL.po

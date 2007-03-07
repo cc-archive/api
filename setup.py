@@ -1,4 +1,4 @@
-## Copyright (c) 2006 Nathan R. Yergler, Creative Commons
+## Copyright (c) 2007 Nathan R. Yergler, Creative Commons
 
 ## Permission is hereby granted, free of charge, to any person obtaining
 ## a copy of this software and associated documentation files (the "Software"),
@@ -22,24 +22,22 @@ from setuptools import setup, find_packages
 
 setup(
     name = "cc.api",
-    version = "0.1",
+    version = "0.2",
     packages = find_packages('.'),
 
     # scripts and dependencies
     install_requires = ['setuptools',
                         'CherryPy',
                         'lxml',
-                        'PasteScript[WSGIUtils]',
                         ],
 
     entry_points = { 'console_scripts':
                      ['server = rest_api:serveapi',
-                      'paster = paste.script.command:run',
                       'test = tests.test:runTests',
                       ],
-                     'paste.app_factory':
-                     ['rest_api = rest_api:app_factory',
-                      ],
+                     #'paste.app_factory':
+                     #['rest_api = rest_api:app_factory',
+                     # ],
                      },
 
     # author metadata
