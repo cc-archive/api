@@ -14,7 +14,7 @@ class SimpleChooser(object):
 
     @cherrypy.expose
     def chooser(self, jurisdiction='-', exclude=[], locale='en', language=None,
-                select=None, **kwargs):
+                select=None, version=None, **kwargs):
 
         # backward compatibility for the language parameter
         if language is None:
@@ -37,7 +37,7 @@ class SimpleChooser(object):
         # just delegate to the chooser generator
         licenses = self.__getLicenses(
             jurisdiction = support.actualJurisdiction(jurisdiction),
-            language = language)
+            language = language, exclude=exclude, version=version)
 
         for l in licenses:
             yield('<option value="%s">%s</option>\n' % l)
@@ -58,17 +58,31 @@ class SimpleChooser(object):
                                  locale, language, select):
             yield("document.write('%s');\n" % line.strip())
 
-    def __getLicenses(self, jurisdiction='', exclude=[], language='en'):
-        """Generate a simple drop down license chooser."""
+    def __getLicenses(self, jurisdiction='', exclude=[], language='en',
+                      version=None):
+        """Return a list of license (uri, name) tuples for a particular 
+        jurisdiction, language, etc."""
 
         # load the licenses file
         all_licenses = lxml.etree.parse(support.LICENSES_XML)
 
         # determine the current version of licenses for the jurisdiction
-        curr_version = max(all_licenses.xpath(
+        # note this assumes that a jurisdiction's licenses are revved as a group
+        juris_versions = all_licenses.xpath(
             '//licenseclass[@id="standard"]/license/jurisdiction[@id="%s"]/'
-            'version/@id' % jurisdiction))
+            'version/@id' % jurisdiction)
+
+        print juris_versions
+        if version is not None:
+            # a particular version was requested; make sure this is a valid
+            # version for this jurisdiction
+            if str(version).strip() in juris_versions:
+                curr_version = str(version).strip()
+        else:
+            curr_version = max(juris_versions)
         
+        print curr_version
+
         # get the list of licenses for the specified domain
         domain_licenses = all_licenses.xpath(
             '//licenseclass[@id="standard"]/license/jurisdiction[@id="%s"]/'
@@ -77,7 +91,7 @@ class SimpleChooser(object):
             '//licenseclass[@id="publicdomain"]/license/jurisdiction[@id="-"]/'
             'version[@id="-"]/@uri')
 
-
+        print domain_licenses
         # get the latest version of each license found
         licenses = []
         for l in domain_licenses:
