@@ -22,23 +22,23 @@ from setuptools import setup, find_packages
 
 setup(
     name = "cc.api",
-    version = "0.2",
+    version = "0.3",
     packages = find_packages('.'),
 
     # scripts and dependencies
     install_requires = ['setuptools',
                         'CherryPy',
                         'lxml',
+                        'ctypes', 
+                        'utidylib',
                         'zdaemon',
                         ],
+    dependency_links=['https://cctools.svn.sourceforge.net/svnroot/cctools/vendorlibs/utidylib/#egg=utidylib-0.2-cvs',],
 
     entry_points = { 'console_scripts':
                      ['server = rest_api:serveapi',
                       'test = tests.test:runTests',
                       ],
-                     #'paste.app_factory':
-                     #['rest_api = rest_api:app_factory',
-                     # ],
                      },
 
     # author metadata

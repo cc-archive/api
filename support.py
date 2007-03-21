@@ -4,6 +4,7 @@ from StringIO import StringIO
 import traceback
 
 import lxml.etree
+import tidy
 #from cherrypy.lib.filter.basefilter import BaseFilter
 
 import api_exceptions
@@ -211,9 +212,16 @@ def issue(answers_xml):
 
     result = transform.apply(ctxt)
 
-    # return the transformed document
-    return transform.tostring(result)
-    
+    # return the transformed document, after passing it through tidy
+    try:
+        return str(tidy.parseString(transform.tostring(result),
+                                output_xml=1, input_xml=1, tidy_mark=0, indent=1))
+    except:
+        # if something goes wrong with Tidy, just return the version with 
+        # the fucked img tag
+        return transform.tostring(result)
+
+
 def license_details(license_uri, locale='en'):
     """Return an XML element which roots the information
     that would typically be issued for the license URI;
