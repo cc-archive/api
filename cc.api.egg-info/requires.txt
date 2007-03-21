@@ -1,3 +1,4 @@
 setuptools
 CherryPy
 lxml
+zdaemon

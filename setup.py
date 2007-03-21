@@ -29,6 +29,7 @@ setup(
     install_requires = ['setuptools',
                         'CherryPy',
                         'lxml',
+                        'zdaemon',
                         ],
 
     entry_points = { 'console_scripts':
