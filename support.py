@@ -213,6 +213,8 @@ def issue(answers_xml):
     result = transform.apply(ctxt)
 
     # return the transformed document, after passing it through tidy
+    return transform.tostring(result)
+
     try:
         return str(tidy.parseString(transform.tostring(result),
                                 output_xml=1, input_xml=1, tidy_mark=0, indent=1))
