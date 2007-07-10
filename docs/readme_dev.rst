@@ -188,7 +188,7 @@ Providing work information
 
   The information passed to the licensing web service may be augmented with
   optional information about the work to be licensed.  If included this 
-  information will be included in the returned RDF and RDF-in-comment.  For
+  information will be included in the returned RDF and RDFa.  For
   example::
 
     <answers>
@@ -223,6 +223,17 @@ Providing work information
 
   This may also be left blank, in which case no assertion about the work type
   will be included.
+
+Extended Metadata
+-----------------
+
+  Attribution and more permissions metadata may be added to the
+  work metadata through work-info elements.  Supported elements are:
+
+    * *attribution_name* The name which the work should be attributed to.
+    * *attribution_url* The URL to use for attribution.
+    * *more_permissions_url* The URL where more permissions (commercial, etc)
+      may be obtained.
 
 License return format
 ---------------------
