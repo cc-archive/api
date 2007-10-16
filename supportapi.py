@@ -66,12 +66,10 @@ class SupportApi(object):
         jurisdictions = []
         j_nodes = licenses_xml.xpath('//jurisdiction-info[@launched="true"]')
         for j in j_nodes:
-            jurisdictions.append( (j.xpath('@id')[0],
-                                   j.xpath('./uri')[0].text) )
 
-        # output each jurisdiction
-        for j_id, j_url in jurisdictions:
-
+            j_id = j.xpath('@id')[0]
+            j_url = 'http://creativecommons.org/international/%s/' % j_id
+            
             # we don't care about Unported here
             if j_id == '-':
                 continue
