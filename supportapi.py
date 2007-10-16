@@ -4,92 +4,13 @@ import os
 import re
 import traceback
 
+from babel.messages.pofile import read_po
+
 import cherrypy
 import cherrypy._cperror as cperror
 import lxml.etree 
 
 import support
-
-        
-class PoFile(object):
-    def __init__(self, filename):
-        self.filename = filename
-        self.language = None
-        
-        self.reload()
-
-    def reload(self):
-        """Reload the .po file and parse it's contents."""
-        var_re = re.compile('\$\{.*?\}', re.I|re.M|re.S)
-        
-        self.metadata = {}
-        self.strings = {}
-
-        curkey = None
-        input_file = file(self.filename, 'r')
-        
-        for line in input_file:
-            line = line.strip()
-            if line == "":
-                continue
-            
-            # parse each line in the file
-            words = line.split(' ', 1)
-
-            # check for a message 
-            if words[0].lower() == 'msgid':
-                curkey = words[1][1:-1]
-
-            # check for a translation
-            elif words[0].lower() == 'msgstr':
-                value = words[1][1:-1]
-
-                value = value.replace('\\"', '"')
-                match = var_re.search(value)
-                while match is not None:
-                    if value[match.start() - 1] != '"':
-
-                        #<xsl:value-of select="$license-name"/>
-                        value = value[:match.start()] + \
-                                '<xsl:value-of select="$' + \
-                                value[match.start() + 2:match.end() - 1] + \
-                                '"/>' + value[match.end():]
-                    else:
-                        value = value[:match.start()] + \
-                                '{$' + \
-                                value[match.start() + 2:match.end() - 1] + \
-                                '}' + value[match.end():]
-                        
-                    match = var_re.search(value, match.end())
-                    
-                self.strings[curkey] = value
-                curkey = None
-
-            # check for metadata
-            elif line[0] == line[-1] == '"':
-                key, value = [n.strip() for n in
-                              line[1:-1].strip().split(':', 1)]
-
-                # check for bogus escaped CRs
-                if value[-2:] == '\\n':
-                    value = value[:-2]
-                    
-                self.metadata[key] = value
-
-                if key == 'Language-Code':
-                    self.language = value
-
-            else:
-                print 'unknown line:\n%s' % line
-                
-    def __getitem__(self, key):
-        return self.strings[key]
-
-    def get(self, key, default):
-        if key in self.strings:
-            return unicode(self.strings[key], 'utf8')
-        else:
-            return default
 
 class SupportApi(object):
 
@@ -98,20 +19,22 @@ class SupportApi(object):
                                'license_xsl',
                                'i18n',
                                'i18n_po',
-                               'icommons-%s.po' % language)
+                               language,
+                               'cc_org.po')
 
         if not(os.path.exists(po_file)):
             po_file = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                    'license_xsl',
                                    'i18n',
                                    'i18n_po',
-                                   'icommons-en.po')
+                                   'en',
+                                   'cc_org.po')
 
-        result = PoFile(po_file)
-
-        # inject the right key for the generic jurisdiction
-        result.strings['country.-'] = unicode.encode(
-            result.get('util.Generic', 'Generic'), 'utf8')
+        result = read_po(file(po_file, 'r'))
+                
+        # XXX inject the right key for the generic jurisdiction
+        #result.strings['country.-'] = unicode.encode(
+        #    result.get('util.Generic', 'Generic'), 'utf8')
         
         return result
     
@@ -147,12 +70,22 @@ class SupportApi(object):
                                    j.xpath('./uri')[0].text) )
 
         # output each jurisdiction
-        for j in jurisdictions:
-            country = locale.get('country.%s' % j[0],
-                                 en.get('country.%s' % j[0], j[0])
-                                 )
+        for j_id, j_url in jurisdictions:
+
+            # we don't care about Unported here
+            if j_id == '-':
+                continue
             
-            yield(u'<option value="%s">%s</option>\n' % (j[1], country) )
+            country_id = 'country.%s' % j_id
+
+            if country_id in locale:
+                country = locale[country_id].string
+            elif country_id in en:
+                country = en[country_id].string
+            else:
+                country = country_id
+            
+            yield(u'<option value="%s">%s</option>\n' % (j_url, country) )
 
         if select:
             yield('</select>')
