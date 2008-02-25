@@ -63,7 +63,7 @@ class SupportApi(object):
             yield('<select name="%s">\n' % select)
             
         # retrieve a list of the available jurisdictions in the requested lang
-        jurisdictions = []
+        jurisdictions = {}
         j_nodes = licenses_xml.xpath('//jurisdiction-info[@launched="true"]')
         for j in j_nodes:
 
@@ -83,10 +83,18 @@ class SupportApi(object):
             else:
                 country = country_id
             
-            yield(u'<option value="%s">%s</option>\n' % (j_url, country) )
+            jurisdictions[country] = u'<option value="%s">%s</option>\n' % (
+                j_url, country)
 
+        # sort the list and yield each item
+        keys = jurisdictions.keys()
+        keys.sort()
+        for j in keys:
+            yield (jurisdictions[j])
+
+        # close the select if necessary
         if select:
-            yield('</select>')
+            yield ('</select>')
 
     @cherrypy.expose
     def jurisdictions_js(self, select=None, locale='en', language=None,
