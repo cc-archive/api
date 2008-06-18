@@ -1,0 +1,15 @@
+* Get basic 'webtest' WSGI-testing framework in place (make working tests)
+* Port tests in test.py over to the Paste/WebTest framework
+* Decide if utilities/relax_validate.py (apparently unit tests) belong in the new webtest framework
+
+== Possible to do ==
+* Port utilities/relax_validate.py unit tests as appropriate
+* Organize /tests into 'unittest', 'functional', etc. categories
+
+== Open questions ==
+* Should this TODO.txt go in docs/ ?
+* Should tests/ be moved to src/ ?
+* What is the overall sanity scheme that we're sticking to?
+* Does the path / local import code function?
+** Is it still a holdover from the other directory structure?
+** Or has it been run, and proven to work?
