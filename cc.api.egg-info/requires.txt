@@ -1,8 +1,0 @@
-setuptools
-CherryPy
-lxml
-ctypes
-utidylib
-zdaemon
-Babel
-pylons
