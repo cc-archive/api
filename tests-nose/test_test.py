@@ -10,6 +10,8 @@ import lxml
 ####################
 RELAX_PATH = os.path.join(os.pardir, 'relax')
 RELAX_LOCALES = os.path.join(RELAX_PATH, 'locales.relax.xml')
+RELAX_ERROR = os.path.join(RELAX_PATH, 'error.relax.xml')
+RELAX_CLASSES = os.path.join(RELAX_PATH, 'classes.relax.xml')
 # more to come, when I clean them up
 
 ##################
@@ -50,6 +52,23 @@ def test_locales_extra_args():
     assert relax_validate(RELAX_LOCALES, res.body)
     res = app.get('/locales?lang=en_US&blarf=%s' % hash(res))
     assert relax_validate(RELAX_LOCALES, res.body)
+
+def test_classes():
+    """Test that /classes and / are synonyms."""
+    root = app.get('/').body
+    classes = app.get('/').body
+    assert root == classes
+
+def test_invalid_class():
+    """An invalid license class name should return an explicit error."""
+    res = app.get('/license/noclass')
+    assert relax_validate(RELAX_ERROR, res.body)
+
+def test_classes_structure():
+    """Test the return values of /classes to ensure it fits with our
+    claims."""
+    res = app.get('/classes')
+    assert relax_validate(RELAX_CLASSES, res.body)
 
 if __name__ == '__main__':
     pass

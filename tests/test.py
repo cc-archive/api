@@ -105,7 +105,7 @@ class CcApiTest(helper.CPWebCase):
                                           'locales.relax.xml'),
                              StringIO(self.body))
 
-    def testClasses(self):
+    def testClasses(self): #PORTED
         """Test that /classes and / are synonyms."""
         self.getPage('/')
         root_body = self.body
@@ -115,7 +115,7 @@ class CcApiTest(helper.CPWebCase):
 
         assert root_body == classes_body
 
-    def testInvalidClass(self):
+    def testInvalidClass(self): #PORTED
         """An invalid license class name should return an explicit error."""
         
         self.getPage('/license/noclass')
@@ -124,7 +124,7 @@ class CcApiTest(helper.CPWebCase):
                                           'error.relax.xml'),
                              StringIO(self.body))
 
-    def testClassesStructure(self):
+    def testClassesStructure(self): #PORTED
         """Test the return value of /classes to ensure it fits with our
         claims."""
         self.getPage('/classes')
