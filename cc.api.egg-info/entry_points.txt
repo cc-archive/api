@@ -1,4 +1,0 @@
-[console_scripts]
-test = tests.test:runTests
-server = rest_api:serveapi
-
