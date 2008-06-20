@@ -50,7 +50,7 @@ def RelaxValidate(schemaFileName, instanceFile):
     else:
         return True
 
-def permute(Lists):
+def permute(Lists): #PORTED
     if Lists:
         result = map(lambda I: (I,), Lists[0])
     
@@ -132,7 +132,7 @@ class CcApiTest(helper.CPWebCase):
         assert RelaxValidate(os.path.join(RELAX_PATH, 'classes.relax.xml'),
                              StringIO(self.body))
 
-    def __getLocales(self):
+    def __getLocales(self): #PORTED
         """Return a list of supported locales."""
 
         self.getPage('/locales')
@@ -140,7 +140,7 @@ class CcApiTest(helper.CPWebCase):
         locale_doc = lxml.etree.parse(StringIO(self.body))
         return [n for n in locale_doc.xpath('//locale/@id') if n not in ('he',)]
     
-    def __getLicenseClasses(self):
+    def __getLicenseClasses(self): #PORTED
         """Get the license classes."""
         self.getPage('/classes')
 
@@ -151,7 +151,7 @@ class CcApiTest(helper.CPWebCase):
 
         return classes
 
-    def __fieldEnums(self, lclass):
+    def __fieldEnums(self, lclass): #PORTED
         """Retrieve the license information for this class, and generate
         a set of answers for use with testing."""
 
@@ -214,7 +214,7 @@ class CcApiTest(helper.CPWebCase):
                 # yield each
                 yield result
         
-    def testLicenseClassStructure(self):
+    def testLicenseClassStructure(self): #PORTED
         """Test that each license class returns a valid XML chunk."""
 
         for lclass in self.__getLicenseClasses():
@@ -230,7 +230,7 @@ class CcApiTest(helper.CPWebCase):
                       "RelaxNG schema." % lclass
                 raise AssertionError
                     
-    def testIssue(self):
+    def testIssue(self): #PORTED
         """Test that every license class will be successfully issued via
         the /issue method."""
 

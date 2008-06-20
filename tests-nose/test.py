@@ -4,6 +4,7 @@ import os
 import webtest
 from StringIO import StringIO # TODO: decide if this is necessary
 import lxml
+import operator
 
 ####################
 ## Path constants ##
@@ -12,6 +13,8 @@ RELAX_PATH = os.path.join(os.pardir, 'relax')
 RELAX_LOCALES = os.path.join(RELAX_PATH, 'locales.relax.xml')
 RELAX_ERROR = os.path.join(RELAX_PATH, 'error.relax.xml')
 RELAX_CLASSES = os.path.join(RELAX_PATH, 'classes.relax.xml')
+RELAX_LICENSECLASS = os.path.join(RELAX_PATH, 'licenseclass.relax.xml')
+RELAX_ISSUE = os.path.join(RELAX_PATH, 'issue.relax.xml')
 # more to come, when I clean them up
 
 ##################
@@ -36,6 +39,60 @@ def relax_validate(schema_filename, instance_buffer):
         return False
     else:
         return True
+
+def _permute(lists): #TODO: document this function
+    if lists:
+        result = map(lambda i: (i,), lists[0])
+        for list in lists[1:]:
+            curr = []
+            for item in list:
+                new = map(operator.add, result, [(item,)]*len(result))
+                curr[len(curr):] = new
+            result = curr
+    else:
+        result = []
+    return result
+
+def _get_license_classes():
+    res = app.get('/classes')
+    classes = []
+    classdoc = lxml.etree.parse(StringIO(res.body))
+    for license in classdoc.xpath('//license/@id'):
+        classes.append(license)
+    return classes
+
+def _field_enums(lclass):
+    """Retrieve the license information for this class, and generate a set of answers for use with testing."""
+    res = app.get('/license/%s' % lclass)
+    all_answers = []
+    classdoc = lxml.etree.parse(StringIO(res.body))
+    for field in classdoc.xpath('//field'):
+        field_id = field.get('id')
+        answer_values = []
+        for e in field.xpath('./enum'):
+            answer_values.append(e.get('id'))
+        all_answers.append((field_id, answer_values))
+    return all_answers
+
+def _get_locales():
+    """Return a list of supported locales."""
+    res = app.get('/locales')
+    locale_doc = lxml.etree.parse(StringIO(res.body))
+    return [n for n in locale_doc.xpath('//locale/@id') if n not in ('he',)]
+
+def _test_answers_xml(lclass): # TODO: document what this function does
+    all_answers = _field_enums(lclass)
+    all_locales = _get_locales()
+    for ans_combo in _permute([n[1] for n in all_answers]):
+        for locale in all_locales:
+            answers_xml = lxml.etree.Element('answers')
+            locale_node = lxml.etree.SubElement(answers_xml, 'locale')
+            locale_node.text = locale
+            class_node = lxml.etree.SubElement(answers_xml, 'license-%s' % lclass)
+            for a in zip([n[0] for n in all_answers], ans_combo):
+                a_node = lxml.etree.SubElement(class_node, a[0])
+                a_node.text = a[1]
+            yield lxml.etree.tostring(answers_xml)
 
 ###########
 ## Tests ##
@@ -69,6 +126,21 @@ def test_classes_structure():
     claims."""
     res = app.get('/classes')
     assert relax_validate(RELAX_CLASSES, res.body)
+
+def test_license_class_structure():
+    """Test that each license class returns a valid XML chunk."""
+    for lclass in _get_license_classes():
+        res = app.get('/license/%s' % lclass)
+        assert relax_validate(RELAX_LICENSECLASS, res.body)
+
+def test_issue():
+    """Test that every license class will be successfully issued via
+    the /issue method."""
+    for lclass in _get_license_classes():
+        for answers in _test_answers_xml(lclass):
+            res = app.get('/license/%s/issue?answers=%s' %
+                          (lclass, answers))
+            assert relax_validate(RELAX_ISSUE, res.body)
 
 if __name__ == '__main__':
     pass
