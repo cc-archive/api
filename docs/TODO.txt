@@ -13,12 +13,9 @@
 * sample implementation(s)
 
 == Nose branch to-do ==
-* Get basic 'webtest' WSGI-testing framework in place
-** Make working tests
-
 * Port tests in test.py over to the Paste/WebTest framework
 
-* ? Organize /tests into 'unittest', 'functional', etc. categories
+* Suppress stdout messages when running with nosetests
+** (figure out why it's not collecting stdout)
 
-=== Questions ===
-* Nathan: is there a good reason to have entry-points defined in both build.cfg and setup.py?
+* ? Organize /tests into 'unittest', 'functional', etc. categories
