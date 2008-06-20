@@ -19,3 +19,6 @@
 * Port tests in test.py over to the Paste/WebTest framework
 
 * ? Organize /tests into 'unittest', 'functional', etc. categories
+
+=== Questions ===
+* Nathan: is there a good reason to have entry-points defined in both build.cfg and setup.py?
