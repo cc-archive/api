@@ -81,7 +81,7 @@ class TestXmlFiles(unittest.TestCase):
                     
 
 class CcApiTest(helper.CPWebCase):
-    def testLocales(self):
+    def testLocales(self): #PORTED
         """Test that /locales returns a list of supported languages."""
         self.getPage('/locales')
 
@@ -89,7 +89,7 @@ class CcApiTest(helper.CPWebCase):
                                           'locales.relax.xml'),
                              StringIO(self.body))
 
-    def testLocalesExtraArgs(self):
+    def testLocalesExtraArgs(self): #PORTED
         """Test the /locales method with extra non-sense arguments;
         extra arguments should be ignored."""
 
