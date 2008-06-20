@@ -4,3 +4,5 @@ lxml
 ctypes
 utidylib
 zdaemon
+Babel
+pylons
