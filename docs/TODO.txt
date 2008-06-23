@@ -15,11 +15,7 @@
 == Nose branch to-do ==
 * Port tests in test.py over to the Paste/WebTest framework
 
-* Get test_get and test_issue to pass
-
 * Suppress stdout messages when running with nosetests
 ** (figure out why it's not collecting stdout)
-
-* Get Nathan to explain tests/relax.py to me
 
 * ? Organize /tests into 'unittest', 'functional', etc. categories

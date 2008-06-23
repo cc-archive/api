@@ -78,7 +78,7 @@
     <element ns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" name="RDF">
       <group>
         <optional>
-          <element ns="http://web.resource.org/cc/" name="Work">
+          <element ns="http://creativecommons.org/ns#" name="Work">
             <attribute ns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" name="about">
               <text/>
             </attribute>
@@ -134,7 +134,7 @@
             </interleave>
           </element>
         </optional>
-        <element ns="http://web.resource.org/cc/" name="License">
+        <element ns="http://creativecommons.org/ns#" name="License">
           <group>
             <attribute ns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" name="about">
               <text/>
