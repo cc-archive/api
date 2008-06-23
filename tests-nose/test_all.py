@@ -15,6 +15,7 @@ RELAX_ERROR = os.path.join(RELAX_PATH, 'error.relax.xml')
 RELAX_CLASSES = os.path.join(RELAX_PATH, 'classes.relax.xml')
 RELAX_LICENSECLASS = os.path.join(RELAX_PATH, 'licenseclass.relax.xml')
 RELAX_ISSUE = os.path.join(RELAX_PATH, 'issue.relax.xml')
+RELAX_ERROR = os.path.join(RELAX_PATH, 'error.relax.xml')
 # more to come, when I clean them up
 
 ##################
@@ -146,7 +147,7 @@ def test_license_class_structure():
     for lclass in _get_license_classes():
         res = app.get('/license/%s' % lclass)
         assert relax_validate(RELAX_LICENSECLASS, res.body)
-'''
+
 def test_issue(): #TODO: FIX THIS FAILING TEST
     """Test that every license class will be successfully issued via the /issue method."""
     for lclass in _get_license_classes():
@@ -161,13 +162,28 @@ def test_get(): #TODO: FIX THIS FAILING TEST
         for query_string in _test_answer_query_strings(lclass):
             res = app.get('/license/%s/get%s' % (lclass, query_string))
             assert relax_validate(RELAX_ISSUE, res.body)
-'''
-def test_get_extra_args():
+
+def test_get_extra_args(): #TODO: FIX THIS FAILING TEST
     """Test the /get method with extra nonsense arguments; extra arguments should be ignored."""
     for lclass in _get_license_classes():
         for query_string in _test_answer_query_strings(lclass):
             res = app.get('/license/%s/get%s&foo=bar' % (lclass, query_string))
             assert relax_validate(RELAX_ISSUE, res.body)
+
+def test_issue_error():
+    """Issue with no answers or empty answers should return an error."""
+    res = app.get('/license/blarf/issue?answers=<foo/>')
+    assert relax_validate(RELAX_ERROR, res.body)
+
+def test_issue_invalid_class():
+    """/issue should return an error with an invalid class."""
+    res = app.get('/license/blarf/issue?answers=<foo/>')
+    assert relax_validate(RELAX_ERROR, res.body)
+
+def test_get_invalid_class():
+    """/get should return an error with an invalid class."""
+    res = app.get('/license/%s/get' % hash(app))
+    assert relax_validate(RELAX_ERROR, res.body)
 
 if __name__ == '__main__':
     pass

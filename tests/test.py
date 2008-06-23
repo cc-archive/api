@@ -303,7 +303,7 @@ class CcApiTest(helper.CPWebCase):
                 raise AssertionError
 
         
-    def testIssueError(self):
+    def testIssueError(self): #PORTED
         """Issue with no answers or empty answers should return an error."""
 
         for lclass in self.__getLicenseClasses():
@@ -313,7 +313,7 @@ class CcApiTest(helper.CPWebCase):
                                               'error.relax.xml'),
                                  StringIO(self.body))
 
-    def testIssueInvalidClass(self):
+    def testIssueInvalidClass(self): #PORTED
         """/issue should return an error with an invalid class."""
 
         self.getPage('/license/blarf/issue?answers=<foo/>')
@@ -321,7 +321,7 @@ class CcApiTest(helper.CPWebCase):
         assert RelaxValidate(os.path.join(RELAX_PATH, 'error.relax.xml'),
                              StringIO(self.body))
 
-    def testGetInvalidClass(self):
+    def testGetInvalidClass(self): #PORTED
         """/get should return an error with an invalid class."""
 
         self.getPage('/license/%s/get' % hash(self))
