@@ -155,7 +155,7 @@ def test_issue(): #TODO: FIX THIS FAILING TEST
                           (lclass, answers))
             assert relax_validate(RELAX_ISSUE, res.body)
 
-def test_get():
+def test_get(): #TODO: FIX THIS FAILING TEST
     """Test that every license class will be successfully issued via the /get method."""
     for lclass in _get_license_classes():
         for query_string in _test_answer_query_strings(lclass):
