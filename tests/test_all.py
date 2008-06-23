@@ -185,5 +185,10 @@ def test_get_invalid_class():
     res = app.get('/license/%s/get' % hash(app))
     assert relax_validate(RELAX_ERROR, res.body)
 
+def test_details_error():
+    """A call to /details with no liecense-uri should return a missingparam error."""
+    res = app.get('/details')
+    assert relax_validate(RELAX_ERROR, res.body)
+
 if __name__ == '__main__':
     pass

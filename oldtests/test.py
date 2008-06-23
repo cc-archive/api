@@ -362,7 +362,7 @@ class CcApiTest(helper.CPWebCase):
                                           'error.relax.xml'),
                              StringIO(self.body))
 
-    def testDetailsError(self):
+    def testDetailsError(self): #PORTED
         """A call to /details with no license-uri should return a
         missingparam error."""
 
