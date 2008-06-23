@@ -39,7 +39,7 @@ LICENSES_XML = (os.path.join('license_xsl', 'licenses.xml'),
 
 import cherrypy.test.helper as helper
 
-def RelaxValidate(schemaFileName, instanceFile):
+def RelaxValidate(schemaFileName, instanceFile): #PORTED
 
     relaxng = lxml.etree.RelaxNG(lxml.etree.parse(schemaFileName))
     instance = lxml.etree.parse(instanceFile)
@@ -172,7 +172,7 @@ class CcApiTest(helper.CPWebCase):
 
         return all_answers
 
-    def __testAnswersXml(self, lclass):
+    def __testAnswersXml(self, lclass): #PORTED
 
         all_answers = self.__fieldEnums(lclass)
         all_locales = self.__getLocales()
@@ -193,7 +193,7 @@ class CcApiTest(helper.CPWebCase):
 
                 yield lxml.etree.tostring(answers_xml)
 
-    def __testAnswerQueryStrings(self, lclass):
+    def __testAnswerQueryStrings(self, lclass): #PORTED
 
         all_answers = self.__fieldEnums(lclass)
         all_locales = self.__getLocales()
@@ -253,7 +253,7 @@ class CcApiTest(helper.CPWebCase):
 
                 raise AssertionError
 
-    def testGet(self):
+    def testGet(self): #PORTED
         """Test that every license class will be successfully issued
         via the /get method."""
 

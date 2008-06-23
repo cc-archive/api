@@ -94,6 +94,20 @@ def _test_answers_xml(lclass): # TODO: document what this function does
                 a_node.text = a[1]
             yield lxml.etree.tostring(answers_xml)
 
+def _test_answer_query_strings(lclass): # TODO: document what this function does
+    all_answers = _field_enums(lclass)
+    all_locales = _get_locales()
+    for ans_combo in _permute([n[1] for n in all_answers]):
+        for locale in all_locales:
+            params = zip([n[0] for n in all_answers], ans_combo)
+            param_strs = ['='.join(n) for n in params]
+            # append to each locale in turn
+            param_strs.append('locale=%s' % locale)
+            # generate the query string
+            result = '?' + '&'.join(param_strs)
+            # yield each
+            yield result
+
 ###########
 ## Tests ##
 ###########
@@ -139,6 +153,13 @@ def test_issue(): #TODO: FIX THIS FAILING TEST
         for answers in _test_answers_xml(lclass):
             res = app.get('/license/%s/issue?answers=%s' %
                           (lclass, answers))
+            assert relax_validate(RELAX_ISSUE, res.body)
+
+def test_get():
+    """Test that every license class will be successfully issued via the /get method."""
+    for lclass in _get_license_classes():
+        for query_string in _test_answer_query_strings(lclass):
+            res = app.get('/license/%s/get%s' % (lclass, query_string))
             assert relax_validate(RELAX_ISSUE, res.body)
 
 if __name__ == '__main__':
