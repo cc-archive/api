@@ -27,9 +27,9 @@ def setup():
     cfgstr = 'config:%s' % (os.path.join(os.getcwd(), '..', 'server.cfg'))
     app = webtest.TestApp(cfgstr)
 
-###############################
-## Testing utility functions ##
-###############################
+#######################
+## Utility functions ##
+#######################
 def relax_validate(schema_filename, instance_buffer):
     relaxng = lxml.etree.RelaxNG(lxml.etree.parse(schema_filename))
     instance = lxml.etree.parse(StringIO(instance_buffer))
@@ -133,9 +133,8 @@ def test_license_class_structure():
         res = app.get('/license/%s' % lclass)
         assert relax_validate(RELAX_LICENSECLASS, res.body)
 
-def test_issue():
-    """Test that every license class will be successfully issued via
-    the /issue method."""
+def test_issue(): #TODO: FIX THIS FAILING TEST
+    """Test that every license class will be successfully issued via the /issue method."""
     for lclass in _get_license_classes():
         for answers in _test_answers_xml(lclass):
             res = app.get('/license/%s/issue?answers=%s' %
