@@ -56,22 +56,21 @@ def _get_license_classes():
 
 def _field_enums(lclass):
     """Retrieve the license information for this class, and generate a set of answers for use with testing."""
-    res = app.get('/license/%s' % lclass)
-    all_answers = []
-    classdoc = lxml.etree.parse(StringIO(res.body))
-    for field in classdoc.xpath('//field'):
-        field_id = field.get('id')
-        answer_values = []
-        for e in field.xpath('./enum'):
-            answer_values.append(e.get('id'))
-        all_answers.append((field_id, answer_values))
-    return all_answers
+    return [
+            ('commercial', ['y', 'n']),
+            ('derivatives', ['y', 'sa', 'n']),
+            ('jurisdiction', ['', 'us', 'de', 'uk'])
+           ]
 
 def _get_locales():
     """Return a list of supported locales."""
-    res = app.get('/locales')
-    locale_doc = lxml.etree.parse(StringIO(res.body))
-    return [n for n in locale_doc.xpath('//locale/@id') if n not in ('he',)]
+    locales = [
+                'en', # English
+                'de', # German
+                # 'he', # Hebrew TODO: fix html <span dir="rtl"> formatting
+                'el', # Greek
+              ]
+    return locales
 
 def _test_answers_xml(lclass): # TODO: document what this function does
     all_answers = _field_enums(lclass)
@@ -146,6 +145,7 @@ def test_issue():
         for answers in _test_answers_xml(lclass):
             res = app.get('/license/%s/issue?answers=%s' %
                           (lclass, answers))
+            print "lclass: %s ; answers: %s" % (lclass, answers)
             assert relax_validate(RELAX_ISSUE, res.body)
 
 def test_get():
@@ -161,12 +161,12 @@ def test_get_extra_args():
         for query_string in _test_answer_query_strings(lclass):
             res = app.get('/license/%s/get%s&foo=bar' % (lclass, query_string))
             assert relax_validate(RELAX_ISSUE, res.body)
-'''
+
 def test_issue_error():
     """Issue with no answers or empty answers should return an error."""
     res = app.get('/license/blarf/issue?answers=<foo/>')
     assert relax_validate(RELAX_ERROR, res.body)
-
+'''
 def test_issue_invalid_class():
     """/issue should return an error with an invalid class."""
     res = app.get('/license/blarf/issue?answers=<foo/>')
