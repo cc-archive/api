@@ -31,6 +31,11 @@ def setup():
     cfgstr = 'config:%s' % (os.path.join(os.getcwd(), '..', 'server.cfg'))
     app = webtest.TestApp(cfgstr)
 
+def teardown():
+    """Test fixture for nosetests: tears down the WSGI app server
+    """
+    cherrypy.engine.exit()
+
 #######################
 ## Utility functions ##
 #######################
