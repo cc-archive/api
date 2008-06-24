@@ -329,10 +329,10 @@ class CcApiTest(helper.CPWebCase):
         assert RelaxValidate(os.path.join(RELAX_PATH, 'error.relax.xml'),
                              StringIO(self.body))
 
-    def testI18n(self):
+    def testI18n(self): #NOTED on todo list
         """Make sure i18n calls work right."""
 
-    def testLicenseDetails(self):
+    def testLicenseDetails(self): #PORTED
         """Test that the license details call responds appropriately."""
 
         # test valid URIs
