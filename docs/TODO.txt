@@ -15,6 +15,10 @@
 == Nose branch to-do ==
 * Port tests in test.py over to the Paste/WebTest framework
 
+* Fix questions.relax.xml schema; apparently the same as was in issues.relax.xml
+
+* Remove relax_validate code duplication
+
 * Suppress stdout messages when running with nosetests
 ** (figure out why it's not collecting stdout)
 

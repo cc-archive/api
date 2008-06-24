@@ -67,13 +67,13 @@ def permute(Lists): #PORTED
 
 class TestXmlFiles(unittest.TestCase):
 
-    def testQuestionsXml(self):
+    def testQuestionsXml(self): #PORTED
         """Make sure questions.xml is compliant."""
         self.assert_(RelaxValidate(os.path.join(RELAX_PATH, QUESTIONS_XML[1]), 
                                    QUESTIONS_XML[0]),
                     "questions.xml does not comply to the Relax-NG schema.")
 
-    def testLicensesXml(self):
+    def testLicensesXml(self): #PORTED
         """Make sure licenses.xml is compliant."""
         self.assert_(RelaxValidate(os.path.join(RELAX_PATH, LICENSES_XML[1]), 
                                    LICENSES_XML[0]),
