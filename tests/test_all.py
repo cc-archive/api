@@ -27,6 +27,7 @@ def setup():
     """Test fixture for nosetests: sets up the WSGI app server
     """
     global app
+    cherrypy.config.update({ 'global' : { 'log.screen' : False, } })
     cfgstr = 'config:%s' % (os.path.join(os.getcwd(), '..', 'server.cfg'))
     app = webtest.TestApp(cfgstr)
 
