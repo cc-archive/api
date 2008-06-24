@@ -1,12 +1,13 @@
 
 import lxml
-from StringIO import StringIO # TODO: decide if this is necessary
+from StringIO import StringIO # TODO: remove these two modules
+
 import cherrypy # this will go away eventually
 import os
 import webtest
 import operator
 
-from tests.test_common import RELAX_PATH
+from tests.test_common import RELAX_PATH, relax_validate
 
 ####################
 ## Path constants ##
@@ -32,16 +33,6 @@ def setup():
 #######################
 ## Utility functions ##
 #######################
-def relax_validate(schema_filename, instance_buffer):
-    relaxng = lxml.etree.RelaxNG(lxml.etree.parse(schema_filename))
-    instance = lxml.etree.parse(StringIO(instance_buffer))
-
-    if not relaxng.validate(instance):
-        print relaxng.error_log.last_error
-        return False
-    else:
-        return True
-
 def _permute(lists): #TODO: document this function
     if lists:
         result = map(lambda i: (i,), lists[0])
