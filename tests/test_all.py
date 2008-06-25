@@ -10,7 +10,6 @@ from tests.test_common import *
 ## Path constants ##
 ####################
 RELAX_ERROR = os.path.join(RELAX_PATH, 'error.relax.xml')
-RELAX_CLASSES = os.path.join(RELAX_PATH, 'classes.relax.xml')
 RELAX_LICENSECLASS = os.path.join(RELAX_PATH, 'licenseclass.relax.xml')
 RELAX_ISSUE = os.path.join(RELAX_PATH, 'issue.relax.xml')
 
@@ -33,18 +32,6 @@ def teardown():
 ###########
 ## Tests ##
 ###########
-def test_classes():
-    """Test that /classes and / are synonyms."""
-    root = app.get('/').body
-    classes = app.get('/').body
-    assert root == classes
-
-def test_classes_structure():
-    """Test the return values of /classes to ensure it fits with our
-    claims."""
-    res = app.get('/classes')
-    assert relax_validate(RELAX_CLASSES, res.body)
-
 def test_license_class_structure():
     """Test that each license class returns a valid XML chunk."""
     for lclass in data.license_classes():
