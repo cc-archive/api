@@ -13,7 +13,6 @@ RELAX_ERROR = os.path.join(RELAX_PATH, 'error.relax.xml')
 RELAX_CLASSES = os.path.join(RELAX_PATH, 'classes.relax.xml')
 RELAX_LICENSECLASS = os.path.join(RELAX_PATH, 'licenseclass.relax.xml')
 RELAX_ISSUE = os.path.join(RELAX_PATH, 'issue.relax.xml')
-RELAX_ERROR = os.path.join(RELAX_PATH, 'error.relax.xml')
 
 ##################
 ## Test fixture ##
@@ -88,27 +87,6 @@ def test_issue_invalid_class():
 def test_get_invalid_class():
     """/get should return an error with an invalid class."""
     res = app.get('/license/%s/get' % hash(app))
-    assert relax_validate(RELAX_ERROR, res.body)
-
-def test_details_error():
-    """A call to /details with no liecense-uri should return a missingparam error."""
-    res = app.get('/details')
-    assert relax_validate(RELAX_ERROR, res.body)
-
-def test_license_details():
-    """Test that the license details call responds appropriately."""
-    for uri in ('http://creativecommons.org/licenses/by-nc-nd/2.5/',
-                'http://creativecommons.org/licenses/by-nc-sa/2.5/',
-                'http://creativecommons.org/licenses/by-sa/2.5/',
-                'http://creativecommons.org/licenses/by/2.0/nl/',
-               ):
-        res = app.get('/details?license-uri=%s' % uri)
-        assert relax_validate(RELAX_ISSUE, res.body)
-
-def test_invalid_license_details():
-    """Test that an invalid URI raises an error."""
-    uri = "http://creativecommons.org/licenses/blarf"
-    res = app.get('/details?license-uri=%s' % uri)
     assert relax_validate(RELAX_ERROR, res.body)
 
 if __name__ == '__main__':
