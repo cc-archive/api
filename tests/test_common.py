@@ -26,6 +26,11 @@ if not os.path.exists(RELAX_PATH):
 ## Utility functions ##
 #######################
 def relax_validate(schema_filename, instance_buffer):
+    """Validates xml string instance_buffer against RelaxNG schema 
+    located in file schema_filename. By convention, schema_filename 
+    is a constant defined in the test module. Schema files are 
+    located in tests/schemata."""
+
     relaxng = lxml.etree.RelaxNG(lxml.etree.parse(schema_filename))
     instance = lxml.etree.parse(StringIO(instance_buffer))
 
@@ -40,6 +45,9 @@ def relax_validate(schema_filename, instance_buffer):
 ############################
 
 class TestApi:
+    """Base class of test classes for the CC API. Defines test fixture
+    behavior for creating and destroying webtest.TestApp instance of 
+    the WSGI server."""
 
     def setUp(self):
         """Test fixture for nosetests: sets up the WSGI app server."""
