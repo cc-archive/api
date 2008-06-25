@@ -4,7 +4,7 @@ import os
 import webtest
 import operator
 
-from tests.test_common import RELAX_PATH, relax_validate
+from tests.test_common import *
 
 ####################
 ## Path constants ##

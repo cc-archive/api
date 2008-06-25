@@ -3,6 +3,14 @@ import lxml
 from StringIO import StringIO
 import os
 
+##################
+## Public names ##
+##################
+__all__ = (
+           'RELAX_PATH',
+           'relax_validate',
+          )
+
 ####################
 ## Path constants ##
 ####################
