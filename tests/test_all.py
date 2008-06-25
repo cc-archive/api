@@ -25,75 +25,12 @@ def setup():
     cherrypy.config.update({ 'global' : { 'log.screen' : False, } })
     cfgstr = 'config:%s' % (os.path.join(os.getcwd(), '..', 'server.cfg'))
     app = webtest.TestApp(cfgstr)
+    global data
+    data = TestData()
 
 def teardown():
     """Test fixture for nosetests: tears down the WSGI app server."""
     cherrypy.engine.exit()
-
-#######################
-## Utility functions ##
-#######################
-def _permute(lists): #TODO: document this function
-    if lists:
-        result = map(lambda i: (i,), lists[0])
-        for list in lists[1:]:
-            curr = []
-            for item in list:
-                new = map(operator.add, result, [(item,)]*len(result))
-                curr[len(curr):] = new
-            result = curr
-    else:
-        result = []
-    return result
-
-def _get_license_classes():
-    return ['standard', 'publicdomain', 'recombo']
-
-def _field_enums(lclass):
-    """Retrieve the license information for this class, and generate a set of answers for use with testing."""
-    return [
-            ('commercial', ['y', 'n']),
-            ('derivatives', ['y', 'sa', 'n']),
-            ('jurisdiction', ['', 'us', 'de', 'uk'])
-           ]
-
-def _get_locales():
-    """Return a list of supported locales."""
-    locales = [
-                'en', # English
-                'de', # German
-                # 'he', # Hebrew TODO: fix html <span dir="rtl"> formatting
-                'el', # Greek
-              ]
-    return locales
-
-def _test_answers_xml(lclass): # TODO: document what this function does
-    all_answers = _field_enums(lclass)
-    all_locales = _get_locales()
-    for ans_combo in _permute([n[1] for n in all_answers]):
-        for locale in all_locales:
-            answers_xml = lxml.etree.Element('answers')
-            locale_node = lxml.etree.SubElement(answers_xml, 'locale')
-            locale_node.text = locale
-            class_node = lxml.etree.SubElement(answers_xml, 'license-%s' % lclass)
-            for a in zip([n[0] for n in all_answers], ans_combo):
-                a_node = lxml.etree.SubElement(class_node, a[0])
-                a_node.text = a[1]
-            yield lxml.etree.tostring(answers_xml)
-
-def _test_answer_query_strings(lclass): # TODO: document what this function does
-    all_answers = _field_enums(lclass)
-    all_locales = _get_locales()
-    for ans_combo in _permute([n[1] for n in all_answers]):
-        for locale in all_locales:
-            params = zip([n[0] for n in all_answers], ans_combo)
-            param_strs = ['='.join(n) for n in params]
-            # append to each locale in turn
-            param_strs.append('locale=%s' % locale)
-            # generate the query string
-            result = '?' + '&'.join(param_strs)
-            # yield each
-            yield result
 
 ###########
 ## Tests ##
@@ -104,8 +41,7 @@ def test_locales():
     assert relax_validate(RELAX_LOCALES, res.body)
 
 def test_locales_extra_args():
-    """Test the /locales method with extra non-sense arguments;
-    extra arguments should be ignored."""
+    """Test the /locales method with extra non-sense arguments; extra arguments should be ignored."""
     res = app.get('/locales?foo=bar')
     assert relax_validate(RELAX_LOCALES, res.body)
     res = app.get('/locales?lang=en_US&blarf=%s' % hash(res))
@@ -125,14 +61,14 @@ def test_classes_structure():
 
 def test_license_class_structure():
     """Test that each license class returns a valid XML chunk."""
-    for lclass in _get_license_classes():
+    for lclass in data.license_classes():
         res = app.get('/license/%s' % lclass)
         assert relax_validate(RELAX_LICENSECLASS, res.body)
 '''
 def test_issue():
     """Test that every license class will be successfully issued via the /issue method."""
-    for lclass in _get_license_classes():
-        for answers in _test_answers_xml(lclass):
+    for lclass in data.license_classes():
+        for answers in data.xml_answers(lclass):
             res = app.get('/license/%s/issue?answers=%s' %
                           (lclass, answers))
             print "lclass: %s ; answers: %s" % (lclass, answers)
@@ -140,15 +76,15 @@ def test_issue():
 
 def test_get():
     """Test that every license class will be successfully issued via the /get method."""
-    for lclass in _get_license_classes():
-        for query_string in _test_answer_query_strings(lclass):
+    for lclass in data.license_classes():
+        for query_string in data.query_string_answers(lclass):
             res = app.get('/license/%s/get%s' % (lclass, query_string))
             assert relax_validate(RELAX_ISSUE, res.body)
 
 def test_get_extra_args():
     """Test the /get method with extra nonsense arguments; extra arguments should be ignored."""
-    for lclass in _get_license_classes():
-        for query_string in _test_answer_query_strings(lclass):
+    for lclass in data.license_classes():
+        for query_string in data.query_string_answers(lclass):
             res = app.get('/license/%s/get%s&foo=bar' % (lclass, query_string))
             assert relax_validate(RELAX_ISSUE, res.body)
 
