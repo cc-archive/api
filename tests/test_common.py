@@ -87,7 +87,7 @@ class TestData:
     def xml_answers(self, lclass): # TODO: document function
         all_answers = self._field_enums(lclass)
         all_locales = self._get_locales()
-        for ans_combo in _permute([n[1] for n in all_answers]):
+        for ans_combo in self._permute([n[1] for n in all_answers]):
             for locale in all_locales:
                 answers_xml = lxml.etree.Element('answers')
                 locale_node = lxml.etree.SubElement(answers_xml, 'locale')
@@ -101,7 +101,7 @@ class TestData:
     def query_string_answers(self, lclass): # TODO: document function
         all_answers = self._field_enums(lclass)
         all_locales = self._get_locales()
-        for ans_combo in _permute([n[1] for n in all_answers]):
+        for ans_combo in self._permute([n[1] for n in all_answers]):
             for locale in all_locales:
                 params = zip([n[0] for n in all_answers], ans_combo)
                 param_strs = ['='.join(n) for n in params]
