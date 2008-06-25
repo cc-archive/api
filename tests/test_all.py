@@ -117,11 +117,6 @@ def test_classes():
     classes = app.get('/').body
     assert root == classes
 
-def test_invalid_class():
-    """An invalid license class name should return an explicit error."""
-    res = app.get('/license/noclass')
-    assert relax_validate(RELAX_ERROR, res.body)
-
 def test_classes_structure():
     """Test the return values of /classes to ensure it fits with our
     claims."""
