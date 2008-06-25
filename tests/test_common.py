@@ -24,6 +24,13 @@ RELAX_PATH = 'schemata'
 if not os.path.exists(RELAX_PATH):
     RELAX_PATH = os.path.join('tests', 'schemata')
 
+CFGSTR = 'config:'
+_cfgpath = os.path.join(os.getcwd(), 'server.cfg')
+if os.path.exists(_cfgpath):
+    CFGSTR += _cfgpath
+else:
+    CFGSTR += os.path.join(os.getcwd(), '..', 'server.cfg')
+
 #######################
 ## Utility functions ##
 #######################
@@ -125,8 +132,7 @@ class TestApi:
            - sets up the WSGI app server
            - creates test data generator"""
         cherrypy.config.update({ 'global' : { 'log.screen' : False, } })
-        cfgstr = 'config:%s' % (os.path.join(os.getcwd(), '..', 'server.cfg'))
-        self.app = webtest.TestApp(cfgstr)
+        self.app = webtest.TestApp(CFGSTR)
         self.data = TestData()
 
     def tearDown(self):
