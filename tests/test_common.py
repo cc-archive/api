@@ -6,7 +6,9 @@ import os
 ####################
 ## Path constants ##
 ####################
-RELAX_PATH = os.path.join(os.pardir, 'relax')
+RELAX_PATH = 'schemata'
+if not os.path.exists(RELAX_PATH):
+    RELAX_PATH = os.path.join('tests', 'schemata')
 
 #######################
 ## Utility functions ##

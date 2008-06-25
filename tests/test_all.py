@@ -1,7 +1,4 @@
 
-import lxml
-from StringIO import StringIO # TODO: remove these two modules
-
 import cherrypy # this will go away eventually
 import os
 import webtest
@@ -50,12 +47,7 @@ def _permute(lists): #TODO: document this function
     return result
 
 def _get_license_classes():
-    res = app.get('/classes')
-    classes = []
-    classdoc = lxml.etree.parse(StringIO(res.body))
-    for license in classdoc.xpath('//license/@id'):
-        classes.append(license)
-    return classes
+    return ['standard', 'publicdomain', 'recombo']
 
 def _field_enums(lclass):
     """Retrieve the license information for this class, and generate a set of answers for use with testing."""
