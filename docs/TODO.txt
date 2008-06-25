@@ -20,3 +20,5 @@
 * Write tests for internationalization
 
 * ? Organize /tests into 'unittest', 'functional', etc. categories
+
+* ? Option for tests run with canned v. live data
