@@ -47,6 +47,7 @@ def relax_validate(schema_filename, instance_buffer):
 #####################
 class TestData:
     """Generates test data for use in exercising the CC API."""
+    # I just noticed that this class never touches the server.
 
     def _permute(self, lists): #TODO: document function
         if lists:

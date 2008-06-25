@@ -9,7 +9,6 @@ from tests.test_common import *
 ####################
 ## Path constants ##
 ####################
-RELAX_LOCALES = os.path.join(RELAX_PATH, 'locales.relax.xml')
 RELAX_ERROR = os.path.join(RELAX_PATH, 'error.relax.xml')
 RELAX_CLASSES = os.path.join(RELAX_PATH, 'classes.relax.xml')
 RELAX_LICENSECLASS = os.path.join(RELAX_PATH, 'licenseclass.relax.xml')
@@ -35,18 +34,6 @@ def teardown():
 ###########
 ## Tests ##
 ###########
-def test_locales():
-    """Test that /locales returns a list of supported languages."""
-    res = app.get('/locales')
-    assert relax_validate(RELAX_LOCALES, res.body)
-
-def test_locales_extra_args():
-    """Test the /locales method with extra non-sense arguments; extra arguments should be ignored."""
-    res = app.get('/locales?foo=bar')
-    assert relax_validate(RELAX_LOCALES, res.body)
-    res = app.get('/locales?lang=en_US&blarf=%s' % hash(res))
-    assert relax_validate(RELAX_LOCALES, res.body)
-
 def test_classes():
     """Test that /classes and / are synonyms."""
     root = app.get('/').body

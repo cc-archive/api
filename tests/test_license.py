@@ -1,9 +1,16 @@
 
 import os
+
 from tests.test_common import *
 
+####################
+## Path constants ##
+####################
 RELAX_ERROR = os.path.join(RELAX_PATH, 'error.relax.xml')
 
+##################
+## Test classes ##
+##################
 class TestLicense(TestApi):
 
     def test_invalid_class(self):
