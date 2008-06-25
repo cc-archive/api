@@ -1,8 +1,10 @@
 
-from unittest import TestCase
 import lxml
 from StringIO import StringIO
 import os
+
+import cherrypy
+import webtest # for the TestApi base class
 
 ##################
 ## Public names ##
@@ -37,22 +39,14 @@ def relax_validate(schema_filename, instance_buffer):
 ## Base classes for tests ##
 ############################
 
-class TestApi(TestCase):
-
-    def __init__(self, *args, **kwargs):
-        # each class can have its own local copy
-        # TODO: see if things explode if it's module-level
-        TestCase.__init__(self, *args, **kwargs)
-        self.cherrypy = __import__('cherrypy')
-        self.webtest = __import__('webtest')
-
+class TestApi:
 
     def setUp(self):
         """Test fixture for nosetests: sets up the WSGI app server."""
-        self.cherrypy.config.update({ 'global' : { 'log.screen' : False, } })
+        cherrypy.config.update({ 'global' : { 'log.screen' : False, } })
         cfgstr = 'config:%s' % (os.path.join(os.getcwd(), '..', 'server.cfg'))
-        self.app = self.webtest.TestApp(cfgstr)
+        self.app = webtest.TestApp(cfgstr)
 
     def tearDown(self):
         """Test fixture for nosetests: tears down the WSGI app server."""
-        self.cherrypy.engine.exit()
+        cherrypy.engine.exit()
