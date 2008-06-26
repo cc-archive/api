@@ -37,6 +37,7 @@ setup(
                         'WebTest',
                         'Routes',
                         'Quixote', # used by rest_api.py
+                        'coverage',
                         ],
     dependency_links=['http://cctools.svn.sourceforge.net/svnroot/cctools/vendorlibs/utidylib/#egg=utidylib-0.2-cvs',],
 
