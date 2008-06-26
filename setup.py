@@ -43,7 +43,6 @@ setup(
 
     entry_points = { 'console_scripts':
                      ['server = rest_api:serveapi',
-                      'test = tests.test:runTests',
                       ],
                      'paste.app_factory':
                      ['rest_api=rest_api:app_factory',
