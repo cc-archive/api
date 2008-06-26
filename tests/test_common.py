@@ -4,6 +4,7 @@ import lxml.etree
 from StringIO import StringIO
 import os
 import operator
+import random
 
 import cherrypy
 import webtest # for the TestApi base class
@@ -17,9 +18,9 @@ __all__ = (
            'TestApi',
           )
 
-####################
-## Path constants ##
-####################
+###############
+## Constants ##
+###############
 RELAX_PATH = 'schemata'
 if not os.path.exists(RELAX_PATH):
     RELAX_PATH = os.path.join('tests', 'schemata')
@@ -30,6 +31,8 @@ if os.path.exists(_cfgpath):
     CFGSTR += _cfgpath
 else:
     CFGSTR += os.path.join(os.getcwd(), '..', 'server.cfg')
+
+TOO_MANY = 25
 
 #######################
 ## Utility functions ##
@@ -93,33 +96,41 @@ class TestData:
                   ]
         return locales
 
-    def xml_answers(self, lclass): # TODO: document function
-        all_answers = self._field_enums(lclass)
-        all_locales = self._get_locales()
-        for ans_combo in self._permute([n[1] for n in all_answers]):
-            for locale in all_locales:
-                answers_xml = lxml.etree.Element('answers')
-                locale_node = lxml.etree.SubElement(answers_xml, 'locale')
-                locale_node.text = locale
-                class_node = lxml.etree.SubElement(answers_xml, 'license-%s' % lclass)
-                for a in zip([n[0] for n in all_answers], ans_combo):
-                    a_node = lxml.etree.SubElement(class_node, a[0])
-                    a_node.text = a[1]
-                yield lxml.etree.tostring(answers_xml)
-
-    def query_string_answers(self, lclass): # TODO: document function
+    def params(self, lclass):
+        all_params = []
         all_answers = self._field_enums(lclass)
         all_locales = self._get_locales()
         for ans_combo in self._permute([n[1] for n in all_answers]):
             for locale in all_locales:
                 params = zip([n[0] for n in all_answers], ans_combo)
-                param_strs = ['='.join(n) for n in params]
-                # append to each locale in turn
-                param_strs.append('locale=%s' % locale)
-                # generate the query string
-                result = '?' + '&'.join(param_strs)
-                # yield each
-                yield result
+                params.append(('locale', locale))
+                all_params.append(params)
+        # thin out param list if there are too many
+        if len(all_params) > TOO_MANY:
+            r = random.Random(42) # deterministic b/c seeded w/ constant
+            all_params = r.sample(all_params, TOO_MANY)
+        return all_params
+
+    # TODO: fix hackery
+    def xml_answers(self, lclass):
+        all_params = self.params(lclass)
+        for params in all_params:
+            answers_xml = lxml.etree.Element('answers')
+            locale_node = lxml.etree.SubElement(answers_xml, 'locale')
+            locale_node.text = [n[1] for n in params if n[0]=='locale'][0]
+            class_node = lxml.etree.SubElement(answers_xml, 'license-%s' % lclass)
+            for a in [n for n in params if n[0]!='locale']:
+                a_node = lxml.etree.SubElement(class_node, a[0])
+                a_node.text = a[1]
+            yield lxml.etree.tostring(answers_xml)
+
+    def query_string_answers(self, lclass):
+        all_params = self.params(lclass)
+        for params in all_params:
+            param_strs = ['='.join(n) for n in params]
+            result = '?' + '&'.join(param_strs)
+            yield result
+
 
 ##########################
 ## Base class for tests ##
