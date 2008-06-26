@@ -15,7 +15,6 @@ __all__ = (
            'RELAX_PATH',
            'relax_validate',
            'TestApi',
-           'TestData', # TODO: remove this after the migration to classes
           )
 
 ####################
@@ -76,11 +75,13 @@ class TestData:
     def _field_enums(self, lclass):
         """Retrieve the license information for this class, and generate 
            a set of answers for use with testing."""
-        return [
-                ('commercial', ['y', 'n']),
-                ('derivatives', ['y', 'sa', 'n']),
-                ('jurisdiction', ['', 'us', 'de', 'uk'])
-               ]
+        enums = [('jurisdiction', ['', 'us', 'de', 'uk'])]
+        if lclass == 'publicdomain' or lclass == 'recombo':
+            return enums
+        else:
+            enums.append(('commercial', ['y', 'n']))
+            enums.append(('derivatives', ['y', 'sa', 'n']))
+            return enums
 
     def _get_locales(self):
         """Return a list of supported locales."""

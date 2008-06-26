@@ -29,12 +29,12 @@ class TestLicense(TestApi):
 
 class TestLicenseIssue(TestApi):
 
-    def test_issue_invalid_class(self):
+    def test_invalid_class(self):
         """/issue should return an error with an invalid class."""
         res = self.app.get('/license/blarf/issue?answers=<foo/>')
         assert relax_validate(RELAX_ERROR, res.body)
 
-    def test_issue_error(self):
+    def test_empty_answer_error(self):
         """Issue with no answers or empty answers should return an error."""
         res = self.app.get('/license/blarf/issue?answers=<foo/>')
         assert relax_validate(RELAX_ERROR, res.body)
@@ -49,27 +49,47 @@ class TestLicenseIssue(TestApi):
             print
             assert relax_validate(RELAX_ISSUE, res.body)
 
-    def test_issue_license_standard(self):
+    def test_license_standard(self):
         """/issue issues standard licenses successfully."""
         self._issue('standard')
 
-    def test_issue_license_publicdomain(self):
+    def test_license_publicdomain(self):
         """/issue issues publicdomain licenses successfully."""
         self._issue('publicdomain')
 
-    def test_issue_license_recombo(self):
+    def test_license_recombo(self):
         """/issue issues recombo licenses successfully."""
         self._issue('recombo')
+
+    def test_publicdomain_failure(self): 
+        """publicdomain fails with certain answers."""
+        answers = '<answers><locale>en</locale><license-publicdomain>' + \
+                  '<commercial>y</commercial>' + \
+                  '<derivatives>y</derivatives>' + \
+                  '<jurisdiction></jurisdiction>' + \
+                  '</license-publicdomain></answers>'
+        res = self.app.get('/license/publicdomain/issue?answers=%s' % answers)
+        assert relax_validate(RELAX_ERROR, res.body)
+
+    def test_recombo_failure(self):
+        """recombo fails with certain answers."""
+        answers = '<answers><locale>en</locale><license-publicdomain>' + \
+                  '<commercial>y</commercial>' + \
+                  '<derivatives>y</derivatives>' + \
+                  '<jurisdiction></jurisdiction>' + \
+                  '</license-publicdomain></answers>'
+        res = self.app.get('/license/recombo/issue?answers=%s' % answers)
+        assert relax_validate(RELAX_ERROR, res.body)
 
 
 class TestLicenseGet(TestApi):
 
-    def test_get_invalid_class(self):
+    def test_invalid_class(self):
         """/get should return an error with an invalid class."""
         res = self.app.get('/license/%s/get' % hash(self))
         assert relax_validate(RELAX_ERROR, res.body)
 
-    def test_get_extra_args(self):
+    def test_ignore_extra_args(self):
         """Test /get ignores extra nonsense arguments."""
         for lclass in self.data.license_classes():
             for query_string in self.data.query_string_answers(lclass):
@@ -87,14 +107,14 @@ class TestLicenseGet(TestApi):
             print
             assert relax_validate(RELAX_ISSUE, res.body)
 
-    def test_get_license_standard(self):
+    def test_license_standard(self):
         """/get issues standard licenses successfully."""
         self._get('standard')
 
-    def test_get_license_publicdomain(self):
+    def test_license_publicdomain(self):
         """/get issues publicdomain licenses successfully."""
         self._get('publicdomain')
 
-    def test_get_license_recombo(self):
+    def test_license_recombo(self):
         """/get issues recombo licenses successfully."""
         self._get('recombo')
