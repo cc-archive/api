@@ -1,5 +1,6 @@
 
 import lxml
+import lxml.etree
 from StringIO import StringIO
 import os
 import operator
