@@ -24,3 +24,14 @@ class TestRoot(TestApi):
         res = self.app.get('/classes')
         assert relax_validate(RELAX_CLASSES, res.body)
 
+    def test_locales(self):
+        """Using locale values returns correct values."""
+        for locale in self.data.locales():
+            res = self.app.get('/?locale=%s' % locale)
+            assert relax_validate(RELAX_CLASSES, res.body)
+
+    def test_default_locale(self):
+        """Try default locale."""
+        default = self.app.get('/').body
+        explicit = self.app.get('/?locale=en').body
+        assert default == explicit
