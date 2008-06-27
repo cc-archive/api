@@ -26,24 +26,40 @@ class TestLicense(TestApi):
             res = self.app.get('/license/%s' % lclass)
             assert relax_validate(RELAX_LICENSECLASS, res.body)
 
+    def test_default_locale(self):
+        """/license default locale."""
+        for lclass in self.data.license_classes():
+            default = self.app.get('/license/%s' % lclass).body
+            explicit = self.app.get('/license/%s?locale=en' % lclass).body
+            assert default == explicit
+
+    def test_locales(self):
+        """Try each license class with different locales."""
+        for lclass in self.data.license_classes():
+            for locale in self.data.locales():
+                res = self.app.get('/license/%s?locale=%s' % (lclass, locale))
+                assert relax_validate(RELAX_LICENSECLASS, res.body)
+
 
 class TestLicenseIssue(TestApi):
+    """Tests for /license/<class>/issue. Called with HTTP POST."""
 
     def test_invalid_class(self):
         """/issue should return an error with an invalid class."""
-        res = self.app.get('/license/blarf/issue?answers=<foo/>')
+        res = self.app.post('/license/blarf/issue',
+                                params={'answers':'<foo/>'})
         assert relax_validate(RELAX_ERROR, res.body)
 
     def test_empty_answer_error(self):
         """Issue with no answers or empty answers should return an error."""
-        res = self.app.get('/license/blarf/issue?answers=<foo/>')
+        res = self.app.post('/license/blarf/issue')
         assert relax_validate(RELAX_ERROR, res.body)
 
     def _issue(self, lclass):
         """Common /issue testing code."""
         for answers in self.data.xml_answers(lclass):
-            res = self.app.get('/license/%s/issue?answers=%s' % 
-                                      (lclass, answers))
+            res = self.app.post('/license/%s/issue' % lclass,
+                                     params={'answers':answers})
             print 'lclass: %s' % lclass
             print 'answers: %s' % answers
             print
@@ -68,7 +84,8 @@ class TestLicenseIssue(TestApi):
                   '<derivatives>y</derivatives>' + \
                   '<jurisdiction></jurisdiction>' + \
                   '</license-publicdomain></answers>'
-        res = self.app.get('/license/publicdomain/issue?answers=%s' % answers)
+        res = self.app.post('/license/publicdomain/issue',
+                                params={'answers':answers})
         assert relax_validate(RELAX_ERROR, res.body)
 
     def test_recombo_failure(self):
@@ -78,7 +95,8 @@ class TestLicenseIssue(TestApi):
                   '<derivatives>y</derivatives>' + \
                   '<jurisdiction></jurisdiction>' + \
                   '</license-publicdomain></answers>'
-        res = self.app.get('/license/recombo/issue?answers=%s' % answers)
+        res = self.app.post('/license/recombo/issue',
+                                params={'answers':answers})
         assert relax_validate(RELAX_ERROR, res.body)
 
 
