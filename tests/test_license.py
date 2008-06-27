@@ -40,6 +40,19 @@ class TestLicense(TestApi):
                 res = self.app.get('/license/%s?locale=%s' % (lclass, locale))
                 assert relax_validate(RELAX_LICENSECLASS, res.body)
 
+    def test_identical_xml(self):
+        """Get and license return identical xml."""
+        for lclass in self.data.license_classes():
+            for answers, query_string in zip(
+                           self.data.xml_answers(lclass),
+                           self.data.query_string_answers(lclass)
+                           ):
+                issue = self.app.post('/license/%s/issue' % lclass,
+                                     params={'answers':answers})
+                get = self.app.get('/license/%s/get%s' %
+                                     (lclass, query_string))
+                assert get.body == issue.body
+
 
 class TestLicenseIssue(TestApi):
     """Tests for /license/<class>/issue. Called with HTTP POST."""
