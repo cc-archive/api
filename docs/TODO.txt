@@ -13,8 +13,6 @@
 * sample implementation(s)
 
 == Nose branch to-do ==
-* Get all ported tests to pass
-
 * Write new tests
 
 * Write tests for internationalization

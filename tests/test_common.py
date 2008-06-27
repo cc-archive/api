@@ -57,7 +57,12 @@ def relax_validate(schema_filename, instance_buffer):
 #####################
 class TestData:
     """Generates test data for use in exercising the CC API."""
-    # I just noticed that this class never touches the server.
+
+    def __init__(self):
+        """Configure app to query CC API. This is for using live,
+           rather than canned, data."""
+        cherrypy.config.update({ 'global' : { 'log.screen' : False, } })
+        self.app = webtest.TestApp(CFGSTR)
 
     def _permute(self, lists): #TODO: document function
         if lists:
@@ -86,20 +91,29 @@ class TestData:
             enums.append(('derivatives', ['y', 'sa', 'n']))
             return enums
 
-    def _get_locales(self):
-        """Return a list of supported locales."""
-        locales = [
-                    'en', # English
-                    'de', # German
-                    # 'he', # Hebrew TODO: fix html <span dir="rtl"> formatting
-                    'el', # Greek
-                  ]
+    def locales(self, canned=True):
+        """Return a list of supported locales.
+        Can return canned data, or the list of locales that
+        /locales returns."""
+        locales = None
+        if canned:
+            locales = [
+                        'en', # English
+                        'de', # German
+                        # 'he', # Hebrew TODO: fix html rtl formatting
+                        'el', # Greek
+                      ]
+        else:
+            res = app.get('/locales')
+            locale_doc = lxml.etree.parse(StringIO(res.body))
+            locales = [n for n in locale_doc.xpath('//locale/@id')
+                                              if n not in ('he',)]
         return locales
 
-    def params(self, lclass):
+    def params(self, lclass, canned=True):
         all_params = []
         all_answers = self._field_enums(lclass)
-        all_locales = self._get_locales()
+        all_locales = self.locales(canned)
         for ans_combo in self._permute([n[1] for n in all_answers]):
             for locale in all_locales:
                 params = zip([n[0] for n in all_answers], ans_combo)
