@@ -14,15 +14,35 @@ RELAX_ISSUE = os.path.join(RELAX_PATH, 'issue.relax.xml')
 ##################
 class TestDetails(TestApi):
 
+    def __init__(self):
+        self.uris = ('http://creativecommons.org/licenses/by-nc-nd/2.5/',
+                     'http://creativecommons.org/licenses/by-nc-sa/2.5/',
+                     'http://creativecommons.org/licenses/by-sa/2.5/',
+                     'http://creativecommons.org/licenses/by/2.0/nl/',
+                    )
+
     def test_license_details(self):
         """Test that the license details call responds appropriately."""
-        for uri in ('http://creativecommons.org/licenses/by-nc-nd/2.5/',
-                    'http://creativecommons.org/licenses/by-nc-sa/2.5/',
-                    'http://creativecommons.org/licenses/by-sa/2.5/',
-                    'http://creativecommons.org/licenses/by/2.0/nl/',
-                   ):
+        for uri in self.uris:
             res = self.app.get('/details?license-uri=%s' % uri)
             assert relax_validate(RELAX_ISSUE, res.body)
+
+    def test_license_details_post(self):
+        """License details accessible through POST also."""
+        for uri in self.uris:
+            res = self.app.post('/details', params={'license-uri':uri})
+            assert relax_validate(RELAX_ISSUE, res.body)
+
+    def test_invalid_params(self):
+        """Invalid parameters are ignored."""
+        res = self.app.post('/details',
+                              params={'license-uri':self.uris[0],
+                                      'foo':'bar'
+                                     })
+        assert relax_validate(RELAX_ISSUE, res.body)
+        res = self.app.get('/details?license-uri=%s&foo=bar' % self.uris[0])
+        assert relax_validate(RELAX_ISSUE, res.body)
+
 
 class TestDetailsErrors(TestApi):
 
