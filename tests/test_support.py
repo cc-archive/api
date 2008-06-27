@@ -11,18 +11,19 @@ RELAX_OPTIONS = os.path.join(RELAX_PATH, 'options.relax.xml')
 ##################
 ## Test classes ##
 ##################
-class TestChooser(TestApi):
+class TestSupport(TestApi):
 
-    def test_simple_chooser(self):
-        """/simple/chooser served properly."""
-        res = self.app.get('/simple/chooser') 
-        body = '<root>' + res.body + '</root>' # b/c it's not valid xml
+    def test_support_jurisdictions(self):
+        """/support/jurisdictions served properly."""
+        res = self.app.get('/support/jurisdictions') 
+        body = res.body.replace('&', '&amp;') # makes the xml parser choke
+        body = '<root>' + body + '</root>' # b/c it's not valid xml
         assert relax_validate(RELAX_OPTIONS, body)
 
     def test_javascript(self):
-        """Test javascript wrapper over /simple/chooser."""
-        res = self.app.get('/simple/chooser')
-        jsres = self.app.get('/simple/chooser.js')
+        """Test javascript wrapper over /support/jurisdictions."""
+        res = self.app.get('/support/jurisdictions')
+        jsres = self.app.get('/support/jurisdictions.js')
         opts = res.body.strip().split('\n')
         jsopts = jsres.body.strip().split('\n')
         assert len(opts) == len(jsopts)
