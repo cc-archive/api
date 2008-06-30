@@ -7,6 +7,7 @@ from tests.test_common import *
 ## Path constants ##
 ####################
 RELAX_OPTIONS = os.path.join(RELAX_PATH, 'options.relax.xml')
+RELAX_SELECT = os.path.join(RELAX_PATH, 'select.relax.xml')
 
 ##################
 ## Test classes ##
@@ -34,3 +35,18 @@ class TestSupport(TestApi):
         res = self.app.get('/support/jurisdictions?foo=bar')
         body = self.makexml(res.body)
         assert relax_validate(RELAX_OPTIONS, body)
+
+    ''' NOTE: locale el causes server error; fix in next implementation
+    def test_locale(self):
+        """Test locale parameter."""
+        for locale in self.data.locales():
+            res = self.app.get('/support/jurisdictions?locale=%s' % locale)
+            body = self.makexml(res.body)
+            assert relax_validate(RELAX_OPTIONS, body)
+    '''
+
+    def test_select(self):
+        """Test select parameter."""
+        res = self.app.get('/support/jurisdictions?select=foo')
+        body = res.body.replace('&', '&amp;')
+        assert relax_validate(RELAX_SELECT, body)
