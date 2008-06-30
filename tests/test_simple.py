@@ -63,3 +63,9 @@ class TestChooser(TestApi):
         """Test select parameter."""
         res = self.app.get('/simple/chooser?select=foo')
         assert relax_validate(RELAX_SELECT, res.body)
+
+    def test_unknown_locale(self):
+        """Test unknown locale falls back to default."""
+        unknown = self.app.get('/simple/chooser?locale=foo').body
+        default = self.app.get('/simple/chooser?locale=en').body
+        assert unknown == default
