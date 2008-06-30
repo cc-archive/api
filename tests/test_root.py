@@ -35,3 +35,8 @@ class TestRoot(TestApi):
         default = self.app.get('/').body
         explicit = self.app.get('/?locale=en').body
         assert default == explicit
+
+    def test_extra_args(self):
+        """Extra arguments are ignored."""
+        res = self.app.get('/?foo=bar')
+        assert relax_validate(RELAX_CLASSES, res.body)
