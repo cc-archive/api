@@ -16,7 +16,7 @@ class TestChooser(TestApi):
     def test_simple_chooser(self):
         """/simple/chooser served properly."""
         res = self.app.get('/simple/chooser') 
-        body = '<root>' + res.body + '</root>' # b/c it's not valid xml
+        body = self.makexml(res.body)
         assert relax_validate(RELAX_OPTIONS, body)
 
     def test_javascript(self):
@@ -28,3 +28,16 @@ class TestChooser(TestApi):
         assert len(opts) == len(jsopts)
         for i in range(len(opts)):
             assert "document.write('%s');" % opts[i] == jsopts[i]
+
+    def test_ignore_extra_args(self):
+        """Extra arguments are ignored."""
+        res = self.app.get('/simple/chooser?foo=bar')
+        body = self.makexml(res.body)
+        assert relax_validate(RELAX_OPTIONS, body)
+
+    def test_exclude(self):
+        """Test exclude parameter."""
+        for s in ('nc','by','sa','nd'):
+            res = self.app.get('/simple/chooser?exclude=%s' % s)
+            body = self.makexml(res.body)
+            assert relax_validate(RELAX_OPTIONS, body)

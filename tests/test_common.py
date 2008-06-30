@@ -166,3 +166,11 @@ class TestApi:
         """Test fixture for nosetests:
            - tears down the WSGI app server"""
         cherrypy.engine.exit()
+
+    def makexml(self, bodystr):
+        """Wraps text in a root element and escapes some special characters
+           so as to make non-conforming HTML into XML."""
+        retval = bodystr.replace('&', '&amp;') # makes the xml parser choke
+        retval = '<root>' + retval + '</root>' # b/c it's not valid xml
+        return retval
+

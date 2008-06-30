@@ -16,8 +16,7 @@ class TestSupport(TestApi):
     def test_support_jurisdictions(self):
         """/support/jurisdictions served properly."""
         res = self.app.get('/support/jurisdictions') 
-        body = res.body.replace('&', '&amp;') # makes the xml parser choke
-        body = '<root>' + body + '</root>' # b/c it's not valid xml
+        body = self.makexml(res.body)
         assert relax_validate(RELAX_OPTIONS, body)
 
     def test_javascript(self):
@@ -29,3 +28,9 @@ class TestSupport(TestApi):
         assert len(opts) == len(jsopts)
         for i in range(len(opts)):
             assert "document.write('%s');" % opts[i] == jsopts[i]
+
+    def test_ignore_extra_args(self):
+        """Extra arguments are ignored."""
+        res = self.app.get('/support/jurisdictions?foo=bar')
+        body = self.makexml(res.body)
+        assert relax_validate(RELAX_OPTIONS, body)
