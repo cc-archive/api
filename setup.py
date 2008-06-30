@@ -42,6 +42,7 @@ setup(
 
     entry_points = { 'console_scripts':
                      ['server = rest_api:serveapi',
+                      'coverage = tools:analyze_coverage',
                       ],
                      'paste.app_factory':
                      ['rest_api=rest_api:app_factory',
