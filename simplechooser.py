@@ -72,7 +72,6 @@ class SimpleChooser(object):
             '//licenseclass[@id="standard"]/license/jurisdiction[@id="%s"]/'
             'version/@id' % jurisdiction)
 
-        print juris_versions
         if version is not None:
             # a particular version was requested; make sure this is a valid
             # version for this jurisdiction
@@ -80,8 +79,6 @@ class SimpleChooser(object):
                 curr_version = str(version).strip()
         else:
             curr_version = max(juris_versions)
-        
-        print curr_version
 
         # get the list of licenses for the specified domain
         domain_licenses = all_licenses.xpath(
@@ -91,7 +88,6 @@ class SimpleChooser(object):
             '//licenseclass[@id="publicdomain"]/license/jurisdiction[@id="-"]/'
             'version[@id="-"]/@uri')
 
-        print domain_licenses
         # get the latest version of each license found
         licenses = []
         for l in domain_licenses:

@@ -222,11 +222,9 @@ def app_factory(*args):
     cherrypy.tree.mount(supportapi.SupportApi(), "/support")
 
     cherrypy.engine.autoreload_match = None
-    cherrypy.engine.start(blocking=False)
+    cherrypy.engine.start()
     
     return cherrypy.tree
 
 if __name__ == '__main__':
     serveapi()
-
-

@@ -33,12 +33,19 @@ setup(
                         'utidylib',
                         'zdaemon',
                         'Babel',
+                        'pylons',
+                        'WebTest',
+                        'Routes',
+                        'coverage',
                         ],
     dependency_links=['http://cctools.svn.sourceforge.net/svnroot/cctools/vendorlibs/utidylib/#egg=utidylib-0.2-cvs',],
 
     entry_points = { 'console_scripts':
                      ['server = rest_api:serveapi',
-                      'test = tests.test:runTests',
+                      'coverage = tools:analyze_coverage',
+                      ],
+                     'paste.app_factory':
+                     ['rest_api=rest_api:app_factory',
                       ],
                      },
 

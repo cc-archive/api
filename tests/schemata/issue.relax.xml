@@ -32,7 +32,7 @@
                       <optional>
                         <element name="img">
                           <group>
-                            <attribute name="border">
+                            <attribute name="style">
                               <text/>
                             </attribute>
                             <attribute name="alt">
@@ -52,6 +52,21 @@
               <element name="br">
                 <empty/>
               </element>
+              <interleave>
+                <optional>
+                  <element name="span">
+                    <group>
+                      <attribute name="href">
+                        <text/>
+                      </attribute>
+                      <attribute name="rel">
+                        <text/>
+                      </attribute>
+                    </group>
+                    <text/>
+                  </element>
+                </optional>
+              </interleave>
             </interleave>
             <text/>
           </interleave>
@@ -63,7 +78,7 @@
     <element ns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" name="RDF">
       <group>
         <optional>
-          <element ns="http://web.resource.org/cc/" name="Work">
+          <element ns="http://creativecommons.org/ns#" name="Work">
             <attribute ns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" name="about">
               <text/>
             </attribute>
@@ -119,7 +134,7 @@
             </interleave>
           </element>
         </optional>
-        <element ns="http://web.resource.org/cc/" name="License">
+        <element ns="http://creativecommons.org/ns#" name="License">
           <group>
             <attribute ns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" name="about">
               <text/>
@@ -141,6 +156,13 @@
               </zeroOrMore>
               <zeroOrMore>
                 <element name="permits">
+                  <attribute ns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" name="resource">
+                    <text/>
+                  </attribute>
+                </element>
+              </zeroOrMore>
+              <zeroOrMore>
+                <element ns="http://www.w3.org/2000/01/rdf-schema#" name="subClassOf">
                   <attribute ns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" name="resource">
                     <text/>
                   </attribute>
