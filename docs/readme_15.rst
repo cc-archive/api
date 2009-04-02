@@ -1,9 +1,6 @@
-=======================
-api.creativecommons.org
-=======================
----------------------------------
-CC Web Services Documentation
----------------------------------
+-------------------------
+Version 1.5 Documentation
+-------------------------
 
  :Author: Nathan R. Yergler
  :Version: 1.5

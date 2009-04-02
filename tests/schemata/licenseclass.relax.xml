@@ -28,6 +28,12 @@
 	    <attribute name="xml:lang" />
 	    <text/>
 	  </element>
+	  <zeroOrMore>
+	    <element name="description">
+	      <attribute name="xml:lang" />
+	      <text/>
+	    </element>
+	  </zeroOrMore>
 	</element>
       </zeroOrMore>
 
