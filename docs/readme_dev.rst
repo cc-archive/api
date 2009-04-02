@@ -6,7 +6,7 @@ CC Web Services Documentation
 ---------------------------------
 
  :Author: Nathan R. Yergler
- :Version: 2.0-candidate (CVS HEAD)
+ :Version: Development
  :Updated: $Date$
 
 .. contents:: Document Index
@@ -32,6 +32,9 @@ Changes Since 1.5
   * /support/jurisdictions
       The ``language`` parameter is no longer supported; use ``locale`` 
       instead.
+  * /license/[class]/
+      License questions for a class may now include <description>s for
+      enumeration items.
 
 Access Method
 =============
@@ -114,12 +117,15 @@ Valid Calls
      <type>enum</type>
      <enum id="y">
        <label xml:lang="en">Yes</label>
+       <description xml:lang="en">...</description>
      </enum>
      <enum id="sa">
        <label xml:lang="en">ShareAlike</label>
+       <description xml:lang="en">...</description>
      </enum>
      <enum id="n">
        <label xml:lang="en">No</label>
+       <description xml:lang="en">...</description>
      </enum>
     </field>
     <field id="jurisdiction">
@@ -136,9 +142,12 @@ Valid Calls
    </licenseclass>
 
 
-  Note that a given field or enum element may have more than one label, so long as they
-  have unique xml:lang attributes.  Future language translations may be added at any time
-  in the future without breaking 1.0 compatibility.
+  Note that a given field or enum element may have more than one
+  label, so long as they have unique xml:lang attributes.  Future
+  language translations may be added at any time in the future without
+  breaking 1.0 compatibility.
+
+  
 
 /license/<class>/issue
 ~~~~~~~~~~~~~~~~~~~~~~
