@@ -9,6 +9,7 @@ import lxml.etree
 import support
 import api_exceptions
 import simplechooser
+import chainedchooser
 import supportapi
 
 class LicenseClass:
@@ -208,10 +209,11 @@ def serveapi():
     # mount the applications
     cherrypy.tree.mount(RestApi())
     cherrypy.tree.mount(simplechooser.SimpleChooser(), "/simple")
+    cherrypy.tree.mount(chainedchooser.ChainedChooser(), "/chained")
     cherrypy.tree.mount(supportapi.SupportApi(), "/support")
 
     # start the server and engine
-    cherrypy.server.quickstart()
+    cherrypy.server.start()
     cherrypy.engine.start()
 
 def app_factory(*args):

@@ -29,7 +29,6 @@ setup(
     install_requires = ['setuptools',
                         'CherryPy',
                         'lxml',
-                        'ctypes', 
                         'utidylib',
                         'zdaemon',
                         'Babel',

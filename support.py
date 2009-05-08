@@ -4,7 +4,8 @@ from StringIO import StringIO
 import traceback
 
 import lxml.etree
-import tidy
+import tidylib
+
 #from cherrypy.lib.filter.basefilter import BaseFilter
 
 import api_exceptions
