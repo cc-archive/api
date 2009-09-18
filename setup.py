@@ -18,7 +18,22 @@
 ## FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 ## DEALINGS IN THE SOFTWARE.
 
+import sys
 from setuptools import setup, find_packages
+
+requirements = ['setuptools',
+                'CherryPy',
+                'lxml',
+                'utidylib',
+                'zdaemon',
+                'Babel',
+                'pylons',
+                'WebTest',
+                'Routes',
+                'coverage',]
+
+if sys.version_info < (2, 6):
+    requirements.append('ctypes')
 
 setup(
     name = "cc.api",
@@ -26,18 +41,7 @@ setup(
     packages = find_packages('.'),
 
     # scripts and dependencies
-    install_requires = ['setuptools',
-                        'CherryPy',
-                        'lxml',
-                        'ctypes', 
-                        'utidylib',
-                        'zdaemon',
-                        'Babel',
-                        'pylons',
-                        'WebTest',
-                        'Routes',
-                        'coverage',
-                        ],
+    install_requires = requirements,
 
     entry_points = { 'console_scripts':
                      ['server = rest_api:serveapi',
