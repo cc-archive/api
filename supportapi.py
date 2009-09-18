@@ -9,6 +9,7 @@ from babel.messages.pofile import read_po
 import cherrypy
 import cherrypy._cperror as cperror
 import lxml.etree 
+import cgi
 
 import support
 
@@ -84,7 +85,7 @@ class SupportApi(object):
                 country = country_id
             
             jurisdictions[country] = u'<option value="%s">%s</option>\n' % (
-                j_url, country)
+                j_url, cgi.escape(country))
 
         # sort the list and yield each item
         keys = jurisdictions.keys()

@@ -6,6 +6,7 @@ import cherrypy._cperror as cperror
 import lxml.etree 
 
 import support
+import cgi
 
 class SimpleChooser(object):
 
@@ -40,7 +41,7 @@ class SimpleChooser(object):
             language = language, exclude=exclude, version=version)
 
         for l in licenses:
-            yield('<option value="%s">%s</option>\n' % l)
+            yield('<option value="%s">%s</option>\n' % cgi.escape(l))
 
         if select:
             yield('</select>')
