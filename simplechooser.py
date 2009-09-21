@@ -41,7 +41,7 @@ class SimpleChooser(object):
             language = language, exclude=exclude, version=version)
 
         for l in licenses:
-            yield('<option value="%s">%s</option>\n' % cgi.escape(l))
+            yield('<option value="%s">%s</option>\n' % (l[0], cgi.escape(l[1])))
 
         if select:
             yield('</select>')
