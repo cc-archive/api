@@ -262,8 +262,7 @@ def issue_CC0(ctxt):
         actor_href = ctxt.findtext('work-info/work-url') or '',
         name = ctxt.findtext('work-info/creator') or '')
 
-    locale = ctxt.findtext('locale') or 'en'
-    country = '_' in locale and locale.split('_')[1] or ''
+    locale = ctxt.findtext('locale') or 'en_US'
 
     # pointers that the subprocess will set
     cc0_rdf =  Array('c', 750) 
@@ -271,7 +270,7 @@ def issue_CC0(ctxt):
 
     """ This api call brought to you by Python 2.6's multiprocessing module."""
     def cc_license_api_process (rdf_string, rdfa_string,
-                                work_info, locale, country):
+                                work_info, locale):
 
         # dire solution
         import cc.license
@@ -281,12 +280,11 @@ def issue_CC0(ctxt):
         
         # set the shared variables
         rdf_string.value = cc0.rdf
-        rdfa_string.value = formatter.format(cc0, work_info,
-                                             locale, country)
+        rdfa_string.value = formatter.format(cc0, work_info, locale)
 
     # create and join a new subprocess
     p = Process(target=cc_license_api_process,
-                args=(cc0_rdf, cc0_rdfa, work_dict, locale, country))
+                args=(cc0_rdf, cc0_rdfa, work_dict, locale))
     # start and wait for cc.license
     p.start()
     p.join()
