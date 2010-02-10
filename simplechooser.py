@@ -106,6 +106,12 @@ class SimpleChooser(object):
         # sort the license list
         licenses.sort(key=lambda x: x[0].split('/')[x[0].split('/').index('licenses') + 1],)
 
+        if 'zero' not in exclude:
+            # tag along CC0
+            licenses.append((
+                'http://creativecommons.org/publicdomain/zero/1.0/',
+                'CC0'))
+        
         # return a sequence of two-tuples: (uri, name)
         return licenses
 

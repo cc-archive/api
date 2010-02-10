@@ -9,6 +9,11 @@ import tidy
 
 import api_exceptions
 
+
+#import cc.license
+from multiprocessing import Process, Array
+from copy import deepcopy
+
 DATA_DIR = os.path.join( os.path.dirname(os.path.abspath(__file__)),
                          'license_xsl')
 
@@ -197,6 +202,98 @@ def validateAnswers(answers_xml):
     # all tests pass -- return the XML document (which we may have twiddled)
     return answers_doc
 
+
+def buildResultsTree(rdf_string=None, rdfa_string=None):
+
+    results = lxml.etree.XML('<result></result>')
+
+    if rdf_string is None or rdfa_string is None:
+        return results
+    
+    rdf_tree = lxml.etree.parse(StringIO(rdf_string))
+    rdfa_tree = lxml.etree.parse(StringIO(rdfa_string))
+    
+    # form an element tree to return to issue()
+    lxml.etree.SubElement(results, 'license-uri').text = \
+                    'http://creativecommons.org/publicdomain/zero/1.0/'
+    lxml.etree.SubElement(results, 'license-name').text = 'CC0'
+
+    # deprecated, but still needs to be supported
+    rdf_segment = deepcopy(rdf_tree) # rdf_tree is mutable
+    # an <rdf> tree with an empty <Work> tree and the rdfa as children
+    rdf_segment.getroot().insert(0, lxml.etree.Element('Work') )
+    lxml.etree.SubElement(results, 'rdf').append( rdf_segment.getroot() )
+
+    # append the results from the cc.license formatter
+    lxml.etree.SubElement(results, 'licenserdf').append( rdf_tree.getroot() )
+    lxml.etree.SubElement(results, 'html').append( rdfa_tree.getroot() )
+
+    return results
+
+def issue_CC0(ctxt):
+    """
+    !!!HackYikeS!!!
+
+    CC0 in the license_xsl based api was hackish from the forefront
+    and this routine is no exception.
+
+    When a CC0 license is requested, rather than relying on license_xsl to
+    tranform the answers, instead the more up-to-date cc.license API is used
+    to represent the license in RDF and HTML+RDFa formats.
+
+    Because librdf and lxml both utilize libxml2, there is a unavoidable
+    error that will occur on the lxml side whenever librdf is imported into
+    the same Python thread. This is due to a global lock that is placed on
+    libxml2 made during the rdflib negotiations with the libxml2 library.
+
+    To avoid this lock, rdflib must be imported in a seperate process, so that
+    the XSLT transformations in issue() may succeed. This is approach is far
+    from ideal, but it works and until the REST api is moved to an RDF backend,
+    this will need to make do.
+
+    """
+
+    if not ctxt.findall('license-zero'):
+        return buildResultsTree() # returns an empty results etree
+    
+     # prepare the paramters for the cc.license formatter
+    work_dict = dict(
+        work_title = ctxt.findtext('work-info/title') or '',
+        actor_href = ctxt.findtext('work-info/work-url') or '',
+        name = ctxt.findtext('work-info/creator') or '')
+
+    locale = ctxt.findtext('locale') or 'en'
+    country = '_' in locale and locale.split('_')[1] or ''
+
+    # pointers that the subprocess will set
+    cc0_rdf =  Array('c', 750) 
+    cc0_rdfa = Array('c', 750)
+
+    """ This api call brought to you by Python 2.6's multiprocessing module."""
+    def cc_license_api_process (rdf_string, rdfa_string,
+                                work_info, locale, country):
+
+        # dire solution
+        import cc.license
+
+        cc0 = cc.license.by_code('CC0') 
+        formatter = cc.license.formatters.classes.CC0HTMLFormatter()
+        
+        # set the shared variables
+        rdf_string.value = cc0.rdf
+        rdfa_string.value = formatter.format(cc0, work_info,
+                                             locale, country)
+
+    # create and join a new subprocess
+    p = Process(target=cc_license_api_process,
+                args=(cc0_rdf, cc0_rdfa, work_dict, locale, country))
+    # start and wait for cc.license
+    p.start()
+    p.join()
+
+    # pass along the information to be constructed into an ETree
+    return buildResultsTree(cc0_rdf.value, cc0_rdfa.value)
+        
 def issue(answers_xml):
 
     # validate the answers
@@ -206,23 +303,16 @@ def issue(answers_xml):
     ctxt = validateAnswers(answers_xml) # lxml.etree.parse(StringIO(answers_xml)) 
 
     # apply the xslt transform
-    transform = lxml.etree.XSLT(
-        lxml.etree.parse(XSLT_SOURCE)
-        )
+    transform = lxml.etree.XSLT(lxml.etree.parse(XSLT_SOURCE))
 
     result = transform.apply(ctxt)
 
+    if result.getroot() == None:
+        # give CC0 a whack
+        return lxml.etree.tostring(issue_CC0(ctxt))
+    
     # return the transformed document, after passing it through tidy
     return transform.tostring(result)
-
-    try:
-        return str(tidy.parseString(transform.tostring(result),
-                                output_xml=1, input_xml=1, tidy_mark=0, indent=1))
-    except:
-        # if something goes wrong with Tidy, just return the version with 
-        # the fucked img tag
-        return transform.tostring(result)
-
 
 def license_details(license_uri, locale='en'):
     """Return an XML element which roots the information
@@ -264,7 +354,7 @@ def actualLocale(locale):
 def actualJurisdiction(jurisdiction, default='-'):
     """Check if the specified jurisdiction is actually supported; if it
     is, return it unchanged.  Otherwise return the [default] value."""
-
+    
     if jurisdiction in valid_jurisdictions():
         return jurisdiction
 

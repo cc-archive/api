@@ -142,6 +142,10 @@ class RestApi:
 
         license_uri = kwargs['license-uri']
 
+        if license_uri == 'http://creativecommons.org/publicdomain/zero/1.0' or \
+           license_uri == 'http://creativecommons.org/publicdomain/zero/1.0/':
+            return LicenseClass('zero').issue('<answers><license-zero/></answers>')
+        
         # make sure this is a valid license URI
         if not(self.validLicense(license_uri)):
             # not a valid license URI --
