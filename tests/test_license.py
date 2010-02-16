@@ -48,7 +48,7 @@ class TestLicense(TestApi):
                            self.data.query_string_answers(lclass)
                            ):
                 issue = self.app.post('/license/%s/issue' % lclass,
-                                     params={'answers':answers}).body
+                                      params={'answers':answers}).body
                 get = self.app.get('/license/%s/get%s' %
                                      (lclass, query_string)).body
                 assert get == issue
@@ -106,6 +106,10 @@ class TestLicenseIssue(TestApi):
     def test_license_publicdomain(self):
         """/issue issues publicdomain licenses successfully."""
         self._issue('publicdomain')
+
+    def test_license_zero(self):
+        """/issue issues zero licenses successfully."""
+        self._issue('zero')
 
     def test_license_recombo(self):
         """/issue issues recombo licenses successfully."""
@@ -170,3 +174,7 @@ class TestLicenseGet(TestApi):
     def test_license_recombo(self):
         """/get issues recombo licenses successfully."""
         self._get('recombo')
+
+    def test_license_zero(self):
+        """/get issues recombo licenses successfully."""
+        self._get('zero')

@@ -78,13 +78,13 @@ class TestData:
         return result
 
     def license_classes(self):
-        return ['standard', 'publicdomain', 'recombo']
+        return ['standard', 'publicdomain', 'recombo', 'zero']
 
     def _field_enums(self, lclass):
         """Retrieve the license information for this class, and generate 
            a set of answers for use with testing."""
         enums = [('jurisdiction', ['', 'us', 'de', 'uk'])]
-        if lclass == 'publicdomain' or lclass == 'recombo':
+        if lclass in ['publicdomain', 'recombo', 'zero']:
             return enums
         else:
             enums.append(('commercial', ['y', 'n']))
