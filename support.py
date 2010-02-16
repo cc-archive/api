@@ -220,8 +220,14 @@ def buildResultsTree(rdf_string=None, rdfa_string=None):
 
     # deprecated, but still needs to be supported
     rdf_segment = deepcopy(rdf_tree) # rdf_tree is mutable
-    # an <rdf> tree with an empty <Work> tree and the rdfa as children
+
     rdf_segment.getroot().insert(0, lxml.etree.Element('Work') )
+    rdf_segment.getroot()[0].set("{http://www.w3.org/1999/02/22-rdf-syntax-ns#}about", "")
+    license_element = lxml.etree.Element('license')                      
+    license_element.set("{http://www.w3.org/1999/02/22-rdf-syntax-ns#}resource",
+                        'http://creativecommons.org/publicdomain/zero/1.0/')
+    rdf_segment.getroot()[0].append(license_element)
+    
     lxml.etree.SubElement(results, 'rdf').append( rdf_segment.getroot() )
 
     # append the results from the cc.license formatter
