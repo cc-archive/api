@@ -15,8 +15,16 @@
           <ref name="d1_RDF"/>
         </element>
         <element name="html">
-          <interleave>
-            <interleave>
+            <choice> 
+              <ref name="standard" />
+              <ref name="zero" />
+            </choice>
+        </element>
+      </group>
+    </element>
+  </start>
+              
+            <define name="badge_html" combine="interleave">
               <oneOrMore>
                 <element name="a">
                   <group>
@@ -27,14 +35,24 @@
                       <attribute name="href">
                         <text/>
                       </attribute>
+                      <optional>
+                        <attribute name="style">
+                          <text />
+                        </attribute>
+                      </optional>
                     </group>
                     <interleave>
                       <optional>
                         <element name="img">
                           <group>
-                            <attribute name="style">
-                              <text/>
-                            </attribute>
+                            <choice>
+                              <attribute name="style">
+                                <text/>
+                              </attribute>
+                              <attribute name="border">
+                                <text/>
+                              </attribute>
+                            </choice>
                             <attribute name="alt">
                               <text/>
                             </attribute>
@@ -49,10 +67,17 @@
                   </group>
                 </element>
               </oneOrMore>
-              <element name="br">
-                <empty/>
-              </element>
+            </define>
+            
+            <define name="standard">
               <interleave>
+                
+                <ref name="badge_html" />
+
+                <element name="br">
+                  <empty/>
+                </element>
+
                 <optional>
                   <element name="span">
                     <group>
@@ -66,14 +91,41 @@
                     <text/>
                   </element>
                 </optional>
+
+                <text />
+
               </interleave>
-            </interleave>
-            <text/>
-          </interleave>
-        </element>
-      </group>
-    </element>
-  </start>
+            </define>
+
+            <define name="zero">
+              <element name="p">
+                  
+                <ref name="badge_html" />
+
+                <element name="br">
+                  <empty/>
+                </element>
+
+                <text />
+                
+                <element name="span">
+                  <attribute name="rel">
+                    <text />
+                  </attribute>
+                  <attribute name="resource">
+                    <text />
+                  </attribute>
+                  <text />
+                </element>
+
+                <text />
+                  
+              </element>
+            </define>
+
+
+
+
   <define name="d1_RDF">
     <element ns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" name="RDF">
       <group>
