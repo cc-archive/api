@@ -17,7 +17,7 @@ class LicenseClass:
 
     @cherrypy.expose
     def index(self, locale='en', **kwargs):
-
+        
         # determine our actual functional locale
         locale = support.actualLocale(locale)
         
@@ -27,10 +27,22 @@ class LicenseClass:
         if len(license) > 0:
             self.license = license[0]
 	    
-	    # filter out the label and description tags for the
+            # filter out the label and description tags for the
             # specified locale; fall back to English if a string isn't
             # localized
+
+            from copy import deepcopy
+            # store clones of the english strings to be used as fallbacks after prune
+            en_label = deepcopy(license[0].xpath("label[@xml:lang='en']"))
+            en_description = deepcopy(license[0].xpath("description[@xml:lang='en']"))
+
             support.pruneLocale(license[0], locale)
+
+            if not license[0].xpath("label") and en_label:
+                license[0].insert(0, en_label[0])
+            if not license[0].xpath("description") and en_description:
+                license[0].insert(1, en_description[0])
+            
             return lxml.etree.tostring(license[0])
         else:
             return support.xmlError('invalidclass', 'Invalid License Class.')
@@ -93,7 +105,7 @@ class Licenses:
 class RestApi:
     @cherrypy.expose
     def index(self, locale='en', **kwargs):
-
+        
         # determine our actual functional locale
         locale = support.actualLocale(locale)
         
