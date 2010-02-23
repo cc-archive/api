@@ -1,12 +1,9 @@
-=======================
-api.creativecommons.org
-=======================
 ---------------------------------
-CC Web Services Documentation
+Development Version Documentation
 ---------------------------------
 
  :Author: Nathan R. Yergler
- :Version: 2.0-candidate (CVS HEAD)
+ :Version: Development
  :Updated: $Date$
 
 .. contents:: Document Index
@@ -32,6 +29,9 @@ Changes Since 1.5
   * /support/jurisdictions
       The ``language`` parameter is no longer supported; use ``locale`` 
       instead.
+  * /license/[class]/
+      License questions for a class may now include <description>s for
+      enumeration items.
 
 Access Method
 =============
@@ -64,7 +64,7 @@ Valid Calls
 
   Returns an XML document describing the available license classes.  A license class
   is a "family" of licenses.  Current classes are standard (basic CC licenses), 
-  publicdomain, and recombo (the Sampling licenses).  
+  publicdomain, zero (CC0 waiver), and recombo (the Sampling licenses).  
   Classes may be added at any time in the future without
   breaking 1.0 compatibility.
 
@@ -73,6 +73,7 @@ Valid Calls
      <licenses>
        <license id="standard">Creative Commons</license>
        <license id="publicdomain">Public Domain</license>
+       <license id="zero">CC0</license>
        <license id="recombo">Sampling</license>
      </licenses>
 
@@ -114,12 +115,15 @@ Valid Calls
      <type>enum</type>
      <enum id="y">
        <label xml:lang="en">Yes</label>
+       <description xml:lang="en">...</description>
      </enum>
      <enum id="sa">
        <label xml:lang="en">ShareAlike</label>
+       <description xml:lang="en">...</description>
      </enum>
      <enum id="n">
        <label xml:lang="en">No</label>
+       <description xml:lang="en">...</description>
      </enum>
     </field>
     <field id="jurisdiction">
@@ -136,9 +140,12 @@ Valid Calls
    </licenseclass>
 
 
-  Note that a given field or enum element may have more than one label, so long as they
-  have unique xml:lang attributes.  Future language translations may be added at any time
-  in the future without breaking 1.0 compatibility.
+  Note that a given field or enum element may have more than one
+  label, so long as they have unique xml:lang attributes.  Future
+  language translations may be added at any time in the future without
+  breaking 1.0 compatibility.
+
+  
 
 /license/<class>/issue
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -238,49 +245,46 @@ Extended Metadata
 License return format
 ---------------------
 
-  The issue method uses the chooselicense.xsl document to generate the 
-  resulting XML 
-  document.  The result of this sample call would be an XML document, such as::
+  The issue method uses the chooselicense.xsl document to generate the
+  resulting XML document.  The result of this sample call would be an
+  XML document, such as::
 
-    <?xml version="1.0"?>
-
+    <?xml version="1.0" encoding="utf-8"?>
     <result>
-      <license-uri>http://creativecommons.org/licenses/by/2.0/Generic/</license-uri>
-      <license-name>Attribution 2.0</license-name>
-      <rdf>
-        <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/">
-          <Work rdf:about="">
-            <license rdf:resource="http://creativecommons.org/licenses/by/2.0/Generic/"/>
-          </Work>
-          <License rdf:about="http://creativecommons.org/licenses/by/2.0/Generic/">
-            <permits rdf:resource="http://web.resource.org/cc/Reproduction"/>
-            <permits rdf:resource="http://web.resource.org/cc/Distribution"/>
-            <requires rdf:resource="http://web.resource.org/cc/Notice"/>
-            <requires rdf:resource="http://web.resource.org/cc/Attribution"/>
-            <permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>
-          </License>
-        </rdf:RDF>
-      </rdf>
-      <licenserdf>
-        <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/">
-          <License rdf:about="http://creativecommons.org/licenses/by/2.0/Generic/">
-            <permits rdf:resource="http://web.resource.org/cc/Reproduction"/>
-            <permits rdf:resource="http://web.resource.org/cc/Distribution"/>
-            <requires rdf:resource="http://web.resource.org/cc/Notice"/>
-            <requires rdf:resource="http://web.resource.org/cc/Attribution"/>
-            <permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>
-          </License>
-        </rdf:RDF>
-      </licenserdf>
-      <html><!--Creative Commons License-->
-          <a rel="license" href="http://creativecommons.org/licenses/by/2.0/Generic/">
-          <img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights20.gif"/></a><br/>
-		This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/2.0/Generic/">Creative Commons License</a>.
-		<!--/Creative Commons License--><!-- <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/"><Work rdf:about=""><license rdf:resource="http://creativecommons.org/licenses/by/2.0/Generic/"/></Work><License rdf:about="http://creativecommons.org/licenses/by/2.0/Generic/"><permits rdf:resource="http://web.resource.org/cc/Reproduction"/><permits rdf:resource="http://web.resource.org/cc/Distribution"/><requires rdf:resource="http://web.resource.org/cc/Notice"/><requires rdf:resource="http://web.resource.org/cc/Attribution"/><permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/></License></rdf:RDF> --></html>
+     <license-uri>http://creativecommons.org/licenses/by/3.0/us/</license-uri>
+     <license-name>Attribution 3.0 United States</license-name>
+     <rdf>
+       <rdf:RDF xmlns="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+        <Work rdf:about="">
+         <license rdf:resource="http://creativecommons.org/licenses/by/3.0/us/"/>
+        </Work>
+
+        <License rdf:about="http://creativecommons.org/licenses/by/3.0/us/">
+         <permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+         <permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+         <requires rdf:resource="http://creativecommons.org/ns#Notice"/>
+         <requires rdf:resource="http://creativecommons.org/ns#Attribution"/>
+         <permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+        </License>
+       </rdf:RDF>
+     </rdf>
+     <licenserdf>
+      <rdf:RDF xmlns="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+       <License rdf:about="http://creativecommons.org/licenses/by/3.0/us/">
+         <permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+         <permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+         <requires rdf:resource="http://creativecommons.org/ns#Notice"/>
+         <requires rdf:resource="http://creativecommons.org/ns#Attribution"/>
+         <permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+       </License>
+      </rdf:RDF>
+     </licenserdf>
+     <html><a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/us/88x31.png"/></a><br/>This <span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/" rel="dc:type">work</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons Attribution 3.0 United States License</a>.</html>
     </result>
-        
-  Note the <html> element contains the entire RDF-in-comment which the standard CC license
-  engine returns.
+
+  Note the ``<html>`` element contains the HTML as generated by the
+  `CC License Chooser <http://creativecommons.org/license/>`_,
+  including machine readable RDFa.
 
 /license/<class>/get?
 ~~~~~~~~~~~~~~~~~~~~~
