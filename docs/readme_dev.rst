@@ -231,6 +231,12 @@ Providing work information
   This may also be left blank, in which case no assertion about the work type
   will be included.
 
+Valid work information fields for CC0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  When issuing for CC0, only the following work-info sub-elements will be 
+  included in the returned RDF and RDFa: title, work-url, and creator.
+
+
 Extended Metadata
 -----------------
 
